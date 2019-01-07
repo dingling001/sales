@@ -1,0 +1,14 @@
+/* pages/index/detail/detail.wxss */
+.index_swiper{
+  height: 411rpx;
+}
+.swiper_item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper_item image {
+  width: 100%;
+  /* height: 100% */
+}
