@@ -4,7 +4,7 @@ Page({
  
   data: {
     imgUrls: [
-      '../../img/g1.png',
+      '../../img/g3.png',
       '../../img/g2.png',
       '../../img/g1.png',
     ],

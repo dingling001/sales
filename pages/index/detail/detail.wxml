@@ -1,8 +1,36 @@
 <!--pages/index/detail/detail.wxml-->
-<swiper class='index_swiper' indicator-dots="true" indicator-color='#fff' indicator-active-color='#FDCE02'>
-  <block wx:for="{{imgUrls}}" wx:key='item'>
-    <swiper-item class='swiper_item'>
-      <image src="{{item}}" mode="widthFix" />
-    </swiper-item>
-  </block>
-</swiper>
+<view class='g_too'>
+  <swiper class='index_swiper' indicator-dots="true" indicator-color='#fff' indicator-active-color='#FDCE02'>
+    <block wx:for="{{imgUrls}}" wx:key='item'>
+      <swiper-item class='swiper_item'>
+        <image src="{{item}}" mode="widthFix" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='d_preprice'>
+    <text>￥</text>15000</view>
+  <view class='d_oldprice'>
+    <text>￥</text>20000</view>
+  <view class='g_name'>GUCCI</view>
+  <view class='g_des'>【GUCCI】2019年新款迷你星星斜挎包xxwlucc25d5626d</view>
+</view>
+<view class='detial_box'>
+  <view class='rec'>商品详情
+    <view class='rec_text'></view>
+  </view>
+  <view class='content_box'>
+    <view class='content_item'>
+      <view class='detial_content'>Gucci（古驰）为致敬80年代的电子游戏文化，打造出这款廓形别致的斜挎包。别具辨识度的GUCCY标志与炫目的金色星星相映成趣，烘托出前卫摩登感觉。</view>
+      <view class='detial_img'>
+        <image mode='widthFix' src='../../img/g1.png'></image>
+      </view>
+    </view>
+  </view>
+  <view class='rec'>购买链接
+    <view class='rec_text'></view>
+  </view>
+  <view class='code_box'>
+    <view class='code_des'>2019年新款迷你星星斜挎包复制这段淘口令描述8565dfdf556dw后打开淘宝即可查看 </view>
+    <view class='code_btn'>复制这段淘口令</view>
+  </view>
+</view>

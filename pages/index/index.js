@@ -1,9 +1,9 @@
 Page({
   data: {
     imgUrls: [
-      '../img/p1.png',
+      '../img/g1.png',
       '../img/p.png',
-      '../img/p1.png',
+      '../img/g1.png',
     ],
   },
   onLoad() {

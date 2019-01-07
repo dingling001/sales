@@ -45,11 +45,11 @@ page {
 .index_rec .rec_text {
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 5rpx;
   width: 57rpx;
   height: 22rpx;
   z-index: -1;
-  background: rgba(244, 214, 84, 1);
+  background: rgba(244, 214, 84, 0.65);
 }
 
 .index_list {
