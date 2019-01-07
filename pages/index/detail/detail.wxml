@@ -29,7 +29,7 @@
   <view class='rec'>购买链接
     <view class='rec_text'></view>
   </view>
-  <view class='code_box'>
+  <view class='code_box' bindtap='copy_code'>
     <view class='code_des'>2019年新款迷你星星斜挎包复制这段淘口令描述8565dfdf556dw后打开淘宝即可查看 </view>
     <view class='code_btn'>复制这段淘口令</view>
   </view>
