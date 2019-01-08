@@ -1,1 +1,39 @@
 /* pages/sale/sale.wxss */
+
+.s_top {
+  margin: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
+.s_top image {
+  width: 100%;
+}
+
+.tips {
+  padding: 25rpx 0 54rpx 24rpx;
+}
+
+.tips_item {
+  margin: 0 0 40rpx 0;
+  color: #222;
+  font-size: 24rpx;
+}
+
+.tips_title {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #222;
+  font-weight: bold;
+}
+.tips_title .iconfont{
+  color: #FDCE02;
+  font-size: 38rpx;
+  margin: 0 15rpx 0 0;
+}
+
+.tips_content {
+  padding: 20rpx 0 0 50rpx;
+}

@@ -1,18 +1,18 @@
 <!--pages/classify/classify.wxml-->
 <view class='index_top'></view>
 <view class='class_list'>
-  <view class='class_item'>
+  <navigator class='class_item' url='../class_detail/class_detail'>
     <view class='class_name'>
       <text class='class_title'>Luggage</text>
       <text>皮包</text>
     </view>
     <image src='../img/g1.png' mode='widthFix'></image>
-  </view>
-  <view class='class_item'>
+  </navigator>
+  <navigator class='class_item'  url='../class_detail/class_detail'>
     <view class='class_name'>
       <text class='class_title'>Luggage</text>
       <text>皮包</text>
     </view>
     <image src='../img/g2.png' mode='widthFix'></image>
-  </view>
+  </navigator>
 </view>

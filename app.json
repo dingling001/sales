@@ -4,7 +4,8 @@
     "pages/classify/classify",
     "pages/sale/sale",
     "pages/my/my",
-    "pages/index/detail/detail"
+    "pages/index/detail/detail",
+    "pages/class_detail/class_detail"
   ],
   "window": {
     "backgroundTextStyle": "dark",

@@ -1,0 +1,46 @@
+<!--pages/class_detail/class_detail.wxml-->
+<scroll-view>
+  <view class='d_nav'>
+    <view class='d_active'>综合</view>
+    <view>寄售价</view>
+    <view>原价</view>
+    <view>品牌</view>
+  </view>
+  <view class='index_box'>
+    <view class='index_list'>
+      <view class='index_item' bindtap='go_detail'>
+        <view class='index_item_img'>
+          <image mode='widthFix' src='../img/g1.png'></image>
+        </view>
+        <view class='index_name'>GUCCI</view>
+        <view class='index_des'>GUCCI 2019年新款迷你星星</view>
+        <view class='price_box'>
+          <text class='pre_p'>￥4000.00</text>
+          <text class='old_p'>￥8900.00</text>
+        </view>
+      </view>
+      <view class='index_item' bindtap='go_detail'>
+        <view class='index_item_img'>
+          <image mode='widthFix' src='../img/g2.png'></image>
+        </view>
+        <view class='index_name'>GUCCI</view>
+        <view class='index_des'>GUCCI 2019年新款迷你星星2019年新款迷你星星</view>
+        <view class='price_box'>
+          <text class='pre_p'>￥4000.00</text>
+          <text class='old_p'>￥8900.00</text>
+        </view>
+      </view>
+      <view class='index_item' bindtap='go_detail'>
+        <view class='index_item_img'>
+          <image mode='widthFix' src='../img/g1.png'></image>
+        </view>
+        <view class='index_name'>GUCCI</view>
+        <view class='index_des'>GUCCI 2019年新款</view>
+        <view class='price_box'>
+          <text class='pre_p'>￥4000.00</text>
+          <text class='old_p'>￥8900.00</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

@@ -1,0 +1,4 @@
+/* pages/class_detail/class_detail.wxss */
+.index_box{
+  margin-top: 118rpx;
+}

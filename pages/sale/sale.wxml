@@ -1,2 +1,13 @@
 <!--pages/sale/sale.wxml-->
-<text>pages/sale/sale.wxml</text>
+<view class='s_top'>
+  <image mode='widthFix' src='../img/sales.png'></image>
+</view>
+<view class='tips'>
+  <view class='tips_item'>
+    <view class='tips_title'>
+      <view class='iconfont icon-success3'></view>
+      <view>安心保障</view>
+    </view>
+    <view class='tips_content'>寄售中出现意外损坏、丢失、不符等情况.您享有先行赔付保障.</view>
+  </view>
+</view>
