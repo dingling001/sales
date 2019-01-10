@@ -1,2 +1,17 @@
 <!--pages/my/my.wxml-->
-<text>pages/my/my.wxml</text>
+<view class='my_top'>
+  <image src='../img/my_bg.png' mode='widthFix'></image>
+  <view class='my_info' wx:if='{{userInfo}}'>
+    <view class='headimg'>
+      <image src='{{userInfo.avatarUrl}}' mode='widthFix'></image>
+    </view>
+    <view>
+      {{userInfo.nickName}}
+    </view>
+  </view>
+  <view class='my_info' wx:else>
+    <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
+      登录
+    </button>
+  </view>
+</view>

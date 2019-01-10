@@ -10,4 +10,27 @@
     </view>
     <view class='tips_content'>寄售中出现意外损坏、丢失、不符等情况.您享有先行赔付保障.</view>
   </view>
+  <view class='tips_item'>
+    <view class='tips_title'>
+      <view class='iconfont icon-success3'></view>
+      <view>极速售卖</view>
+    </view>
+    <view class='tips_content'>寄售中出现意外损坏、丢失、不符等情况.您享有先行赔付保障.</view>
+  </view>
+  <view class='tips_item'>
+    <view class='tips_title'>
+      <view class='iconfont icon-success3'></view>
+      <view>确认收益</view>
+    </view>
+    <view class='tips_content'>有多重销售模式，帮寄售用户极速出售包包.</view>
+  </view>
+  <view class='tips_item'>
+    <view class='tips_title'>
+      <view class='iconfont icon-success3'></view>
+      <view>专业服务</view>
+    </view>
+    <view class='tips_content'>全程托管，自有团队实施专业级精细护理，存放于恒温恒湿仓库 专业摄像师拍摄，运营上架.
+    </view>
+  </view>
 </view>
+<view class='sale_btn'>提交</view>

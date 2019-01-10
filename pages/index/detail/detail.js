@@ -16,7 +16,7 @@ Page({
     })
   },
   // 复制淘宝口令
-  copy_code() {
+  copy_code(e) {
     wx.setClipboardData({
       data: '123',
       success(res) {
