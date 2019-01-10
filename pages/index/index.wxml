@@ -1,49 +1,27 @@
 <scroll-view>
   <view class='index_top'></view>
   <swiper class='index_swiper' indicator-dots="true" indicator-color='#fff' indicator-active-color='#FDCE02'>
-    <block wx:for="{{imgUrls}}" wx:key='item'>
+    <block wx:for="{{slide_list}}" wx:key='item'>
       <swiper-item class='swiper_item'>
-        <image src="{{item}}" mode="widthFix" />
+        <image src="{{item.banImg}}" mode="widthFix" />
       </swiper-item>
     </block>
   </swiper>
-  <view class='index_box'>
+  <view class='index_box' wx:for='{{homeList}}' wx:key='{{item.typeId}}' wx:for-index='hindex'>
     <view class='index_rec'>
       <text class='rec_text'></text>
-      <text>精品推荐</text>
+      <text>{{item.typeName}}</text>
     </view>
     <view class='index_list'>
-      <view class='index_item' bindtap='go_detail'>
+      <view class='index_item' bindtap='go_detail' wx:for='{{item.list}}' wx:for-item='i' data-index='{{index}}' data-hindex='{{hindex}}' wx:key='{{i.goodsId}}'>
         <view class='index_item_img'>
-          <image mode='widthFix' src='../img/g1.png'></image>
+          <image mode='widthFix' src='{{i.goodsImg}}'></image>
         </view>
-        <view class='index_name'>GUCCI</view>
-        <view class='index_des'>GUCCI 2019年新款迷你星星</view>
+        <view class='index_name'>{{i.goodsName}}</view>
+        <view class='index_des'>{{i.goodsDesc}}</view>
         <view class='price_box'>
-          <text class='pre_p'>￥4000.00</text>
-          <text class='old_p'>￥8900.00</text>
-        </view>
-      </view>
-      <view class='index_item' bindtap='go_detail'>
-        <view class='index_item_img'>
-          <image mode='widthFix' src='../img/g2.png'></image>
-        </view>
-        <view class='index_name'>GUCCI</view>
-        <view class='index_des'>GUCCI 2019年新款迷你星星2019年新款迷你星星</view>
-        <view class='price_box'>
-          <text class='pre_p'>￥4000.00</text>
-          <text class='old_p'>￥8900.00</text>
-        </view>
-      </view>
-      <view class='index_item' bindtap='go_detail'>
-        <view class='index_item_img'>
-          <image mode='widthFix' src='../img/g1.png'></image>
-        </view>
-        <view class='index_name'>GUCCI</view>
-        <view class='index_des'>GUCCI 2019年新款</view>
-        <view class='price_box'>
-          <text class='pre_p'>￥4000.00</text>
-          <text class='old_p'>￥8900.00</text>
+          <text class='pre_p'>￥{{i.goodsPrice}}</text>
+          <text class='old_p'>￥{{i.goodsCost}}</text>
         </view>
       </view>
     </view>

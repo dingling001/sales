@@ -1,0 +1,9 @@
+<!--pages/my/my_sale/my_sale.wxml-->
+<view class='building'>
+<image src='../../img/clock.png'></image>
+</view>
+<view>系统开发中</view>
+<view>寄售暂请联系微信：花花花的话</view>
+                            
+
+                        

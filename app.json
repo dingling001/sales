@@ -5,7 +5,11 @@
     "pages/sale/sale",
     "pages/my/my",
     "pages/index/detail/detail",
-    "pages/class_detail/class_detail"
+    "pages/class_detail/class_detail",
+    "pages/my/my_sold/my_sold",
+    "pages/my/my_sale/my_sale",
+    "pages/my/my_count/my_count",
+    "pages/my/my_money/my_money"
   ],
   "window": {
     "backgroundTextStyle": "dark",

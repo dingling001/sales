@@ -32,6 +32,20 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
+  getAddress(){
+    wx.chooseAddress({
+      success(res) {
+        console.log(res.userName)
+        console.log(res.postalCode)
+        console.log(res.provinceName)
+        console.log(res.cityName)
+        console.log(res.countyName)
+        console.log(res.detailInfo)
+        console.log(res.nationalCode)
+        console.log(res.telNumber)
+      }
+    })
+  },
   onReady: function() {
 
   },

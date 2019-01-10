@@ -8,7 +8,7 @@
     </view>
     <image src='../img/g1.png' mode='widthFix'></image>
   </navigator>
-  <navigator class='class_item'  url='../class_detail/class_detail'>
+  <navigator class='class_item' url='../class_detail/class_detail'>
     <view class='class_name'>
       <text class='class_title'>Luggage</text>
       <text>皮包</text>

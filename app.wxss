@@ -14,7 +14,15 @@
          Android,
          iOS 4.2+ */ url('//at.alicdn.com/t/font_1001498_sdswyg9y1ya.svg?t=1546989625577#iconfont') format('svg'); /* iOS 4.1- */
 }
-
+@font-face {
+  font-family: 'iconfont';  /* project id 1001498 */
+  src: url('//at.alicdn.com/t/font_1001498_w1pl1qaivg.eot');
+  src: url('//at.alicdn.com/t/font_1001498_w1pl1qaivg.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1001498_w1pl1qaivg.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1001498_w1pl1qaivg.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1001498_w1pl1qaivg.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1001498_w1pl1qaivg.svg#iconfont') format('svg');
+}
 .iconfont {
   font-family: "iconfont" !important;
   font-size: 16px;
@@ -91,7 +99,9 @@ live-player, live-pusher, map, canvas, open-data, web-view, ad {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  will-change: transform
 }
+
 
 button {
   background: none;
@@ -212,4 +222,7 @@ button::after {
   color: #fdce02;
   font-size: 32rpx;
   transition: all 0.5s;
+}
+page{
+  background-color: #F9F9FA;
 }

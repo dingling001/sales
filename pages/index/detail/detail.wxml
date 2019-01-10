@@ -8,11 +8,11 @@
     </block>
   </swiper>
   <view class='d_preprice'>
-    <text>￥</text>15000</view>
+    <text>￥</text>{{goodsInfo.goodsPrice}}</view>
   <view class='d_oldprice'>
-    <text>￥</text>20000</view>
-  <view class='g_name'>GUCCI</view>
-  <view class='g_des'>【GUCCI】2019年新款迷你星星斜挎包xxwlucc25d5626d</view>
+    <text>￥</text>{{goodsInfo.goodsCost}}</view>
+  <view class='g_name'>{{goodsInfo.goodsName}}</view>
+  <view class='g_des'>{{goodsInfo.goodsDesc}}</view>
 </view>
 <view class='detial_box'>
   <view class='rec'>商品详情
@@ -20,17 +20,17 @@
   </view>
   <view class='content_box'>
     <view class='content_item'>
-      <view class='detial_content'>Gucci（古驰）为致敬80年代的电子游戏文化，打造出这款廓形别致的斜挎包。别具辨识度的GUCCY标志与炫目的金色星星相映成趣，烘托出前卫摩登感觉。</view>
+      <view class='detial_content'>{{goodsInfo.goodsText}}</view>
       <view class='detial_img'>
-        <image mode='widthFix' src='../../img/g1.png'></image>
+        <image mode='widthFix' src='{{goodsInfo.goodsDetail}}'></image>
       </view>
     </view>
   </view>
   <view class='rec'>购买链接
     <view class='rec_text'></view>
   </view>
-  <view class='code_box' bindtap='copy_code'>
-    <view class='code_des'>2019年新款迷你星星斜挎包复制这段淘口令描述8565dfdf556dw后打开淘宝即可查看 </view>
+  <view class='code_box' bindtap='copy_code' data-code='{{goodsInfo.goodsCode}}'>
+    <view class='code_des'>{{goodsInfo.goodsCode}}</view>
     <view class='code_btn'>复制这段淘口令</view>
   </view>
 </view>
