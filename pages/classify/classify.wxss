@@ -6,7 +6,7 @@
 }
 
 .class_list {
-  margin: -180rpx auto 0 auto;
+  margin: -233rpx auto 0 auto;
   width: 93%;
 }
 
@@ -19,7 +19,7 @@
   border-radius: 10rpx;
   overflow: hidden;
   position: relative;
-  box-shadow: -1px 3px 54px 5px rgba(192, 192, 192, 0.3);
+  /* box-shadow: -1px 3px 54px 5px rgba(192, 192, 192, 0.3); */
 }
 
 .class_item image {
@@ -39,6 +39,7 @@
   top: 0;
   color: #fff;
   z-index: 10;
+background-color: rgba(0, 0, 0, 0.23)  
 }
 
 .class_title {

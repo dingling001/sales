@@ -3,7 +3,8 @@
   <swiper class='index_swiper' indicator-dots="true" indicator-color='#fff' indicator-active-color='#FDCE02'>
     <block wx:for="{{slide_list}}" wx:key='item'>
       <swiper-item class='swiper_item'>
-        <image src="{{item.banImg}}" mode="widthFix" />
+        <text class='nodata' wx:if='{{item.banImg==""||item.banImg==null}}'>加载中...</text>
+        <image src="{{item.banImg}}" wx:else mode="widthFix" />
       </swiper-item>
     </block>
   </swiper>

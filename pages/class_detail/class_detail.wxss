@@ -1,4 +1,31 @@
 /* pages/class_detail/class_detail.wxss */
-.index_box{
+
+.index_box {
   margin-top: 118rpx;
+}
+
+.brand_mold {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.brand_box {
+  background-color: #fff;
+  margin-top: 100rpx;
+}
+
+.brand_item {
+  padding: 32rpx;
+  font-size: 24rpx;
+  color: #666;
+  border-bottom: 1px solid #f3f5f7;
+}
+
+.brand_item:last-child {
+  border: 0;
 }

@@ -15,21 +15,21 @@
     </button>
   </view>
 </view>
-<navigator url='./my_sold/my_sold' class='my_item'>
+<navigator url='./my_sold/my_sold' hover-class='none' class='my_item'>
   <view class='icon_box'>
     <image src='../img/m1.svg'></image>
     <view>我要寄售</view>
   </view>
   <view class='iconfont icon-tiaozhuan'></view>
 </navigator>
-<navigator url='./my_sale/my_sale' class='my_item'>
+<navigator url='./my_sale/my_sale' class='my_item'  hover-class='none'>
   <view class='icon_box'>
     <image src='../img/m2.svg'></image>
     <view>我的寄售</view>
   </view>
   <view class='iconfont icon-tiaozhuan'></view>
 </navigator>
-<navigator url='./my_money/my_money' class='my_item'>
+<navigator url='./my_money/my_money' class='my_item'  hover-class='none'>
   <view class='icon_box'>
     <image src='../img/m3.svg'></image>
     <view>我的结算</view>
@@ -43,7 +43,7 @@
   </view>
   <view class='iconfont icon-tiaozhuan'></view>
 </view>
-<navigator url='./my_count/my_count' class='my_item'>
+<navigator url='./my_count/my_count' class='my_item' hover-class='none'>
   <view class='icon_box'>
     <image src='../img/m5.svg'></image>
     <view>收款账号</view>

@@ -1,10 +1,10 @@
 <!--pages/class_detail/class_detail.wxml-->
 <scroll-view>
   <view class='d_nav'>
-    <view class='d_active'>综合</view>
-    <view>寄售价</view>
-    <view>原价</view>
-    <view>品牌</view>
+    <view class='{{i==0?"d_active":""}}' bindtap='all_fun'>综合</view>
+    <view class='{{i==1?"d_active":""}}' bindtap='consignment_fun'>寄售价</view>
+    <view class='{{i==2?"d_active":""}}' bindtap='price_fun'>原价</view>
+    <view class='{{i==3?"d_active":""}}' bindtap='brand_fun'>品牌</view>
   </view>
   <view class='index_box'>
     <view class='index_list'>
@@ -41,6 +41,12 @@
           <text class='old_p'>￥8900.00</text>
         </view>
       </view>
+    </view>
+  </view>
+  <view class='brand_mold' wx:if='{{show_brand}}' bindtap='colse_mold'>
+    <view class='brand_box'>
+      <view class='brand_item' bindtap='choose_brand'> Omega/欧米茄</view>
+      <view class='brand_item' bindtap='choose_brand'> Omega/欧米茄</view>
     </view>
   </view>
 </scroll-view>

@@ -1,0 +1,2 @@
+<!--pages/template/template.wxml-->
+<view class='back_top' bindtap='back_fun'></view>

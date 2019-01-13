@@ -55,8 +55,10 @@ Page({
   },
   // 复制淘宝口令
   copy_code(e) {
+    console.log(e)
+    let code = e.currentTarget.dataset.code;
     wx.setClipboardData({
-      data: '123',
+      data: code,
       success(res) {
         wx.getClipboardData({
           success(res) {

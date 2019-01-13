@@ -1,66 +1,83 @@
 // pages/class_detail/class_detail.js
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
+    i: 0,
+    show_brand: false
+  },
+  // 综合
+  all_fun() {
+    this.setData({
+      i: 0,
+      show_brand: false
+    })
+  },
+  // 寄售价
+  consignment_fun() {
+    this.setData({
+      i: 1,
+      show_brand: false
+    })
+  },
+  // 原价
+  price_fun() {
+    this.setData({
+      i: 2,
+      show_brand: false
+    })
+  },
+  // 品牌
+  brand_fun() {
+    this.setData({
+      i: 3,
+      show_brand: true
+    })
+  },
+  // 选择品牌
+  choose_brand() {
+    this.setData({
+      show_brand: false,
+    })
+  },
+  colse_mold(){
+    this.setData({
+      show_brand: false,
+    })
+  },
+  onLoad: function(options) {
 
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  onReady: function() {
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+
+  onShow: function() {
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  onHide: function() {
 
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+
+  onUnload: function() {
 
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+
+  onPullDownRefresh: function() {
 
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+
+  onReachBottom: function() {
 
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
 
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

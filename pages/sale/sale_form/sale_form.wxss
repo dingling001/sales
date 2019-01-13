@@ -1,0 +1,27 @@
+/* pages/sale/sale_form/sale_form.wxss */
+
+.form_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25rpx;
+  font-size: 28rpx;
+  background-color: #fff;
+  border-bottom: 1px solid #f9f9fa;
+}
+
+.form_input {
+  text-align: right;
+  flex: 1;
+}
+
+.form_input input {
+  padding: 27rpx 0;
+  width: 100%;
+  height: auto;
+}
+
+.form_input .placle {
+  color: #999;
+  font-size: 26rpx;
+}

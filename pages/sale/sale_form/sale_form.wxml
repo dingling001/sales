@@ -1,0 +1,5 @@
+<!--pages/sale/sale_form/sale_form.wxml-->
+<view class='form_item'>
+  <view>品牌</view>
+  <view class='form_input'><input type='text' placeholder='请输入品牌'></input></view>
+</view>
