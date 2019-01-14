@@ -1,4 +1,5 @@
 var network = require("../../utils/network.js");
+const app = getApp();
 Page({
   data: {
     imgUrls: [
@@ -10,10 +11,7 @@ Page({
     homeList: []
   },
   onLoad() {
-    wx.setStorage({
-      key: 'token',
-      data: 'ceshi',
-    })
+    console.log(app.globalData.token)
     this.slideShow();
     this.homeList_fun();
   },
@@ -32,26 +30,35 @@ Page({
   // 获取首页轮播图
   slideShow() {
     var that = this;
-    network.POST({
-      url: 'bannerList',
-      header: 'application/x-www-form-urlencoded',
-      params: {},
-      success(res) {
-        console.log(res)
-        let slidelist = res.data.data;
-        if (res.data.code == '0000') {
-          that.setData({
-            slide_list: slidelist
-          })
-          // console.log(that.data.slide_list);
-        } else {
-          // console.log(res);
-        }
-      }
+    wx.getStorage({
+      key: 'token',
+      success: (res_token) => {
+        network.POST({
+          url: 'getBannerList',
+          header: 'application/x-www-form-urlencoded',
+          params: {},
+          success(res) {
+            console.log(res)
+            let slidelist = res.data.data;
+            for (let i in slidelist) {
+              slidelist[i].banImg = network.imgUrl + slidelist[i].banImg
+            }
+            if (res.data.code == '0000') {
+              that.setData({
+                slide_list: slidelist
+              })
+              console.log(that.data.slide_list);
+            } else {
+              // console.log(res);
+            }
+          }
+        })
+      },
     })
   },
   // 获取首页推荐商品列表
   homeList_fun() {
+    wx.showNavigationBarLoading()
     var that = this;
     wx.getStorage({
       key: 'token',
@@ -63,6 +70,7 @@ Page({
             token: res_token.data,
           },
           success(res) {
+            wx.hideLoading()
             var slidelist = res.data.data;
             if (res.data.code == '0000') {
               that.setData({

@@ -22,6 +22,10 @@ Page({
       this.setData({
         userInfo: app.globalData.userInfo
       })
+      wx.setStorage({
+        key: 'token',
+        data: 'ceshi',
+      })
     } else {
       wx.showToast({
         title: '请登录获取更好的体验',
