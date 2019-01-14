@@ -1,25 +1,25 @@
 <!--pages/my/my_count/my_count.wxml-->
 <view class='count_box'>
-  <view class='count_item'>
+  <navigator class='count_item' hover-class='none' url='../alipay/alipay'>
     <view class='count_icon'>
       <view class='iconfont icon-zhifubao'></view>
       <text>支付宝</text>
       <text class='zhitips'>（推荐使用支付宝收款，享受极速到账）</text>
     </view>
     <view class='iconfont icon-tiaozhuan'></view>
-  </view>
-   <view class='count_item'>
+  </navigator>
+   <navigator class='count_item' hover-class='none' url='../bankpay/bankpay'>
     <view class='count_icon'>
       <view class='iconfont icon-yinhangqia'></view>
       <text>银行卡</text>
     </view>
     <view class='iconfont icon-tiaozhuan'></view>
-  </view>
-   <view class='count_item'>
+  </navigator>
+   <navigator class='count_item' hover-class='none' url='../wepay/wepay'>
     <view class='count_icon'>
       <view class='iconfont icon-weixin1'></view>
       <text>微信</text>
     </view>
     <view class='iconfont icon-tiaozhuan'></view>
-  </view>
+  </navigator>
 </view>

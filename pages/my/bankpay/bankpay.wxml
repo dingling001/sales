@@ -1,0 +1,27 @@
+<!--pages/my/bankpay/bankpay.wxml-->
+<view class='form_item'>
+  <view>开户行</view>
+  <view class='form_input'>
+    <input type='text' placeholder='请输入开户行'></input>
+  </view>
+</view>
+<view class='form_item'>
+  <view>银行卡名称</view>
+  <view class='form_input'>
+    <input type='text' placeholder='请输入银行卡名称'></input>
+  </view>
+</view>
+<view class='form_item'>
+  <view>银行卡号</view>
+  <view class='form_input'>
+    <input type='text' placeholder='请输入银行卡号'></input>
+  </view>
+</view>
+<view class='form_item'>
+  <view>姓名</view>
+  <view class='form_input'>
+    <input type='text' placeholder='请输入姓名'></input>
+  </view>
+</view>
+
+<view class='form_submit'>提交</view>

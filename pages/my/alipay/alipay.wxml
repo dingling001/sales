@@ -1,0 +1,15 @@
+<!--pages/my/alipay/alipay.wxml-->
+<view class='form_item'>
+  <view>支付宝账户</view>
+  <view class='form_input'>
+    <input type='text' placeholder='请输入账户'></input>
+  </view>
+</view>
+<view class='form_item'>
+  <view>姓名</view>
+  <view class='form_input'>
+    <input type='text' placeholder='请输入姓名'></input>
+  </view>
+</view>
+
+<view class='form_submit'>提交</view>

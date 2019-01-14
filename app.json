@@ -11,7 +11,10 @@
     "pages/my/my_count/my_count",
     "pages/my/my_money/my_money",
     "pages/template/template",
-    "pages/sale/sale_form/sale_form"
+    "pages/sale/sale_form/sale_form",
+    "pages/my/alipay/alipay",
+    "pages/my/wepay/wepay",
+    "pages/my/bankpay/bankpay"
   ],
   "window": {
     "backgroundTextStyle": "dark",
