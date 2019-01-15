@@ -2,16 +2,10 @@ var network = require("../../utils/network.js");
 const app = getApp();
 Page({
     data: {
-        imgUrls: [
-            '../img/g1.png',
-            '../img/p.png',
-            '../img/g1.png',
-        ],
         slide_list: [],
         homeList: []
     },
     onLoad() {
-        console.log(app.globalData.token)
         this.slideShow();
         this.homeList_fun();
     },

@@ -19,46 +19,25 @@
     <view class='view {{i==3?"d_active":""}}' bindtap='brand_fun'>品牌</view>
   </view>
   <view class='index_box'>
-    <view class='index_list'>
-      <view class='index_item' bindtap='go_detail'>
+  <view wx:if='{{goodsList.length==0}}' class='nodata'>暂无数据</view>
+    <view class='index_list' wx:else>
+      <view class='index_item' bindtap='go_detail' wx:for='{{goodsList}}' data-id='{{item.goodsId}}'>
         <view class='index_item_img'>
-          <image mode='widthFix' src='../img/g1.png'></image>
+          <image mode='widthFix' src='{{item.goodsImg}}'></image>
         </view>
-        <view class='index_name'>GUCCI</view>
-        <view class='index_des'>GUCCI 2019年新款迷你星星</view>
+        <view class='index_name'>{{item.goodsName}}</view>
+        <view class='index_des'>{{item.goodsDesc}}</view>
         <view class='price_box'>
-          <text class='pre_p'>￥4000.00</text>
-          <text class='old_p'>￥8900.00</text>
+          <text class='pre_p'>￥{{item.goodsPrice}}</text>
+          <text class='old_p'>￥{{item.goodsCost}}</text>
         </view>
       </view>
-      <view class='index_item' bindtap='go_detail'>
-        <view class='index_item_img'>
-          <image mode='widthFix' src='../img/g2.png'></image>
-        </view>
-        <view class='index_name'>GUCCI</view>
-        <view class='index_des'>GUCCI 2019年新款迷你星星2019年新款迷你星星</view>
-        <view class='price_box'>
-          <text class='pre_p'>￥4000.00</text>
-          <text class='old_p'>￥8900.00</text>
-        </view>
-      </view>
-      <view class='index_item' bindtap='go_detail'>
-        <view class='index_item_img'>
-          <image mode='widthFix' src='../img/g1.png'></image>
-        </view>
-        <view class='index_name'>GUCCI</view>
-        <view class='index_des'>GUCCI 2019年新款</view>
-        <view class='price_box'>
-          <text class='pre_p'>￥4000.00</text>
-          <text class='old_p'>￥8900.00</text>
-        </view>
-      </view>
+     
     </view>
   </view>
   <view class='brand_mold' wx:if='{{show_brand}}' bindtap='colse_mold'>
     <view class='brand_box'>
-      <view class='brand_item' bindtap='choose_brand'> Omega/欧米茄</view>
-      <view class='brand_item' bindtap='choose_brand'> Omega/欧米茄</view>
+      <view class='brand_item' bindtap='choose_brand' wx:for='{{goodsBrand}}' data-brand='{{item}}'>{{item}}</view>
     </view>
   </view>
 </scroll-view>
