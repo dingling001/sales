@@ -8,24 +8,45 @@
 <view class='form_item picker'>
   <view>类型</view>
   <view class='form_input'>
-    <picker>选择类型</picker><view class='iconfont icon-xiala'></view>
+    <picker>
+      <view class='iconfont icon-xiala float_r'></view>
+      <view class='float_r'>请选择类型</view>
+    </picker>
   </view>
 </view>
 <view class='form_item'>
   <view>购入价格</view>
   <view class='form_input'>
-    <input type='text' placeholder='请输入品牌'></input>
+    <input type='digit' placeholder='请输入价格'></input>
   </view>
 </view>
 <view class='form_item'>
   <view>期望售价</view>
   <view class='form_input'>
-    <input type='text' placeholder='请输入品牌'></input>
+    <input type='digit' placeholder='请输入价格'></input>
   </view>
 </view>
 <view class='form_item'>
   <view>联系电话</view>
   <view class='form_input'>
-    <input type='text' placeholder='请输入品牌'></input>
+    <input type='number' placeholder='请输入联系方式'></input>
   </view>
 </view>
+<view class='pro_box'>产品图片</view>
+<view class='img_box'>
+  <view class='img'>
+    <image wx:if='{{img1}}' src='{{img1}}' mode='widthFix'></image>
+    <block wx:else>
+      <view class='iconfont icon-tianjiatupian'></view>
+      <text>添加图片</text>
+    </block>
+  </view>
+  <view class='img'>
+    <image wx:if='{{img2}}' src='{{img2}}' mode='widthFix'></image>
+    <block wx:else>
+      <view class='iconfont icon-tianjiatupian'></view>
+      <text>添加图片</text>
+    </block>
+  </view>
+</view>
+<view class='form_submit'>提交</view>

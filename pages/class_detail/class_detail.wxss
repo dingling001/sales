@@ -29,3 +29,30 @@
 .brand_item:last-child {
   border: 0;
 }
+
+.pricerank {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.rankbtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: -75rpx 0 0 10rpx;
+  padding: 20rpx 0;
+}
+
+.rankbtn .iconfont {
+  font-size: 17rpx;
+  font-weight: 600;
+  height: 20rpx;
+  color: #222;
+}
+
+.d_active .icon_active {
+  color: #fdce02;
+}

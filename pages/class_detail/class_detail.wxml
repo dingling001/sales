@@ -1,10 +1,22 @@
 <!--pages/class_detail/class_detail.wxml-->
 <scroll-view>
   <view class='d_nav'>
-    <view class='{{i==0?"d_active":""}}' bindtap='all_fun'>综合</view>
-    <view class='{{i==1?"d_active":""}}' bindtap='consignment_fun'>寄售价</view>
-    <view class='{{i==2?"d_active":""}}' bindtap='price_fun'>原价</view>
-    <view class='{{i==3?"d_active":""}}' bindtap='brand_fun'>品牌</view>
+    <view class='view {{i==0?"d_active":""}}' bindtap='all_fun'>综合</view>
+    <view class='view pricerank {{i==1?"d_active":""}}' bindtap='consignment_fun'>
+      <text>寄售价</text>
+      <view class='rankbtn'>
+        <view class='iconfont icon-xiala11 {{icon_status?"icon_active":""}}'></view>
+        <view class='iconfont icon-xiala1 {{icon_status?"":"icon_active"}}'></view>
+      </view>
+    </view>
+    <view class='view pricerank {{i==2?"d_active":""}}' bindtap='price_fun'>
+    <text>原价</text>
+     <view class='rankbtn'>
+        <view class='iconfont icon-xiala11 {{icon_status1?"icon_active":""}}'></view>
+        <view class='iconfont icon-xiala1 {{icon_status1?"":"icon_active"}}'></view>
+      </view>
+    </view>
+    <view class='view {{i==3?"d_active":""}}' bindtap='brand_fun'>品牌</view>
   </view>
   <view class='index_box'>
     <view class='index_list'>

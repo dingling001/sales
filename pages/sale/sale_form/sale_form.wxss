@@ -1,1 +1,46 @@
 /* pages/sale/sale_form/sale_form.wxss */
+
+page {
+  background-color: #fff;
+}
+
+.pro_box {
+  font-size: 28rpx;
+  color: #000;
+  padding: 30rpx 25rpx;
+}
+
+.img_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25rpx
+}
+
+.img_box .img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  background-color: #f9f9fa;
+  height: 230rpx;
+  overflow: hidden;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.img_box .img .iconfont {
+  color: #999;
+  font-size: 70rpx;
+  margin: 0 0 10rpx 0;
+}
+
+.img_box .img image {
+  width: 100%;
+}
+.float_r{
+  float: right;
+  color: #999999;
+    font-size: 26rpx;
+}

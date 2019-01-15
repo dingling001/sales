@@ -1,8 +1,8 @@
 /* pages/sale/sale.wxss */
 
-page {
+/* page {
   padding:0 0 84rpx 0;
-}
+} */
 
 .s_top {
   margin: 0 24rpx;
@@ -17,7 +17,7 @@ page {
 }
 
 .tips {
-  padding: 25rpx 0 54rpx 24rpx;
+  padding: 25rpx 0 0 24rpx;
 }
 
 .tips_item {
@@ -45,7 +45,7 @@ page {
 }
 
 .sale_btn {
-  margin: 84rpx 26rpx;
+  margin: 0 26rpx;
   text-align: center;
   font-size: 34rpx;
   color: #222;
