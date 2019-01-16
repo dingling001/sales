@@ -34,14 +34,14 @@
 </view>
 <view class='pro_box'>产品图片</view>
 <view class='img_box'>
-  <view class='img'>
+  <view class='img' bindtap='img1_fun'>
     <image wx:if='{{img1}}' src='{{img1}}' mode='widthFix'></image>
-    <block wx:else>
+    <block wx:else> 
       <view class='iconfont icon-tianjiatupian'></view>
       <text>添加图片</text>
     </block>
   </view>
-  <view class='img'>
+  <view class='img'  bindtap='img2_fun'>
     <image wx:if='{{img2}}' src='{{img2}}' mode='widthFix'></image>
     <block wx:else>
       <view class='iconfont icon-tianjiatupian'></view>
@@ -49,4 +49,5 @@
     </block>
   </view>
 </view>
+<view class='img_tips'>注：请上传16：9的图片类型</view>
 <view class='form_submit'>提交</view>

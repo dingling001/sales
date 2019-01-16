@@ -253,7 +253,7 @@ page {
   padding: 0 25rpx;
   font-size: 28rpx;
   background-color: #fff;
-  border-bottom: 1px solid #d2d2d2;
+  border-bottom: 1px solid #f9f9fa;
 }
 
 .form_input {
@@ -305,7 +305,7 @@ page {
   text-align: center;
   padding: 20rpx 0;
   border-radius: 10rpx;
-  margin: 200rpx auto 0 auto;
+  margin:150rpx auto 0 auto;
 }
 
 .form_submit:active {

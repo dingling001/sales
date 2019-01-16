@@ -1,7 +1,7 @@
 <!--pages/classify/classify.wxml-->
 <view class='index_top'></view>
 <view class='class_list'>
-  <navigator class='class_item' url='../class_detail/class_detail?typeId={{item.typeId}}' wx:for='{{classlist}}' wx:key='{{item.typeId}}'>
+  <navigator class='class_item' url='../class_detail/class_detail?typeId={{item.typeId}}&typeName={{item.typeName}}' wx:for='{{classlist}}' wx:key='{{item.typeId}}'>
     <view class='class_name'>
       <text class='class_title'>{{item.typeName}}</text>
       <text>{{item.typeName}}</text>

@@ -144,6 +144,9 @@ Page({
         typeId: options.typeId
       })
       this.getGoodList(this.data.priceType, this.data.brand)
+      wx.setNavigationBarTitle({
+        title: options.typeName
+      })
     }
   },
 

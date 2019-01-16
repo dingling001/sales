@@ -1,6 +1,6 @@
 <!--pages/my/my.wxml-->
 <view class='my_top'>
-  <image src='../img/my_bg.png' mode='widthFix'></image>
+  <image src='../img/my_bg.png' class='my_top_img'></image>
   <view class='my_info' wx:if='{{userInfo}}'>
     <view class='headimg'>
       <image src='{{userInfo.avatarUrl}}' mode='widthFix'></image>
@@ -15,13 +15,13 @@
     </button>
   </view>
 </view>
-<navigator url='./my_sold/my_sold' hover-class='none' class='my_item'>
+<view  class='my_item' bindtap='go_sale'>
   <view class='icon_box'>
     <image src='../img/m1.svg'></image>
     <view>我要寄售</view>
   </view>
   <view class='iconfont icon-tiaozhuan'></view>
-</navigator>
+</view>
 <navigator url='./my_sale/my_sale' class='my_item'  hover-class='none'>
   <view class='icon_box'>
     <image src='../img/m2.svg'></image>

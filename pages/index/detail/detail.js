@@ -8,7 +8,8 @@ Page({
       '../../img/g1.png',
     ],
     goodsId: '',
-    goodsInfo: []
+    goodsInfo: [],
+    goodsCarousel: []
   },
 
   onLoad: function(options) {
@@ -39,7 +40,8 @@ Page({
             let goodsInfo = res.data.data;
             if (res.data.code == '0000') {
               that.setData({
-                goodsInfo: goodsInfo
+                goodsInfo: goodsInfo,
+                goodsCarousel: goodsInfo.goodsCarousel.split(',')
               })
               wx.setNavigationBarTitle({
                 title: that.data.goodsInfo.goodsName

@@ -1,9 +1,9 @@
 <!--pages/index/detail/detail.wxml-->
 <view class='g_too'>
   <swiper class='index_swiper' indicator-dots="true" indicator-color='#fff' indicator-active-color='#FDCE02'>
-    <block wx:for="{{imgUrls}}" wx:key='item'>
+    <block wx:for="{{goodsCarousel}}" wx:key='item'>
       <swiper-item class='swiper_item'>
-        <image src="{{item}}" mode="widthFix" />
+        <image src="{{item}}" mode="aspectFit" />
       </swiper-item>
     </block>
   </swiper>

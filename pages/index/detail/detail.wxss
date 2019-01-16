@@ -9,7 +9,7 @@ page {
 }
 
 .index_swiper {
-  height: 411rpx;
+  height: 300rpx;
 }
 
 .swiper_item {

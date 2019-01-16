@@ -22,12 +22,13 @@ page {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  flex: 1;
+  /* flex: 1; */
   background-color: #f9f9fa;
   height: 230rpx;
   overflow: hidden;
   font-size: 24rpx;
   color: #999;
+  width: 49%;
 }
 
 .img_box .img .iconfont {
@@ -43,4 +44,9 @@ page {
   float: right;
   color: #999999;
     font-size: 26rpx;
+}
+.img_tips{
+  padding: 10rpx 25rpx;
+  font-size: 24rpx;
+  color: #FF0000
 }

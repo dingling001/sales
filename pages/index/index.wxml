@@ -3,8 +3,7 @@
   <swiper class='index_swiper' indicator-dots="true" indicator-color='#fff' indicator-active-color='#FDCE02'>
     <block wx:for="{{slide_list}}" wx:key='item'>
       <swiper-item class='swiper_item'>
-        <text class='nodata' wx:if='{{item.banImg==""||item.banImg==null}}'>加载中...</text>
-        <image src="{{item.banImg}}" wx:else mode="widthFix" />
+        <image src="{{item.banImg}}" mode="aspectFit"  lazy-load='true'/>
       </swiper-item>
     </block>
   </swiper>
@@ -16,7 +15,7 @@
     <view class='index_list'>
       <view class='index_item' bindtap='go_detail' wx:for='{{item.list}}' wx:for-item='i' data-index='{{index}}' data-hindex='{{hindex}}' wx:key='{{i.goodsId}}'>
         <view class='index_item_img'>
-          <image mode='widthFix' src='{{i.goodsImg}}'></image>
+          <image mode='widthFix' src='{{i.goodsImg}}' lazy-load='true'></image>
         </view>
         <view class='index_name'>{{i.goodsName}}</view>
         <view class='index_des'>{{i.goodsDesc}}</view>

@@ -1,4 +1,5 @@
 // pages/my/my.js
+var network = require("../../utils/network.js");
 const app = getApp()
 Page({
 
@@ -15,6 +16,13 @@ Page({
       userInfo: app.globalData.userInfo
     })
   },
+  // 我要寄售
+  go_sale() {
+    wx.switchTab({
+      url: '../sale/sale',
+    })
+  },
+  // 登录
   onGotUserInfo(e) {
     console.log(e)
     if (e.detail.userInfo) {
@@ -26,6 +34,27 @@ Page({
         key: 'token',
         data: 'ceshi',
       })
+      wx.login({
+        success(res) {
+          if (res.code) {
+            network.POST({
+              url: 'login',
+              header: 'application/x-www-form-urlencoded',
+              params: {
+                code: res.code
+              },
+              success(res) {
+                console.log(res)
+
+
+              }
+            })
+          } else {
+            console.log('登录失败！' + res.errMsg)
+          }
+        }
+      })
+
     } else {
       wx.showToast({
         title: '请登录获取更好的体验',
@@ -33,10 +62,8 @@ Page({
       })
     }
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  getAddress(){
+  // 获取地址
+  getAddress() {
     wx.chooseAddress({
       success(res) {
         console.log(res.userName)
