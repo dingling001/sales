@@ -36,6 +36,20 @@ Page({
           }
         })
       },
+      fail: (err => {
+        wx.showModal({
+          title: '登录已失效',
+          content: '请点击我的-> 登录',
+          showCancel: false,
+          success(res) {
+            if (res.confirm) {
+              wx.switchTab({
+                url: '../my/my',
+              })
+            }
+          }
+        })
+      })
     })
   },
   onLoad: function(options) {
@@ -53,7 +67,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.getTypeList()
   },
 
   /**

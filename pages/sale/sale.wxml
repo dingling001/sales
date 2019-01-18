@@ -33,4 +33,4 @@
     </view>
   </view>
 </view>
-<navigator url='./sale_form/sale_form' class='sale_btn'>提交</navigator>
+<navigator url='./sale_form/sale_form' class='sale_btn'>去提交</navigator>

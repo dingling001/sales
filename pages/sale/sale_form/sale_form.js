@@ -3,45 +3,33 @@ Page({
 
 
   data: {
-    img1: '',
-    img2: ''
+    imgs: []
   },
 
- img1_fun(){
-   let that=this;
-   wx.chooseImage({
-     count: 1,
-     sizeType: ['original', 'compressed'],
-     sourceType: ['album', 'camera'],
-     success(res) {
-       // tempFilePath可以作为img标签的src属性显示图片
-       const tempFilePaths = res.tempFilePaths
-       that.setData({
-         img1: tempFilePaths
-       })
-     }
-   })
- },
-  img2_fun(){
+  img1_fun() {
     let that = this;
     wx.chooseImage({
-      count: 1,
+      count: 4,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success(res) {
         // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths
+        const tempFilePaths = res.tempFilePaths[0];
+        let imgs = [];
+        imgs.push(tempFilePaths)
         that.setData({
-          img2: tempFilePaths
+          imgs: imgs
         })
+        console.log(that.data.imgs)
       }
     })
   },
+
   onLoad: function(options) {
 
   },
 
- 
+
   onReady: function() {
 
   },
@@ -50,17 +38,17 @@ Page({
 
   },
 
- 
+
   onHide: function() {
 
   },
 
- 
+
   onUnload: function() {
 
   },
 
- 
+
   onPullDownRefresh: function() {
 
   },
@@ -70,7 +58,7 @@ Page({
 
   },
 
-  
+
   onShareAppMessage: function() {
 
   }

@@ -9,6 +9,10 @@ Page({
         this.slideShow();
         this.homeList_fun();
     },
+    onShow(){
+      this.slideShow();
+      this.homeList_fun();
+    },
     // 跳转详情
     go_detail(e) {
         let homeList = this.data.homeList;
@@ -48,6 +52,20 @@ Page({
                     }
                 })
             },
+            fail:(err=>{
+              wx.showModal({
+                title: '登录已失效',
+                content: '请点击我的-> 登录',
+                showCancel:false,
+                success(res) {
+                  if (res.confirm) {
+                   wx.switchTab({
+                     url: '../my/my',
+                   })
+                  } 
+                }
+              })
+            })
         })
     },
     // 获取首页推荐商品列表

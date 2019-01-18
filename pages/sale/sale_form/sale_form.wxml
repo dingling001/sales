@@ -34,20 +34,13 @@
 </view>
 <view class='pro_box'>产品图片</view>
 <view class='img_box'>
-  <view class='img' bindtap='img1_fun'>
-    <image wx:if='{{img1}}' src='{{img1}}' mode='widthFix'></image>
-    <block wx:else> 
-      <view class='iconfont icon-tianjiatupian'></view>
-      <text>添加图片</text>
-    </block>
+  <view class='img' wx:for='{{imgs}}'>
+    <image src='{{item}}' mode='widthFix'></image>
   </view>
-  <view class='img'  bindtap='img2_fun'>
-    <image wx:if='{{img2}}' src='{{img2}}' mode='widthFix'></image>
-    <block wx:else>
-      <view class='iconfont icon-tianjiatupian'></view>
-      <text>添加图片</text>
-    </block>
+  <view class='img' bindtap='img1_fun' wx:if='{{imgs.length<5}}'>
+    <view class='iconfont icon-tianjiatupian'></view>
+    <text>添加图片</text>
   </view>
 </view>
-<view class='img_tips'>注：请上传16：9的图片类型</view>
+<view class='img_tips'>注：请上传16：9的图片类型（至少上传一张，最多上传4张图片）</view>
 <view class='form_submit'>提交</view>
