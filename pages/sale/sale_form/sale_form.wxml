@@ -2,15 +2,15 @@
 <view class='form_item'>
   <view>品牌</view>
   <view class='form_input'>
-    <input type='text' placeholder='请输入品牌'></input>
+    <input type='text' placeholder='请输入品牌' bindinput='brand_fun'></input>
   </view>
 </view>
 <view class='form_item picker'>
   <view>类型</view>
   <view class='form_input'>
-    <picker>
+    <picker  bindchange="bindType" value="{{index}}" range="{{list}}">
       <view class='iconfont icon-xiala float_r'></view>
-      <view class='float_r'>请选择类型</view>
+      <view class='float_r'>{{list[index]?list[index]:'请选择类型'}}</view>
     </picker>
   </view>
 </view>
@@ -34,13 +34,13 @@
 </view>
 <view class='pro_box'>产品图片</view>
 <view class='img_box'>
-  <view class='img' wx:for='{{imgs}}'>
-    <image src='{{item}}' mode='widthFix'></image>
+  <view class='img' wx:for='{{imgs}}' wx:key='*this'>
+    <image src='{{item}}' mode='aspectFit'></image>
   </view>
-  <view class='img' bindtap='img1_fun' wx:if='{{imgs.length<5}}'>
+  <view class='img' bindtap='img1_fun' wx:if='{{showAdd}}'>
     <view class='iconfont icon-tianjiatupian'></view>
     <text>添加图片</text>
   </view>
 </view>
 <view class='img_tips'>注：请上传16：9的图片类型（至少上传一张，最多上传4张图片）</view>
-<view class='form_submit'>提交</view>
+<view class='form_submit'>提交</view> 
