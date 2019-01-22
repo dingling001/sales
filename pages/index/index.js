@@ -45,7 +45,7 @@ Page({
                             that.setData({
                                 slide_list: slidelist
                             })
-                            console.log(that.data.slide_list);
+                            // console.log(that.data.slide_list);
                         } else {
                             // console.log(res);
                         }
