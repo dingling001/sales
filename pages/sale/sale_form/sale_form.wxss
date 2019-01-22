@@ -2,6 +2,7 @@
 
 page {
   background-color: #fff;
+  padding: 0 0 50rpx 0;
 }
 
 .pro_box {

@@ -12,7 +12,12 @@ Page({
     images: [],
     showAdd: true,
     token: '',
+    oldprice: '',
+    price: '',
+    tel: '',
     brand: '',
+    tips: '',
+    goods: '',
     index: -1
   },
   // 获取分类
@@ -48,18 +53,18 @@ Page({
         })
       },
       fail: (err => {
-        wx.showModal({
-          title: '登录已失效',
-          content: '请点击我的-> 登录',
-          showCancel: false,
-          success(res) {
-            if (res.confirm) {
-              wx.switchTab({
-                url: '../../my/my',
-              })
-            }
-          }
-        })
+        // wx.showModal({
+        //   title: '登录已失效',
+        //   content: '请点击我的-> 登录',
+        //   showCancel: false,
+        //   success(res) {
+        //     if (res.confirm) {
+        //       wx.switchTab({
+        //         url: '../../my/my',
+        //       })
+        //     }
+        //   }
+        // })
       })
     })
   },
@@ -68,10 +73,35 @@ Page({
       index: e.detail.value
     })
   },
+  oldprice_fun(e) {
+    this.setData({
+      oldprice: e.detail.value
+    })
+  },
+  price_fun(e) {
+    this.setData({
+      price: e.detail.value
+    })
+  },
+  tel_fun(e) {
+    this.setData({
+      tel: e.detail.value
+    })
+  },
+  goods_fun(e) {
+    this.setData({
+      goods: e.detail.value
+    })
+  },
+  tips_fun(e) {
+    this.setData({
+      tips: e.detail.value
+    })
+  },
   // 品牌
   brand_fun(e) {
     this.setData({
-      brand: e.datail.value
+      brand: e.detail.value
     })
   },
   // 选择图片
@@ -154,6 +184,77 @@ Page({
         })
       }
     })
+  },
+  // 提交
+  go_sale(e) {
+    let that = this;
+    let token = that.data.token;
+    let brand = that.data.brand;
+    let index = that.data.index;
+    let goods = that.data.goods;
+    let price = that.data.price;
+    let oldprice = that.data.oldprice;
+    let tel = that.data.tel;
+    let tips = that.data.tips;
+    let images = that.data.images;
+    let post = {
+      brand,
+      index,
+      goods,
+      price,
+      oldprice,
+      tel,
+      tips,
+      images,
+      token
+    }
+    if (e.detail.userInfo) {
+      if (brand == '') {
+        wx.showToast({
+          title: '请输入品牌',
+          icon: 'none'
+        })
+      } else if (index == -1) {
+        wx.showToast({
+          title: '请选择类型',
+          icon: 'none'
+        })
+      } else if (goods == '') {
+        wx.showToast({
+          title: '请输入商品名称',
+          icon: 'none'
+        })
+      } else if (price == '') {
+        wx.showToast({
+          title: '请输入购入价',
+          icon: 'none'
+        })
+      } else if (oldprice == '') {
+        wx.showToast({
+          title: '请输入期望价',
+          icon: 'none'
+        })
+      } else if (!(/^1(3|4|5|7|8)\d{9}$/.test(tel))) {
+        wx.showToast({
+          title: '请输入正确的联系电话',
+          icon: 'none'
+        })
+      } else if (images.length < 1) {
+        wx.showToast({
+          title: '请至少上传一张照片',
+          icon: 'none'
+        })
+      } else {
+
+      }
+    } else {
+      wx.showToast({
+        title: "为了您更好的体验,请先同意授权",
+        icon: 'none',
+        duration: 2000
+      });
+    }
+    console.log(post)
   },
   onLoad: function(options) {
     this.getTypeList()
