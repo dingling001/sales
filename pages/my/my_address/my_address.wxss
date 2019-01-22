@@ -1,0 +1,26 @@
+/* pages/my/my_address/my_address.wxss */
+
+.add_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38rpx;
+  color: #333;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  background-color: #fff;
+  border-top: 1px solid #f3f3f3;
+  padding: 25rpx 0;
+}
+
+.add_box .iconfont {
+  color: #fdce02;
+  font-size: 45rpx;
+  margin: 0 20rpx 0 0;
+}
+.save{
+  background-color: #fdce02;
+  color: #fff;
+}
