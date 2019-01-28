@@ -5,9 +5,9 @@
 <view>系统开发中</view>
 <view>寄售暂请联系微信：花花花的话</view> -->
 
-<view class='nodata'>暂无数据</view>
-<view class='list'>
-  <view class='list_item'>
-  
+<view class='nodata' wx:if='{{records.length==0}}'>暂无数据</view>
+<view class='list' wx:else>
+  <view class='list_item' wx:for='{{records}}' wx:key='{{item.id}}'>
+    1
   </view>
 </view>

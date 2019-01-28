@@ -12,10 +12,10 @@ Page({
     images: [],
     showAdd: true,
     token: '',
-    oldprice: '',
-    price: '',
-    tel: '',
-    brand: '',
+    expectPrice: '',
+    buyPrice: '',
+    phone: '',
+    serial: '',
     tips: '',
     goods: '',
     index: -1
@@ -75,17 +75,17 @@ Page({
   },
   oldprice_fun(e) {
     this.setData({
-      oldprice: e.detail.value
+      expectPrice: e.detail.value
     })
   },
   price_fun(e) {
     this.setData({
-      price: e.detail.value
+      buyPrice: e.detail.value
     })
   },
   tel_fun(e) {
     this.setData({
-      tel: e.detail.value
+      phone: e.detail.value
     })
   },
   goods_fun(e) {
@@ -101,7 +101,7 @@ Page({
   // 品牌
   brand_fun(e) {
     this.setData({
-      brand: e.detail.value
+      serial: e.detail.value
     })
   },
   // 选择图片
@@ -109,7 +109,7 @@ Page({
     var that = this;
     var imgs = this.data.imgs;
     wx.chooseImage({
-      count: imgs.length - 4, // 默认9 
+      count: 4, // 默认9 
       sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有 
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有 
       success: function(res) {
@@ -189,63 +189,82 @@ Page({
   go_sale(e) {
     let that = this;
     let token = that.data.token;
-    let brand = that.data.brand;
+    let serial = that.data.serial;
     let index = that.data.index;
+    // let type = that.classlist[index].id;
+    let type = 'kuabao';
     let goods = that.data.goods;
-    let price = that.data.price;
-    let oldprice = that.data.oldprice;
-    let tel = that.data.tel;
+    let buyPrice = that.data.buyPrice;
+    let expectPrice = that.data.expectPrice;
+    let phone = that.data.phone;
     let tips = that.data.tips;
     let images = that.data.images;
     let post = {
-      brand,
-      index,
+      serial,
+      type,
       goods,
-      price,
-      oldprice,
-      tel,
+      buyPrice,
+      expectPrice,
+      phone,
       tips,
       images,
       token
     }
     if (e.detail.userInfo) {
-      if (brand == '') {
+      if (serial == '') {
         wx.showToast({
           title: '请输入品牌',
           icon: 'none'
         })
-      } else if (index == -1) {
-        wx.showToast({
-          title: '请选择类型',
-          icon: 'none'
-        })
-      } else if (goods == '') {
+      }
+      //  else if (index == -1) {
+      //   wx.showToast({
+      //     title: '请选择类型',
+      //     icon: 'none'
+      //   })
+      // } 
+      else if (goods == '') {
         wx.showToast({
           title: '请输入商品名称',
           icon: 'none'
         })
-      } else if (price == '') {
+      } else if (buyPrice == '') {
         wx.showToast({
           title: '请输入购入价',
           icon: 'none'
         })
-      } else if (oldprice == '') {
+      } else if (expectPrice == '') {
         wx.showToast({
           title: '请输入期望价',
           icon: 'none'
         })
-      } else if (!(/^1(3|4|5|7|8)\d{9}$/.test(tel))) {
+      } else if (!(/^1(3|4|5|7|8)\d{9}$/.test(phone))) {
         wx.showToast({
           title: '请输入正确的联系电话',
           icon: 'none'
         })
-      } else if (images.length < 1) {
-        wx.showToast({
-          title: '请至少上传一张照片',
-          icon: 'none'
+      }
+      // else if (images.length < 1) {
+      //   wx.showToast({
+      //     title: '请至少上传一张照片',
+      //     icon: 'none'
+      //   })
+      // }
+      //  else if (token == '') {
+      //   wx.showToast({
+      //     title: '正在登录...',
+      //     icon: 'none'
+      //   })
+      // }
+      else {
+        network.POST({
+          url: 'user/goods',
+          header: 'application/x-www-form-urlencoded',
+          params: post,
+          success(res) {
+            console.log(res)
+          }
         })
-      } else {
-
       }
     } else {
       wx.showToast({

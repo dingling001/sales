@@ -10,8 +10,8 @@
 .building image {
   width: 100%;
 }
-view {
+/* view {
   font-size: 36rpx;
   color: #000;
   text-align: center;
-}
+} */
