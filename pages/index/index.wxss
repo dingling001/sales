@@ -36,3 +36,14 @@ page {
   color: #f5f5f5;
   font-size: 26rpx;
 }
+.icon-huidaodingbu{
+  position: fixed;
+  bottom: 100rpx;
+  right: 50rpx;
+  z-index: 10;
+  font-size: 80rpx;
+  color: #ccc;
+}
+/* .scrol_box{
+  height: 100vh;
+} */

@@ -9,7 +9,9 @@ Page({
   data: {
     userInfo: []
   },
-
+  bindcontact(e) {
+    console.log(e)
+  },
 
   onLoad: function(options) {
     this.setData({

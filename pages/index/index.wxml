@@ -1,9 +1,9 @@
-<scroll-view>
+<scroll-view scroll-top='{{scrollTop}}' bindscroll="scroll" scroll-y='true' class='scrol_box'>
   <view class='index_top'></view>
   <swiper class='index_swiper' indicator-dots="true" indicator-color='#fff' indicator-active-color='#FDCE02'>
     <block wx:for="{{slide_list}}" wx:key='item'>
       <swiper-item class='swiper_item'>
-        <image src="{{item.banImg}}" mode="aspectFit"  lazy-load='true'/>
+        <image src="{{item.banImg}}" mode="aspectFit" lazy-load='true' />
       </swiper-item>
     </block>
   </swiper>
@@ -27,3 +27,6 @@
     </view>
   </view>
 </scroll-view>
+ <view class='iconfont icon-huidaodingbu' bindtap='back_fun' ></view>
+ <!-- wx:if='{{show_back}}' -->
+

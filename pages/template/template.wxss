@@ -1,1 +1,24 @@
 /* pages/template/template.wxss */
+.con{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+.kefu{
+  position: fixed;
+  right: 50rpx;
+  bottom: 200rpx;
+  height: 100rpx;
+  width: 100rpx;
+  border: 1px solid #FDCE02;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kefu .iconfont{
+  font-size: 80rpx;
+  color: #FDCE02;
+}

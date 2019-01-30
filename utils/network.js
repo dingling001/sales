@@ -1,6 +1,5 @@
-// var API_URL = 'https://tv.zt31.cn/tv/consignment-master/app/weChat/'
-const API_URL ='http://test.jianghairui.com/wechat/'
-// user / goods
+var API_URL = 'https://tv.zt31.cn/tv/consignment-master/app/weChat/'
+// const API_URL ='http://test.jianghairui.com/wechat/'
 const imgUrl = 'https://tv.zt31.cn'
 
 var requestHandler = {

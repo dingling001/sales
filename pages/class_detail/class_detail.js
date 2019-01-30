@@ -13,7 +13,16 @@ Page({
     brand: '',
     goodsList: []
   },
-
+  // 返回顶部
+  back_fun() {
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
+    // this.setData({
+    //   scrollTop:0
+    // })
+  },
   //  获取商品列表
   getGoodList(priceType, index) {
     var that = this;
@@ -138,7 +147,7 @@ Page({
   },
 
   onLoad: function(options) {
-    console.log(options)
+    // console.log(options)
     if (options.typeId) {
       this.setData({
         typeId: options.typeId

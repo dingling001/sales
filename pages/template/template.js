@@ -7,12 +7,9 @@ Page({
   data: {
 
   },
-  // 返回顶部
-  back_fun() {
-    wx.pageScrollTo({
-      scrollTop: 0,
-      duration: 300
-    })
+
+  bindcontact(e) {
+    console.log(e.path)
   },
   /**
    * 生命周期函数--监听页面加载
