@@ -276,6 +276,8 @@ Page({
     console.log(post)
   },
   onLoad: function(options) {
+    console.log(options)
+    let that=this;
     this.getTypeList()
   },
 
