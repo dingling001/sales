@@ -5,8 +5,8 @@ Page({
     slide_list: [],
     homeList: [],
     scrollTop: 0,
-    show_back:false,
-    windowHeight:''
+    show_back: false,
+    windowHeight: ''
   },
   onLoad() {
     this.slideShow();
@@ -29,13 +29,13 @@ Page({
     // })
   },
   // 滚动事件
-  scroll(e){
-    let that=this;
-    if (e.detail.scrollTop>=that.data.windowHeight){
+  scroll(e) {
+    let that = this;
+    if (e.detail.scrollTop >= that.data.windowHeight) {
       that.setData({
         show_back: true,
-      }) 
-    }else{
+      })
+    } else {
       that.setData({
         show_back: false,
       })
@@ -73,41 +73,45 @@ Page({
     // wx.getStorage({
     //   key: 'token',
     //   success: (res_token) => {
-        network.POST({
-          url: 'getBannerList',
-          header: 'application/x-www-form-urlencoded',
-          params: {},
-          success(res) {
-            // console.log(res)
-            let slidelist = res.data.data;
-            for (let i in slidelist) {
-              slidelist[i].banImg = network.imgUrl + slidelist[i].banImg
-            }
-            if (res.data.code == '0000') {
-              that.setData({
-                slide_list: slidelist
-              })
-              // console.log(that.data.slide_list);
-            } else {
-              // console.log(res);
-            }
-          }
-        })
-      // },
-      // fail: (err => {
-      //   wx.showModal({
-      //     title: '登录已失效',
-      //     content: '请点击我的-> 登录',
-      //     showCancel: false,
-      //     success(res) {
-      //       if (res.confirm) {
-      //         wx.switchTab({
-      //           url: '../my/my',
-      //         })
-      //       }
-      //     }
-      //   })
-      // })
+    network.GET({
+      url: 'banner',
+      // header: 'application/x-www-form-urlencoded',
+      params: {
+        draw: 1,
+        start: 0,
+        length: 10
+      },
+      success(res) {
+        // console.log(res)
+        let slidelist = res.data.data;
+        for (let i in slidelist) {
+          slidelist[i].banImg = network.imgUrl + slidelist[i].banImg
+        }
+        if (res.data.code == '0000') {
+          that.setData({
+            slide_list: slidelist
+          })
+          // console.log(that.data.slide_list);
+        } else {
+          // console.log(res);
+        }
+      }
+    })
+    // },
+    // fail: (err => {
+    //   wx.showModal({
+    //     title: '登录已失效',
+    //     content: '请点击我的-> 登录',
+    //     showCancel: false,
+    //     success(res) {
+    //       if (res.confirm) {
+    //         wx.switchTab({
+    //           url: '../my/my',
+    //         })
+    //       }
+    //     }
+    //   })
+    // })
     // })
   },
   // 获取首页推荐商品列表
@@ -117,23 +121,23 @@ Page({
     // wx.getStorage({
     //   key: 'token',
     //   success: (res_token) => {
-        network.POST({
-          url: 'homeList',
-          header: 'application/x-www-form-urlencoded',
-          params: {
-            // token: res_token.data,
-          },
-          success(res) {
-            wx.hideNavigationBarLoading()
-            var slidelist = res.data.data;
-            if (res.data.code == '0000') {
-              that.setData({
-                homeList: slidelist
-              })
-              // console.log(that.data.homeList);
-            } else {
-              console.log(res);
-            }
+    network.POST({
+      url: 'homeList',
+      header: 'application/x-www-form-urlencoded',
+      params: {
+        // token: res_token.data,
+      },
+      success(res) {
+        wx.hideNavigationBarLoading()
+        var slidelist = res.data.data;
+        if (res.data.code == '0000') {
+          that.setData({
+            homeList: slidelist
+          })
+          // console.log(that.data.homeList);
+        } else {
+          console.log(res);
+        }
         //   }
         // })
       },
