@@ -121,20 +121,22 @@ Page({
     // wx.getStorage({
     //   key: 'token',
     //   success: (res_token) => {
-    network.POST({
-      url: 'homeList',
+    network.GET({
+      url: 'goods',
       header: 'application/x-www-form-urlencoded',
       params: {
         // token: res_token.data,
+        pageSize:10,
+        pageNum:1
       },
       success(res) {
         wx.hideNavigationBarLoading()
-        var slidelist = res.data.data;
-        if (res.data.code == '0000') {
+        var slidelist = res.data.data.records;
+        if (res.data.code ==0) {
           that.setData({
             homeList: slidelist
           })
-          // console.log(that.data.homeList);
+          console.log(that.data.homeList);
         } else {
           console.log(res);
         }
