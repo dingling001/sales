@@ -257,6 +257,7 @@ Page({
       //   })
       // }
       else {
+console.log(post)
         network.POST({
           url: 'user/goods',
           header: 'application/x-www-form-urlencoded',
@@ -273,9 +274,11 @@ Page({
         duration: 2000
       });
     }
-    console.log(post)
+    // console.log(post)
   },
   onLoad: function(options) {
+    console.log(options)
+    let that=this;
     this.getTypeList()
   },
 

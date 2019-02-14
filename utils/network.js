@@ -1,6 +1,11 @@
 // var API_URL = 'https://tv.zt31.cn/tv/consignment-master/app/weChat/'
+<<<<<<< HEAD
 const API_URL ='http://test.jianghairui.com/wechat/'
 const imgUrl = 'https://tv.zt31.cn'
+=======
+const API_URL ='http://test.jianghairui.com/mgmt/cms/'
+// const imgUrl = 'https://tv.zt31.cn'
+>>>>>>> 4b64544c3fa7c7d6eeba9c636bb5ab9b0136fed9
 
 var requestHandler = {
   url: "",
