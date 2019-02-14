@@ -1,5 +1,6 @@
 // var API_URL = 'https://tv.zt31.cn/tv/consignment-master/app/weChat/'
-const API_URL ='http://test.jianghairui.com/mgmt/cms/'
+const API_URL = 'http://test.jianghairui.com/wechat/'
+const imgUrl = 'https://tv.zt31.cn'
 // const imgUrl = 'https://tv.zt31.cn'
 
 var requestHandler = {
@@ -45,8 +46,8 @@ function request(method, requestHandler) {
       wx.hideLoading()
       //注意：可以对参数解密等处理
       if (res.data.code == 3) {
-       
-       
+
+
       } else {
         requestHandler.success(res)
       }
@@ -63,9 +64,40 @@ function request(method, requestHandler) {
   })
 }
 
+function Login(userinfo) {
+  wx.login({
+    success(res) {
+      if (res.code) {
+        GET({
+          url: 'auth/login',
+          header: 'application/x-www-form-urlencoded',
+          params: {
+            code: res.code
+          },
+          success(res) {
+            console.log(res)
+            wx.setStorage({
+              key: 'token',
+              data: 'value'
+            });
+            wx.setStorage({
+              key: 'userinfo',
+              data: userinfo,
+            })
+          }
+        })
+      } else {
+        console.log('登录失败！' + res.errMsg)
+      }
+    }
+  })
+}
+
 module.exports = {
   GET: GET,
   POST: POST,
+  Login: Login,
   getUrlKey: getUrlKey,
-  imgUrl: imgUrl
+  imgUrl: imgUrl,
+
 }
