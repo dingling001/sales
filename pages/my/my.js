@@ -14,8 +14,17 @@ Page({
   },
 
   onLoad: function(options) {
+    let that=this;
     this.setData({
       userInfo: app.globalData.userInfo
+    })
+    wx.getStorage({
+      key: 'userinfo',
+      success: (res)=> {
+        that.setData({
+          userInfo: res.data
+        })
+      },
     })
   },
   // 我要寄售
@@ -27,36 +36,13 @@ Page({
   // 登录
   onGotUserInfo(e) {
     console.log(e)
+    let that = this;
     if (e.detail.userInfo) {
       app.globalData.userInfo = e.detail.userInfo;
       this.setData({
         userInfo: app.globalData.userInfo
       })
-      wx.setStorage({
-        key: 'token',
-        data: 'ceshi',
-      })
-      wx.login({
-        success(res) {
-          if (res.code) {
-            network.POST({
-              url: 'login',
-              header: 'application/x-www-form-urlencoded',
-              params: {
-                code: res.code
-              },
-              success(res) {
-                console.log(res)
-
-
-              }
-            })
-          } else {
-            console.log('登录失败！' + res.errMsg)
-          }
-        }
-      })
-
+      network.Login(e.detail.userInfo)
     } else {
       wx.showToast({
         title: '请登录获取更好的体验',

@@ -74,7 +74,7 @@ Page({
     //   key: 'token',
     //   success: (res_token) => {
     network.GET({
-      url: 'banner',
+      url: 'client/banner',
       // header: 'application/x-www-form-urlencoded',
       params: {
         draw: 1,
@@ -122,7 +122,7 @@ Page({
     //   key: 'token',
     //   success: (res_token) => {
     network.GET({
-      url: 'goods',
+      url: 'client/goods',
       header: 'application/x-www-form-urlencoded',
       params: {
         // token: res_token.data,

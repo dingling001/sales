@@ -2,14 +2,14 @@
 <view class='form_item'>
   <view>支付宝账户</view>
   <view class='form_input'>
-    <input type='text' placeholder='请输入账户'></input>
+    <input type='text' placeholder='请输入账户' bindinput='account_fun'></input>
   </view>
 </view>
 <view class='form_item'>
   <view>姓名</view>
   <view class='form_input'>
-    <input type='text' placeholder='请输入姓名'></input>
+    <input type='text' placeholder='请输入姓名' bindinput='usename_fun'></input>
   </view>
 </view>
 
-<view class='form_submit'>提交</view>
+<button class='form_submit'  open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="getalpay">提交</button>
