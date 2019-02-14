@@ -1,5 +1,5 @@
 // var API_URL = 'https://tv.zt31.cn/tv/consignment-master/app/weChat/'
-const API_URL ='http://test.jianghairui.com/wechat/client/'
+const API_URL ='http://test.jianghairui.com/wechat/'
 const imgUrl = 'https://tv.zt31.cn'
 
 var requestHandler = {
@@ -45,8 +45,8 @@ function request(method, requestHandler) {
       wx.hideLoading()
       //注意：可以对参数解密等处理
       if (res.data.code == 3) {
-       
-       
+
+
       } else {
         requestHandler.success(res)
       }
