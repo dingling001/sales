@@ -25,34 +25,34 @@ Page({
   // 获取详情
   getGoodsInfo() {
     var that = this;
-    wx.getStorage({
-      key: 'token',
-      success: (res_token) => {
-        network.POST({
-          url: 'getGoodsInfo',
-          header: 'application/x-www-form-urlencoded',
-          params: {
-            token: res_token.data,
-            goodsId: that.data.goodsId
-          },
-          success(res) {
-            console.log(res)
-            let goodsInfo = res.data.data;
-            if (res.data.code == '0000') {
-              that.setData({
-                goodsInfo: goodsInfo,
-                goodsCarousel: goodsInfo.goodsCarousel.split(',')
-              })
-              wx.setNavigationBarTitle({
-                title: that.data.goodsInfo.goodsName
-              })
-              // console.log(that.data.slide_list);
-            } else {
-              console.log(res);
-            }
-          }
-        })
+    network.GET({
+      url: 'client/goods/' + that.data.goodsId,
+      header: 'application/x-www-form-urlencoded',
+      params: {
+        // token: res_token.data,
+        // goodsId: that.data.goodsId
       },
+      success(res) {
+        console.log(res)
+        let goodsInfo = res.data.data;
+        goodsInfo.coverImage = network.imgUrl + goodsInfo.coverImage
+        goodsInfo.content = goodsInfo.content.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block" ')
+          .replace(/<section/g, '<div')
+          .replace(/\/section>/g, '\div>');
+
+        if (res.data.code == 0) {
+          that.setData({
+            goodsInfo: goodsInfo,
+            goodsCarousel: goodsInfo.coverImage.split(',')
+          })
+          wx.setNavigationBarTitle({
+            title: that.data.goodsInfo.name
+          })
+          // console.log(that.data.slide_list);
+        } else {
+          console.log(res);
+        }
+      }
     })
   },
   // 复制淘宝口令

@@ -23,49 +23,30 @@ Page({
   // 获取分类
   getTypeList() {
     var that = this;
-    wx.getStorage({
-      key: 'token',
-      success: (res_token) => {
-        network.POST({
-          url: 'getTypeList',
-          header: 'application/x-www-form-urlencoded',
-          params: {
-            token: res_token.data,
-          },
-          success(res) {
-            // console.log(res)
-            let classlist = res.data.data;
-            let list = []
-            for (let i in classlist) {
-              classlist[i].banImg = network.imgUrl + classlist[i].typeImg,
-                list.push(classlist[i].typeName)
-            }
-            if (res.data.code == '0000') {
-              that.setData({
-                classlist: classlist,
-                list: list
-              })
-              // console.log(that.data.classlist);
-            } else {
-              // console.log(res);
-            }
-          }
-        })
+    network.GET({
+      url: 'client/type',
+      header: 'application/x-www-form-urlencoded',
+      params: {
+        pageSize: 10,
+        pageNum: 1
       },
-      fail: (err => {
-        // wx.showModal({
-        //   title: '登录已失效',
-        //   content: '请点击我的-> 登录',
-        //   showCancel: false,
-        //   success(res) {
-        //     if (res.confirm) {
-        //       wx.switchTab({
-        //         url: '../../my/my',
-        //       })
-        //     }
-        //   }
-        // })
-      })
+      success(res) {
+        console.log(res)
+        let classlist = res.data.data.records;
+        let list = []
+        for (let i in classlist) {
+          list.push(classlist[i].name)
+        }
+        if (res.data.code == 0) {
+          that.setData({
+            classlist: classlist,
+            list: list
+          })
+          // console.log(that.data.classlist);
+        } else {
+          // console.log(res);
+        }
+      }
     })
   },
   bindType(e) {
@@ -153,7 +134,7 @@ Page({
   upload_file(filepath) {
     var that = this;
     wx.uploadFile({
-      url: util.baseUrl + 'index/api/uploadImage',
+      url: util.baseUrl + 'user/upload',
       header: {
         'content-type': 'multipart/form-data'
       },
@@ -257,7 +238,7 @@ Page({
       //   })
       // }
       else {
-console.log(post)
+        console.log(post)
         network.POST({
           url: 'user/goods',
           header: 'application/x-www-form-urlencoded',
@@ -277,12 +258,20 @@ console.log(post)
     // console.log(post)
   },
   onLoad: function(options) {
-    console.log(options)
-    let that=this;
+    let that = this;
     this.getTypeList()
   },
 
-
+  // 删除图片
+  cancel_img(e) {
+    let that = this;
+    let index = e.target.dataset.index;
+    let imgs = this.data.imgs
+    imgs.splice(index, 1);
+    this.setData({
+      imgs: imgs
+    })
+  },
   onReady: function() {
 
   },

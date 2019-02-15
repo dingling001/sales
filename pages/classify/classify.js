@@ -13,23 +13,24 @@ Page({
     // wx.getStorage({
     //   key: 'token',
     //   success: (res_token) => {
-    network.POST({
-      url: 'getTypeList',
+    network.GET({
+      url: 'client/type',
       header: 'application/x-www-form-urlencoded',
       params: {
         // token: res_token.data,
+        pageSize: 10,
+        pageNum: 1
       },
       success(res) {
         console.log(res)
-        let classlist = res.data.data;
+        let classlist = res.data.data.records;
         // for (let i in classlist) {
         //   classlist[i].banImg = network.imgUrl + classlist[i].typeImg
         // }
-        if (res.data.code == '0000') {
+        if (res.data.code == 0) {
           that.setData({
             classlist: classlist
           })
-          console.log(that.data.classlist);
         } else {
           // console.log(res);
         }

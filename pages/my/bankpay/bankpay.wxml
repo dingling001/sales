@@ -2,26 +2,25 @@
 <view class='form_item'>
   <view>开户行</view>
   <view class='form_input'>
-    <input type='text' placeholder='请输入开户行'></input>
+    <input type='text' placeholder='请输入开户行' bindinput='bank_in'></input>
   </view>
 </view>
 <view class='form_item'>
   <view>银行卡名称</view>
   <view class='form_input'>
-    <input type='text' placeholder='请输入银行卡名称'></input>
+    <input type='text' placeholder='请输入银行卡名称' bindinput='bank_na'></input>
   </view>
 </view>
 <view class='form_item'>
   <view>银行卡号</view>
   <view class='form_input'>
-    <input type='text' placeholder='请输入银行卡号'></input>
+    <input type='number' placeholder='请输入银行卡号' bindinput='bank_num'></input>
   </view>
 </view>
 <view class='form_item'>
   <view>姓名</view>
   <view class='form_input'>
-    <input type='text' placeholder='请输入姓名'></input>
+    <input type='text' placeholder='请输入姓名' bindinput='bank_use'></input>
   </view>
 </view>
-
-<view class='form_submit'>提交</view>
+<view class='form_submit' bindtap='bank_pay'>提交</view>

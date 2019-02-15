@@ -13,20 +13,28 @@ Page({
   // 获取寄售列表
   getGlist() {
     let that = this;
-    network.GET({
-      url: 'user/goods',
-      header: 'application/x-www-form-urlencoded',
-      params: {
-        pageSize: that.data.pageSize,
-        pageNum: that.data.pageNum
-      },
-      success(res) {
-        let records = res.data.data.records
-        console.log(res)
-        that.setData({
-          records: records
+    wx.getStorage({
+      key: 'token',
+      success: (res_token) => {
+        network.GET({
+          url: 'user/goods',
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": res_token.data
+          },
+          params: {
+            pageSize: that.data.pageSize,
+            pageNum: that.data.pageNum
+          },
+          success(res) {
+            let records = res.data.data.records
+            console.log(res)
+            that.setData({
+              records: records
+            })
+          }
         })
-      }
+      },
     })
   },
   onLoad: function(options) {

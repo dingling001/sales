@@ -3,9 +3,9 @@
 <view class='class_list'>
   <navigator class='class_item' url='../class_detail/class_detail?typeId={{item.typeId}}&typeName={{item.typeName}}' wx:for='{{classlist}}' wx:key='{{item.typeId}}'>
     <view class='class_name'>
-      <text class='class_title'>{{item.typeName}}</text>
-      <text>{{item.typeName}}</text>
+      <text class='class_title'>{{item.name}}</text>
+      <text>{{item.alias}}</text>
     </view>
-    <image src='{{item.typeImg}}' mode='widthFix'></image>
+    <image src='{{item.image}}' mode='widthFix'></image>
   </navigator>
 </view>

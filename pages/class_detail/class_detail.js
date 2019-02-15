@@ -29,8 +29,8 @@ Page({
     wx.getStorage({
       key: 'token',
       success: (res_token) => {
-        network.POST({
-          url: 'getGoodsList',
+        network.GET({
+          url: 'lient/goods',
           header: 'application/x-www-form-urlencoded',
           params: {
             token: res_token.data,

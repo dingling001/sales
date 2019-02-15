@@ -1,13 +1,14 @@
 <!--pages/my/my_address/my_address.wxml-->
 <view class='address_list'>
-  <view class='address_item'>
-
+  <view class='address_item' wx:for='{{list}}' wx:key='{{item.key}}'>
+    <view class='name'>
+      <text>{{item.receiverUser}}</text>
+      <text>{{item.mobile}}</text>
+    </view>
+    <view class='address'>{{item.address}}</view>
   </view>
 </view>
-<view bindtap='getAddress' class='add_box' wx:if='{{address_info.length==0}}'>
+<view bindtap='getAddress' class='add_box'>
   <view class='iconfont icon-add'></view>
-  <view>添加地址</view>
-</view>
-<view bindtap='saveAddress' class='add_box save' wx:else>
-  <view>保存</view>
+  <view>新增地址</view>
 </view>

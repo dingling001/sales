@@ -2,8 +2,8 @@
 <view class='form_item'>
   <view>微信号</view>
   <view class='form_input'>
-    <input type='text' placeholder='请输入微信号'></input>
+    <input type='text' placeholder='请输入微信号' bindinput='accunt_input'></input>
   </view>
 </view>
-<view class='form_submit'>提交</view>
+<view class='form_submit' bindtap='getalpay'>提交</view>
 

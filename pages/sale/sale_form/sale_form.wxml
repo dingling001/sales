@@ -48,7 +48,7 @@
 <view class='img_box'>
   <view class='img imgs' wx:for='{{imgs}}' wx:key='*this'>
     <image src='{{item}}' mode='aspectFit'></image>
-    <view class='iconfont icon-clear-d7d8d9'></view>
+    <view class='iconfont icon-clear-d7d8d9' data-index='{{index}}' bindtap='cancel_img'></view>
   </view>
   <view class='img' bindtap='img1_fun' wx:if='{{imgs.length<4}}'>
     <view class='iconfont icon-tianjiatupian'></view>

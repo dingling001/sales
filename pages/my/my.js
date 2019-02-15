@@ -45,7 +45,7 @@ Page({
       network.Login(e.detail.userInfo)
     } else {
       wx.showToast({
-        title: '请登录获取更好的体验',
+        title: '请授权获取更好的体验',
         iocn: 'none'
       })
     }

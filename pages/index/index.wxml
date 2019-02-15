@@ -3,25 +3,25 @@
   <swiper class='index_swiper' indicator-dots="true" indicator-color='#fff' indicator-active-color='#FDCE02'>
     <block wx:for="{{slide_list}}" wx:key='item'>
       <swiper-item class='swiper_item'>
-        <image src="{{item.banImg}}" mode="aspectFit" lazy-load='true' />
+        <image src="{{item.image}}" mode="aspectFit" lazy-load='true' />
       </swiper-item>
     </block>
   </swiper>
-  <view class='index_box' wx:for='{{homeList}}' wx:key='{{item.typeId}}' wx:for-index='hindex'>
-    <view class='index_rec'>
+  <view class='index_box'  wx:key='{{item.id}}' wx:for-index='hindex'>
+    <!-- <view class='index_rec'>
       <text class='rec_text'></text>
       <text>{{item.typeName}}</text>
-    </view>
+    </view> -->
     <view class='index_list'>
-      <view class='index_item' bindtap='go_detail' wx:for='{{item.list}}' wx:for-item='i' data-index='{{index}}' data-hindex='{{hindex}}' wx:key='{{i.goodsId}}'>
+      <view class='index_item' bindtap='go_detail' wx:for='{{homeList}}'  data-index='{{index}}' data-hindex='{{hindex}}' wx:key='{{item.id}}'>
         <view class='index_item_img'>
-          <image mode='widthFix' src='{{i.goodsImg}}' lazy-load='true'></image>
+          <image mode='widthFix' src='{{item.coverImage}}' lazy-load='true'></image>
         </view>
-        <view class='index_name'>{{i.goodsName}}</view>
-        <view class='index_des'>{{i.goodsDesc}}</view>
+        <view class='index_name'>{{item.name}}</view>
+        <view class='index_des'>{{item.desc}}</view>
         <view class='price_box'>
-          <text class='pre_p'>￥{{i.goodsPrice}}</text>
-          <text class='old_p'>￥{{i.goodsCost}}</text>
+          <text class='pre_p'>￥{{item.buyPrice}}</text>
+          <text class='old_p'>￥{{item.expectPrice}}</text>
         </view>
       </view>
     </view>

@@ -1,13 +1,40 @@
 // pages/my/my_address/my_address.js
+var network = require("../../../utils/network.js");
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-    address_info: []
+    address_info: [],
+    list:[]
   },
+// 获取地址列表
+getaddress(){
+  let that=this;
+  wx.getStorage({
+    key: 'token',
+    success: (res_token) => {
+      console.log(res_token)
+      network.GET({
+        url: 'user/address',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Authorization": res_token.data
+        },
+        params: {
+         
+        },
+        success(res) {
+          console.log(res)
+          if (res.data.code == 0) {
+           that.setData({
+             list:res.data.data
+           })
+          } 
+        }
 
+      })
+    },
+  })
+},
   // 获取地址
   getAddress() {
     let that = this;
@@ -21,19 +48,54 @@ Page({
         console.log(res.detailInfo)
         console.log(res.nationalCode)
         console.log(res.telNumber)
+        let address = res.provinceName + res.countyName +res.detailInfo
         that.setData({
           address_info: res
         })
+        that.saveAddress(address, res.userName, res.telNumber)
       }
     })
   },
-  saveAddress() {
-    wx.showToast({
-      title: '保存成功',
+  // 保存地址
+  saveAddress(address, receiverUser, mobile) {
+    let that=this;
+    wx.getStorage({
+      key: 'token',
+      success: (res_token) => {
+        console.log(res_token)
+        network.POST({
+          url: 'user/address',
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": res_token.data
+          },
+          params: {
+            address,
+            receiverUser,
+            mobile
+          },
+          success(res) {
+            console.log(res)
+            if (res.data.code == 0) {
+              wx.showToast({
+                title: '保存成功',
+              })
+              that.getaddress()
+            } else {
+              wx.showToast({
+                title: res.msg || '稍后再试',
+                icon: 'none'
+              })
+            }
+          }
+
+        })
+      },
     })
   },
-  onLoad: function(options) {
 
+  onLoad: function(options) {
+    this.getaddress()
   },
 
   /**

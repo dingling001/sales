@@ -1,5 +1,9 @@
 /* pages/my/my_address/my_address.wxss */
 
+.address_list {
+  padding: 0 0 100rpx 0;
+}
+
 .add_box {
   display: flex;
   align-items: center;
@@ -20,7 +24,29 @@
   font-size: 45rpx;
   margin: 0 20rpx 0 0;
 }
-.save{
+
+.save {
   background-color: #fdce02;
   color: #fff;
+}
+
+.name {
+  font-size: 26rpx;
+  color: #333;
+  padding: 10rpx 20rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.address_item {
+  padding: 10rpx;
+  border-bottom: 2rpx solid #f8f8f8;
+  background-color: #fff;
+}
+
+.address {
+  color: #666;
+  font-size: 25rpx;
 }

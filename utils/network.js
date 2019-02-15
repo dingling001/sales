@@ -1,7 +1,7 @@
 // var API_URL = 'https://tv.zt31.cn/tv/consignment-master/app/weChat/'
 const API_URL = 'http://test.jianghairui.com/wechat/'
-const imgUrl = 'https://tv.zt31.cn'
 // const imgUrl = 'https://tv.zt31.cn'
+const imgUrl = 'http://test.jianghairui.com'
 
 var requestHandler = {
   url: "",
@@ -39,14 +39,19 @@ function request(method, requestHandler) {
     url: API_URL + url,
     data: params,
     method: method, // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-    header: {
-      'content-type': header
-    }, // 设置请求的 header
+    header: header, // 设置请求的 header
     success: function(res) {
       wx.hideLoading()
       //注意：可以对参数解密等处理
-      if (res.data.code == 3) {
-
+      if (res.data.code == 503) {
+        wx.showToast({
+          title: '未登录，点击登录！',
+          icon: 'none'
+        })
+        wx.clearStorage()
+        wx.switchTab({
+          url: '/pages/my/my',
+        })
 
       } else {
         requestHandler.success(res)
@@ -67,27 +72,34 @@ function request(method, requestHandler) {
 function Login(userinfo) {
   wx.login({
     success(res) {
+      console.log(res.code)
       if (res.code) {
-        GET({
-          url: 'auth/login',
-          header: 'application/x-www-form-urlencoded',
-          params: {
+        wx.request({
+          url: API_URL + 'auth/login',
+          data: {
             code: res.code
           },
-          success(res) {
-            console.log(res)
-            wx.setStorage({
-              key: 'token',
-              data: 'value'
-            });
-            wx.setStorage({
-              key: 'userinfo',
-              data: userinfo,
-            })
+          method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          // header: 'application/x-www-form-urlencoded',// 设置请求的 header
+          success: function(res) {
+            // console.log(res.data.code)
+            if (res.data.code == 0) {
+              wx.setStorage({
+                key: 'token',
+                data: res.data.data.token
+              });
+              wx.setStorage({
+                key: 'userinfo',
+                data: userinfo,
+              })
+            }
+
           }
         })
-      } else {
-        console.log('登录失败！' + res.errMsg)
+
       }
     }
   })
@@ -99,5 +111,4 @@ module.exports = {
   Login: Login,
   getUrlKey: getUrlKey,
   imgUrl: imgUrl,
-
 }

@@ -1,8 +1,14 @@
 <!--pages/my/my_money/my_money.wxml-->
-<view class='building'>
+<!-- <view class='building'>
 <image src='../../img/clock.png'></image>
 </view>
 <view>系统开发中</view>
 <view>寄售暂请联系微信：花花花的话</view>
-                            
+                             -->
 
+<view class='nodata' wx:if='{{mlist.length==0}}'>暂无数据</view>
+<view class='list' wx:else>
+  <view class='list_item' wx:for='{{mlist}}' wx:key='{{item.id}}'>
+    1
+  </view>
+</view>
