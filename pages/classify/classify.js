@@ -10,12 +10,10 @@ Page({
   // 获取分类
   getTypeList() {
     var that = this;
-    // wx.getStorage({
-    //   key: 'token',
-    //   success: (res_token) => {
     network.GET({
       url: 'client/type',
-      header: 'application/x-www-form-urlencoded',
+      header: {
+            "Content-Type": "application/x-www-form-urlencoded"},
       params: {
         // token: res_token.data,
         pageSize: 10,
@@ -24,9 +22,9 @@ Page({
       success(res) {
         console.log(res)
         let classlist = res.data.data.records;
-        // for (let i in classlist) {
-        //   classlist[i].banImg = network.imgUrl + classlist[i].typeImg
-        // }
+        for (let i in classlist) {
+          classlist[i].image = network.imgUrl + classlist[i].image
+        }
         if (res.data.code == 0) {
           that.setData({
             classlist: classlist
@@ -36,22 +34,6 @@ Page({
         }
       }
     })
-    // },
-    // fail: (err => {
-    //   wx.showModal({
-    //     title: '登录已失效',
-    //     content: '请点击我的-> 登录',
-    //     showCancel: false,
-    //     success(res) {
-    //       if (res.confirm) {
-    //         wx.switchTab({
-    //           url: '../my/my',
-    //         })
-    //       }
-    //     }
-    //   })
-    // })
-    // })
   },
   onLoad: function(options) {
     this.getTypeList()

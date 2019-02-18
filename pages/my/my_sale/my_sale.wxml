@@ -8,6 +8,6 @@
 <view class='nodata' wx:if='{{records.length==0}}'>暂无数据</view>
 <view class='list' wx:else>
   <view class='list_item' wx:for='{{records}}' wx:key='{{item.id}}'>
-    1
+    
   </view>
 </view>

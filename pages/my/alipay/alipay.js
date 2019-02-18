@@ -28,7 +28,7 @@ Page({
       key: 'token',
       success: (res_token) => {
         console.log(res_token)
-        network.GET({
+        network.POST({
           url: 'user/account',
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -97,7 +97,8 @@ Page({
             }
 
           })
-        },
+        }
+       
       })
     }
 

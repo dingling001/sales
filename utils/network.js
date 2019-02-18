@@ -77,13 +77,16 @@ function Login(userinfo) {
         wx.request({
           url: API_URL + 'auth/login',
           data: {
-            code: res.code
+            code: res.code,
+            name:userinfo.nickName,
+            pic: userinfo.avatarUrl
           },
           method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
           header: {
             'content-type': 'application/x-www-form-urlencoded'
           },
-          // header: 'application/x-www-form-urlencoded',// 设置请求的 header
+          // header: {
+            // "Content-Type": "application/x-www-form-urlencoded"},// 设置请求的 header
           success: function(res) {
             // console.log(res.data.code)
             if (res.data.code == 0) {

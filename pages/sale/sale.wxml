@@ -34,3 +34,5 @@
   </view>
 </view>
 <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="go_sale" class='sale_btn'>去寄售</button>
+<import src="../template/template.wxml" />
+<template is="kefu"></template>

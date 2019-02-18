@@ -27,7 +27,8 @@ Page({
     var that = this;
     network.GET({
       url: 'client/goods/' + that.data.goodsId,
-      header: 'application/x-www-form-urlencoded',
+      header: {
+            "Content-Type": "application/x-www-form-urlencoded"},
       params: {
         // token: res_token.data,
         // goodsId: that.data.goodsId

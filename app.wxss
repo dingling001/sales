@@ -149,7 +149,7 @@ button::after {
 }
 
 .index_rec {
-  margin: 0 0 31rpx 0;
+  /* margin: 0 0 31rpx 0; */
   font-size: 30rpx;
   color: #222;
   position: relative;

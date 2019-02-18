@@ -8,7 +8,7 @@
 }
 .kefu{
   position: fixed;
-  right: 50rpx;
+  right: 40rpx;
   bottom: 200rpx;
   height: 100rpx;
   width: 100rpx;
@@ -17,6 +17,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 100
 }
 .kefu .iconfont{
   font-size: 80rpx;

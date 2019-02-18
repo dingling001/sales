@@ -25,7 +25,8 @@ Page({
     var that = this;
     network.GET({
       url: 'client/type',
-      header: 'application/x-www-form-urlencoded',
+      header: {
+            "Content-Type": "application/x-www-form-urlencoded"},
       params: {
         pageSize: 10,
         pageNum: 1
@@ -135,13 +136,15 @@ Page({
     var that = this;
     wx.uploadFile({
       url: util.baseUrl + 'user/upload',
-      header: {
-        'content-type': 'multipart/form-data'
-      },
+      // header: {
+      //   'content-type': 'multipart/form-data',
+      //   "Authorization": that.data.token
+      // },
+      // method:'GET',
       filePath: filepath,
       name: 'file',
       formData: {
-        token: that.data.token
+        // token: that.data.token
       },
       success: function(res) {
         console.log(res)
@@ -241,7 +244,8 @@ Page({
         console.log(post)
         network.POST({
           url: 'user/goods',
-          header: 'application/x-www-form-urlencoded',
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded"},
           params: post,
           success(res) {
             console.log(res)

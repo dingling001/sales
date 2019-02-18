@@ -1,3 +1,5 @@
+<import src="../template/template.wxml" />
+<template is="kefu"></template>
 <scroll-view scroll-top='{{scrollTop}}' bindscroll="scroll" scroll-y='true' class='scrol_box'>
   <view class='index_top'></view>
   <swiper class='index_swiper' indicator-dots="true" indicator-color='#fff' indicator-active-color='#FDCE02'>
@@ -7,26 +9,29 @@
       </swiper-item>
     </block>
   </swiper>
-  <view class='index_box'  wx:key='{{item.id}}' wx:for-index='hindex'>
-    <!-- <view class='index_rec'>
+  <view class='index_boxs'>
+    <view class='index_rec'>
       <text class='rec_text'></text>
-      <text>{{item.typeName}}</text>
-    </view> -->
+      <text>精品推荐</text>
+    </view>
+  </view>
+  <view class='index_box' wx:key='{{item.id}}' wx:for-index='hindex'>
+
     <view class='index_list'>
-      <view class='index_item' bindtap='go_detail' wx:for='{{homeList}}'  data-index='{{index}}' data-hindex='{{hindex}}' wx:key='{{item.id}}'>
+      <view class='index_item' bindtap='go_detail' wx:for='{{homeList}}' data-index='{{index}}' data-hindex='{{hindex}}' wx:key='{{item.id}}'>
         <view class='index_item_img'>
           <image mode='widthFix' src='{{item.coverImage}}' lazy-load='true'></image>
         </view>
         <view class='index_name'>{{item.name}}</view>
         <view class='index_des'>{{item.desc}}</view>
         <view class='price_box'>
-          <text class='pre_p'>￥{{item.buyPrice}}</text>
-          <text class='old_p'>￥{{item.expectPrice}}</text>
+          <text class='pre_p'>￥{{item.expectPrice}}</text>
+          <text class='old_p'>￥{{item.buyPrice}}</text>
         </view>
       </view>
     </view>
   </view>
 </scroll-view>
- <view class='iconfont icon-huidaodingbu' bindtap='back_fun' ></view>
- <!-- wx:if='{{show_back}}' -->
 
+<view class='iconfont icon-huidaodingbu' bindtap='back_fun'></view>
+<!-- wx:if='{{show_back}}' -->

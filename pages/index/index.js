@@ -75,7 +75,9 @@ Page({
     //   success: (res_token) => {
     network.GET({
       url: 'client/banner',
-      // header: 'application/x-www-form-urlencoded',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       params: {
         draw: 1,
         start: 0,
@@ -97,45 +99,29 @@ Page({
         }
       }
     })
-    // },
-    // fail: (err => {
-    //   wx.showModal({
-    //     title: '登录已失效',
-    //     content: '请点击我的-> 登录',
-    //     showCancel: false,
-    //     success(res) {
-    //       if (res.confirm) {
-    //         wx.switchTab({
-    //           url: '../my/my',
-    //         })
-    //       }
-    //     }
-    //   })
-    // })
-    // })
   },
   // 获取首页推荐商品列表
   homeList_fun() {
     wx.showNavigationBarLoading()
     var that = this;
-    // wx.getStorage({
-    //   key: 'token',
-    //   success: (res_token) => {
     network.GET({
       url: 'client/goods',
-      header: 'application/x-www-form-urlencoded',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       params: {
-        // token: res_token.data,
-        pageSize:10,
-        pageNum:1
+        pageSize: 10,
+        pageNum: 1,
+     
+
       },
       success(res) {
         wx.hideNavigationBarLoading()
         var slidelist = res.data.data.records;
-        for(let i in slidelist){
-          slidelist[i].coverImage=network.imgUrl+slidelist[i].coverImage
+        for (let i in slidelist) {
+          slidelist[i].coverImage = network.imgUrl + slidelist[i].coverImage
         }
-        if (res.data.code ==0) {
+        if (res.data.code == 0) {
           that.setData({
             homeList: slidelist
           })

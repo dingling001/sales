@@ -8,9 +8,9 @@
     </block>
   </swiper>
   <view class='d_preprice'>
-    <text>￥</text>{{goodsInfo.buyPrice}}</view>
+    <text>￥</text>{{goodsInfo.expectPrice }}</view>
   <view class='d_oldprice'>
-    <text>￥</text>{{goodsInfo.expectPrice}}</view>
+    <text>￥</text>{{goodsInfo.buyPrice}}</view>
   <view class='g_name'>{{goodsInfo.name}}</view>
   <view class='g_des'>{{goodsInfo.desc}}</view>
 </view>
@@ -20,9 +20,9 @@
   </view>
   <view class='content_box'>
     <view class='content_item'>
-      <view >
-      <!-- class='detial_content' -->
-<rich-text nodes="{{goodsInfo.content}}" type='text'></rich-text>
+      <view>
+        <!-- class='detial_content' -->
+        <rich-text nodes="{{goodsInfo.content}}" type='text'></rich-text>
       </view>
       <!-- <view class='detial_img'>
         <image mode='widthFix' src='{{goodsInfo.goodsDetail}}'></image>

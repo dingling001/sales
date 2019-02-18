@@ -7,11 +7,13 @@ Page({
     show_brand: false,
     icon_status: false,
     icon_status1: false,
-    typeId: '',
+    isAsc: false,
+    id: '',
     priceType: 1,
     goodsBrand: [],
     brand: '',
-    goodsList: []
+    goodsList: [],
+    name: ''
   },
   // 返回顶部
   back_fun() {
@@ -24,44 +26,75 @@ Page({
     // })
   },
   //  获取商品列表
-  getGoodList(priceType, index) {
+  getGoodList(sortCol, index) {
     var that = this;
-    wx.getStorage({
-      key: 'token',
-      success: (res_token) => {
-        network.GET({
-          url: 'lient/goods',
-          header: 'application/x-www-form-urlencoded',
-          params: {
-            token: res_token.data,
-            typeId: that.data.typeId,
-            // typeId: '1',
-            priceType: priceType,
-            brand: that.data.brand
-          },
-          success(res) {
-            console.log(res)
-            let goodsList = res.data.data.goodsList;
-            let goodsBrand = res.data.data.goodsBrand;
-            // for (let i in classlist) {
-            //   classlist[i].banImg = network.imgUrl + classlist[i].typeImg
-            // }
-            if (res.data.code == '0000') {
-              that.setData({
-                goodsList: goodsList,
-                goodsBrand: goodsBrand
-              })
-              console.log(that.data.goodsList);
-            } else {
-              // console.log(res);
-            }
-          }
-        })
+    network.GET({
+      url: 'client/goods',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
       },
+      params: {
+        // id: that.data.id,
+        pageNum: 1,
+        pageSize: 10,
+        isAsc: that.data.isAsc,
+        sortCol: sortCol,
+        // serial: that.data.id,
+        // goodsType: that.data.id
+        goodsType: ''
+      },
+      success(res) {
+        console.log(res)
+
+        if (res.data.code == 0) {
+          let goodsList = res.data.data.records;
+          // let goodsBrand = res.data.data.goodsBrand;
+          for (let i in goodsList) {
+            goodsList[i].coverImage = network.imgUrl + goodsList[i].coverImage
+          }
+          that.setData({
+            goodsList: goodsList,
+            // goodsBrand: goodsBrand
+          })
+          console.log(that.data.goodsList);
+        } else {
+          // console.log(res);
+        }
+      }
     })
+
   },
   // 获取品牌
+  getbrand() {
+    var that = this;
+    network.GET({
+      url: 'client/type/test/serial',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      params: {
+        pageSize: 10,
+        pageNum: 1
+      },
+      success(res) {
+        console.log(res)
+        // let goodsList = res.data.data.records;
 
+
+        if (res.data.code == 0) {
+          let goodsBrand = res.data.data;
+          that.setData({
+            // goodsList: goodsList,
+            goodsBrand: goodsBrand
+          })
+          console.log(that.data.goodsList);
+        } else {
+          // console.log(res);
+        }
+      }
+    })
+
+  },
   // 综合
   all_fun() {
     this.setData({
@@ -72,7 +105,7 @@ Page({
       priceType: '1',
       brand: ''
     })
-    this.getGoodList(this.data.priceType, this.data.brand)
+    this.getGoodList('create_time', this.data.brand)
   },
   // 寄售价
   consignment_fun() {
@@ -84,15 +117,15 @@ Page({
     if (this.data.icon_status == false) {
       this.setData({
         icon_status: true,
-        priceType: 1,
+        isAsc: false,
       })
     } else {
       this.setData({
         icon_status: false,
-        priceType: 2,
+        isAsc: true,
       })
     }
-    this.getGoodList(this.data.priceType, this.data.brand)
+    this.getGoodList('expect_price', this.data.brand)
   },
   // 原价
   price_fun() {
@@ -104,15 +137,15 @@ Page({
     if (this.data.icon_status1 == false) {
       this.setData({
         icon_status1: true,
-        priceType: 1,
+        isAsc: false,
       })
     } else {
       this.setData({
         icon_status1: false,
-        priceType: 2,
+        isAsc: true,
       })
     }
-    this.getGoodList(this.data.priceType, this.data.brand)
+    this.getGoodList('buy_price', this.data.brand)
   },
   // 品牌
   brand_fun() {
@@ -147,16 +180,18 @@ Page({
   },
 
   onLoad: function(options) {
-    // console.log(options)
-    if (options.typeId) {
+    console.log(options)
+    if (options.id) {
       this.setData({
-        typeId: options.typeId
+        id: options.id,
+        name: options.name
       })
-      this.getGoodList(this.data.priceType, this.data.brand)
+      this.getGoodList('create_time', this.data.brand)
       wx.setNavigationBarTitle({
-        title: options.typeName
+        title: options.name
       })
     }
+    this.getbrand()
   },
 
   onReady: function() {
