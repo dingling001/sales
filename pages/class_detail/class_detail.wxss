@@ -1,9 +1,13 @@
 /* pages/class_detail/class_detail.wxss */
-
+page{
+  min-height: 100%;
+}
 .index_box {
   margin-top: 118rpx;
 }
-
+.scroll{
+ height: 100vh;
+}
 .brand_mold {
   position: fixed;
   height: 100%;

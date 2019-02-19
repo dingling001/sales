@@ -1,5 +1,5 @@
 <!--pages/class_detail/class_detail.wxml-->
-<scroll-view>
+<scroll-view class='scroll'>
   <view class='d_nav'>
     <view class='view {{i==0?"d_active":""}}' bindtap='all_fun'>综合</view>
     <view class='view pricerank {{i==1?"d_active":""}}' bindtap='consignment_fun'>
@@ -10,8 +10,8 @@
       </view>
     </view>
     <view class='view pricerank {{i==2?"d_active":""}}' bindtap='price_fun'>
-    <text>原价</text>
-     <view class='rankbtn'>
+      <text>原价</text>
+      <view class='rankbtn'>
         <view class='iconfont icon-xiala11 {{icon_status1?"icon_active":""}}'></view>
         <view class='iconfont icon-xiala1 {{icon_status1?"":"icon_active"}}'></view>
       </view>
@@ -19,7 +19,7 @@
     <view class='view {{i==3?"d_active":""}}' bindtap='brand_fun'>品牌</view>
   </view>
   <view class='index_box'>
-  <view wx:if='{{goodsList.length==0}}' class='nodata'>暂无数据</view>
+    <view wx:if='{{goodsList.length==0}}' class='nodata'>暂无数据</view>
     <view class='index_list' wx:else>
       <view class='index_item' bindtap='go_detail' wx:for='{{goodsList}}' data-id='{{item.goodsId}}' wx:key='{{item.goodsId}}'>
         <view class='index_item_img'>
@@ -32,15 +32,15 @@
           <text class='old_p'>￥{{item.buyPrice}}</text>
         </view>
       </view>
-     
+
     </view>
   </view>
   <view class='brand_mold' wx:if='{{show_brand}}' bindtap='colse_mold'>
     <view class='brand_box'>
-      <view class='brand_item' bindtap='choose_brand' wx:for='{{goodsBrand}}' data-brand='{{item}}'>{{item}}</view>
+      <view class='brand_item' bindtap='choose_brand' wx:for='{{goodsBrand}}' data-brand='{{item.id}}'>{{item.name}}</view>
     </view>
   </view>
 </scroll-view>
 <import src="../template/template.wxml" />
 <template is="kefu"></template>
-<view class='iconfont icon-huidaodingbu' bindtap='back_fun' ></view>
+<view class='iconfont icon-huidaodingbu' bindtap='back_fun'></view>

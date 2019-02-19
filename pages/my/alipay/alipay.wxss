@@ -1,1 +1,6 @@
 /* pages/my/alipay/alipay.wxss */
+.form_input .input {
+  padding: 27rpx 0;
+  width: 100%;
+  height: auto;
+}

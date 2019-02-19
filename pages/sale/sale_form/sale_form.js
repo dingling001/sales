@@ -134,13 +134,14 @@ Page({
   // // 确认上传图片
   upload_file(filepath) {
     var that = this;
+    console.log(that.data.token)
     wx.uploadFile({
-      url: util.baseUrl + 'user/upload',
-      // header: {
-      //   'content-type': 'multipart/form-data',
-      //   "Authorization": that.data.token
-      // },
-      // method:'GET',
+      // url: util.baseUrl + 'user/upload',
+      url:'http://test.jianghairui.com/wechat/user/upload',
+      header: {
+        'content-type': 'multipart/form-data',
+        "Authorization": that.data.token
+      },
       filePath: filepath,
       name: 'file',
       formData: {
@@ -263,6 +264,14 @@ Page({
   },
   onLoad: function(options) {
     let that = this;
+    wx.getStorage({
+      key: 'token',
+      success: (res)=> {
+        that.setData({
+          token:res.data
+        })
+      },
+    })
     this.getTypeList()
   },
 

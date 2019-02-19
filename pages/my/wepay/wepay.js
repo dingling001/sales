@@ -3,7 +3,8 @@ var network = require("../../../utils/network.js");
 Page({
 
   data: {
-    account: ''
+    account: '',
+    accunt_inputs: ''
   },
   accunt_input(e) {
     this.setData({
@@ -17,10 +18,10 @@ Page({
       success: (res_token) => {
         // console.log(res_token)
         network.GET({
-          url: 'user/account',
+          url: 'user/account/queryAllAccount',
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": res_token.data
+            // "Authorization": res_token.data
           },
           params: {
             // token: res_token.data,
@@ -32,7 +33,7 @@ Page({
             console.log(res)
             if (res.data.code == 0) {
               that.setData({
-                accounts: res.data.data[res.data.data.length - 1].account
+                accunt_inputs: res.data.data[res.data.data.length - 2].account
               })
             } else {
 
@@ -41,6 +42,11 @@ Page({
 
         })
       },
+      fail: (err) => {
+        wx.switchTab({
+          url: '/pages/my/my',
+        })
+      }
     })
   },
   //  绑定支付宝
@@ -73,6 +79,12 @@ Page({
                 wx.showToast({
                   title: '保存成功',
                 })
+                setTimeout(() => {
+                  wx.navigateBack({
+                    delta: 1
+                  })
+                }, 1500)
+
               } else {
 
               }
@@ -85,7 +97,7 @@ Page({
 
   },
   onLoad: function(options) {
-
+    this.getalidata()
   },
 
   /**

@@ -2,14 +2,16 @@
 <view class='form_item'>
   <view>支付宝账户</view>
   <view class='form_input'>
+    <!-- <view class='input' wx:if='{{show_accout}}'>{{accounts}}</view> -->
     <input type='text' placeholder='请输入账户' bindinput='account_fun' value='{{accounts}}'></input>
   </view>
 </view>
 <view class='form_item'>
   <view>姓名</view>
   <view class='form_input'>
+    <!-- <view class='input' wx:if='{{show_accout}}'>{{}}</view> -->
     <input type='text' placeholder='请输入姓名' bindinput='usename_fun' value='{{usenames}}'></input>
   </view>
 </view>
-
-<view class='form_submit' bindtap="getalpay">提交</view>
+<view class='form_submit' bindtap='changpay' wx:if='{{show_accout}}'>更新</view>
+<view class='form_submit' bindtap="getalpay" wx:else>提交</view>

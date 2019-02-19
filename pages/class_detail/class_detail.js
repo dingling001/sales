@@ -10,7 +10,10 @@ Page({
     isAsc: false,
     id: '',
     priceType: 1,
-    goodsBrand: [],
+    goodsBrand: [
+      'lv',
+      'GUCCI'
+    ],
     brand: '',
     goodsList: [],
     name: ''
@@ -26,7 +29,7 @@ Page({
     // })
   },
   //  获取商品列表
-  getGoodList(sortCol, index) {
+  getGoodList(sortCol, brand_id) {
     var that = this;
     network.GET({
       url: 'client/goods',
@@ -39,9 +42,8 @@ Page({
         pageSize: 10,
         isAsc: that.data.isAsc,
         sortCol: sortCol,
-        // serial: that.data.id,
-        // goodsType: that.data.id
-        goodsType: ''
+        serial: that.data.id,
+        goodsType: brand_id
       },
       success(res) {
         console.log(res)
@@ -68,7 +70,7 @@ Page({
   getbrand() {
     var that = this;
     network.GET({
-      url: 'client/type/test/serial',
+      url: 'client/type/'+ that.data.id+'/serial',
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
@@ -87,7 +89,7 @@ Page({
             // goodsList: goodsList,
             goodsBrand: goodsBrand
           })
-          console.log(that.data.goodsList);
+
         } else {
           // console.log(res);
         }
@@ -125,7 +127,7 @@ Page({
         isAsc: true,
       })
     }
-    this.getGoodList('expect_price', this.data.brand)
+    this.getGoodList('expect_price', '')
   },
   // 原价
   price_fun() {
@@ -145,7 +147,7 @@ Page({
         isAsc: true,
       })
     }
-    this.getGoodList('buy_price', this.data.brand)
+    this.getGoodList('buy_price', '')
   },
   // 品牌
   brand_fun() {
@@ -163,7 +165,7 @@ Page({
       show_brand: false,
       brand: brand
     })
-    this.getGoodList(this.data.priceType, this.data.brand)
+    this.getGoodList('', this.data.brand)
   },
   colse_mold() {
     this.setData({
