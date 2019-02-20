@@ -8,8 +8,9 @@ Page({
   data: {
     account: '',
     username: '',
-    accounts:'',
-    usenames:''
+    accounts: '',
+    usenames: '',
+    show_accout: false
   },
   account_fun(e) {
     this.setData({
@@ -28,8 +29,8 @@ Page({
       key: 'token',
       success: (res_token) => {
         console.log(res_token)
-        network.POST({
-          url: 'user/account',
+        network.GET({
+          url: 'user/account/queryAllAccount',
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
             "Authorization": res_token.data
@@ -44,8 +45,9 @@ Page({
             console.log(res)
             if (res.data.code == 0) {
               that.setData({
-                accounts: res.data.data[res.data.data.length-1].account,
-                usenames: res.data.data[res.data.data.length - 1].username
+                accounts: res.data.data[res.data.data.length - 2].account,
+                usenames: res.data.data[res.data.data.length - 2].username,
+                show_accout: true
               })
             } else {
 
@@ -56,9 +58,8 @@ Page({
       },
     })
   },
-  //  绑定支付宝
-  getalpay(e) {
-    var that = this;
+  changpay(){
+    let  that = this;
     if (that.data.account == '') {
       wx.showToast({
         title: '请输入支付宝账户',
@@ -74,7 +75,7 @@ Page({
         success: (res_token) => {
           console.log(res_token)
           network.POST({
-            url: 'user/account',
+            url: 'user/account/updateAccount',
             header: {
               "Content-Type": "application/x-www-form-urlencoded",
               "Authorization": res_token.data
@@ -91,14 +92,94 @@ Page({
                 wx.showToast({
                   title: '保存成功',
                 })
+                that.setData({
+                  show_accout: true
+                })
+                wx.navigateBack({
+                  delta: 1
+                })
               } else {
 
               }
             }
 
           })
+        },
+        fail: (err) => {
+          wx.showToast({
+            title: '未登录',
+            icon: 'none'
+          })
+          setTimeout(() => {
+            wx.switchTab({
+              url: '/pages/my/my',
+            })
+          }, 1000)
         }
-       
+      })
+    }
+
+  },
+  //  绑定支付宝
+  getalpay(e) {
+    var that = this;
+   
+    if (that.data.account == '') {
+      wx.showToast({
+        title: '请输入支付宝账户',
+        icon: 'none'
+      })
+    } else if (that.data.username == '') {
+      wx.showToast({
+        title: '请输入姓名',
+      })
+    } else {
+      wx.getStorage({
+        key: 'token',
+        success: (res_token) => {
+          console.log(res_token)
+          network.POST({
+            url: 'user/account/addAccount',
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              "Authorization": res_token.data
+            },
+            params: {
+              // token: res_token.data,
+              account: that.data.account,
+              username: that.data.username,
+              type: 'ALIPAY'
+            },
+            success(res) {
+              console.log(res)
+              if (res.data.code == 0) {
+                wx.showToast({
+                  title: '保存成功',
+                })
+                that.setData({
+                  show_accout: true
+                })
+                wx.navigateBack({
+                  delta: 1
+                })
+              } else {
+
+              }
+            }
+
+          })
+        },
+        fail: (err) => {
+          wx.showToast({
+            title: '未登录',
+            icon: 'none'
+          })
+          setTimeout(() => {
+            wx.switchTab({
+              url: '/pages/my/my',
+            })
+          }, 1000)
+        }
       })
     }
 
