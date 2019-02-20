@@ -42,11 +42,12 @@ Page({
             // type: 'ALIPAY'
           },
           success(res) {
-            console.log(res)
-            if (res.data.code == 0) {
+            // console.log(res)
+            if (res.data.code == 0 && res.data.data.length>0) {
+              console.log(res.data.data)
               that.setData({
-                accounts: res.data.data[res.data.data.length - 2].account,
-                usenames: res.data.data[res.data.data.length - 2].username,
+                accounts: res.data.data[0].account,
+                usenames: res.data.data[0].username,
                 show_accout: true
               })
             } else {

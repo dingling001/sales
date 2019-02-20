@@ -5,7 +5,13 @@ Page({
     account: '',
     bankName: '',
     registerBankAddress: '',
-    usename: ''
+    usename: '',
+
+    accounts: '',
+    bankNames: '',
+    registerBankAddresss: '',
+    usenames: '',
+    show_accout: false
   },
   bank_in(e) {
     this.setData({
@@ -35,23 +41,18 @@ Page({
       success: (res_token) => {
         console.log(res_token)
         network.GET({
-          url: 'user/account',
+          url: 'user/account/queryAllAccount',
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
             "Authorization": res_token.data
           },
-          params: {
-            // token: res_token.data,
-            // account: that.data.account,
-            // username: that.data.username,
-            type: 'BANK'
-          },
+          params: {},
           success(res) {
             console.log(res)
             if (res.data.code == 0) {
               that.setData({
-                accounts: res.data.data[res.data.data.length - 1].account,
-                usenames: res.data.data[res.data.data.length - 1].username
+                accounts: res.data.data[1].account,
+                usenames: res.data.data[1].username
               })
             } else {
 
@@ -65,7 +66,17 @@ Page({
   // 绑定银行卡
   bank_pay(e) {
     var that = this;
-    if (that.data.account == '') {
+    if (that.data.registerBankAddress == '') {
+      wx.showToast({
+        title: '请输入开户行',
+        icon: 'none'
+      })
+    } else if (that.data.bankNames == '') {
+      wx.showToast({
+        title: '请输入银行卡名称',
+        icon: 'none'
+      })
+    } else if (that.data.account == '') {
       wx.showToast({
         title: '请输入银行卡号',
         icon: 'none'
@@ -80,7 +91,7 @@ Page({
         success: (res_token) => {
           console.log(res_token)
           network.POST({
-            url: 'user/account',
+            url: 'user/account/queryAllAccount',
             header: {
               "Content-Type": "application/x-www-form-urlencoded",
               "Authorization": res_token.data
@@ -99,10 +110,17 @@ Page({
                 wx.showToast({
                   title: '保存成功',
                 })
+                that.setData({
+                  show_accout: true
+                })
+                wx.navigateBack({
+                  delta: 1
+                })
+
               } else {
                 wx.showToast({
                   title: res.msg || '稍后再试',
-                  icon:'none'
+                  icon: 'none'
                 })
               }
             }
