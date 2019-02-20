@@ -112,8 +112,7 @@ Page({
       params: {
         pageSize: 10,
         pageNum: 1,
-     
-
+        isRecommend:1
       },
       success(res) {
         wx.hideNavigationBarLoading()

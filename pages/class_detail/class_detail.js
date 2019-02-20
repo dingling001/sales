@@ -39,7 +39,7 @@ Page({
         pageSize: 10,
         isAsc: that.data.isAsc,
         sortCol: sortCol,
-        // serial: that.data.id,
+        serial: that.data.id,
         // goodsType: that.data.id
         goodsType: ''
       },
