@@ -16,8 +16,8 @@ Page({
     buyPrice: '',
     phone: '',
     serial: '',
-    tips: '',
-    goods: '',
+    desc: '',
+    name: '',
     index: -1
   },
   // 获取分类
@@ -72,12 +72,12 @@ Page({
   },
   goods_fun(e) {
     this.setData({
-      goods: e.detail.value
+      name: e.detail.value
     })
   },
   tips_fun(e) {
     this.setData({
-      tips: e.detail.value
+      desc: e.detail.value
     })
   },
   // 品牌
@@ -152,7 +152,7 @@ Page({
         var imgs = [];
         // imgs = imgs.concat(JSON.parse(res.data).data.path)
         that.setData({
-          images: that.data.images.concat(JSON.parse(res.data).data.path) //把字符串解析成对象
+          images: that.data.images.concat(JSON.parse(res.data).data) //把字符串解析成对象
           // images: imgs
         })
         if (that.data.images.length >= 4) {
@@ -176,24 +176,28 @@ Page({
     let token = that.data.token;
     let serial = that.data.serial;
     let index = that.data.index;
-    // let type = that.classlist[index].id;
-    let type = 'kuabao';
-    let goods = that.data.goods;
+    console.log()
+    let type = that.data.classlist[that.data.index].id;
+
+    // let type = 'kuabao';
+    let name = that.data.name;
     let buyPrice = that.data.buyPrice;
     let expectPrice = that.data.expectPrice;
     let phone = that.data.phone;
-    let tips = that.data.tips;
-    let images = that.data.images;
+    let desc = that.data.desc;
+    let otherImages = that.data.images;
+    let coverImage='';
     let post = {
+      name,
       serial,
       type,
-      goods,
+      coverImage,
       buyPrice,
       expectPrice,
       phone,
-      tips,
-      images,
-      token
+      desc,
+      otherImages,
+     
     }
     if (e.detail.userInfo) {
       if (serial == '') {
@@ -208,7 +212,7 @@ Page({
       //     icon: 'none'
       //   })
       // } 
-      else if (goods == '') {
+      else if (name == '') {
         wx.showToast({
           title: '请输入商品名称',
           icon: 'none'
@@ -246,7 +250,9 @@ Page({
         network.POST({
           url: 'user/goods',
           header: {
-            "Content-Type": "application/x-www-form-urlencoded"},
+            'content-type': 'multipart/form-data',
+            "Authorization": that.data.token
+          },
           params: post,
           success(res) {
             console.log(res)
