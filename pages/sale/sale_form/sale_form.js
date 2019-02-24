@@ -26,7 +26,8 @@ Page({
     network.GET({
       url: 'client/type',
       header: {
-            "Content-Type": "application/x-www-form-urlencoded"},
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       params: {
         pageSize: 10,
         pageNum: 1
@@ -137,7 +138,7 @@ Page({
     console.log(that.data.token)
     wx.uploadFile({
       // url: util.baseUrl + 'user/upload',
-      url:'https://chugebaobao.com/wechat/user/upload',
+      url: 'http://test.jianghairui.com/wechat/user/upload',
       header: {
         'content-type': 'multipart/form-data',
         "Authorization": that.data.token
@@ -185,8 +186,8 @@ Page({
     let expectPrice = that.data.expectPrice;
     let phone = that.data.phone;
     let desc = that.data.desc;
-    let otherImages = that.data.images;
-    let coverImage='';
+    let coverImage = that.data.images;
+    let otherImages = '';
     let post = {
       name,
       serial,
@@ -197,7 +198,6 @@ Page({
       phone,
       desc,
       otherImages,
-     
     }
     if (e.detail.userInfo) {
       if (serial == '') {
@@ -247,17 +247,33 @@ Page({
       // }
       else {
         console.log(post)
-        network.POST({
-          url: 'user/goods',
-          header: {
-            'content-type': 'multipart/form-data',
-            "Authorization": that.data.token
-          },
-          params: post,
+        wx.showModal({
+          title: '寄售',
+          content: '确定提交',
           success(res) {
-            console.log(res)
+            if (res.confirm) {
+              network.POST({
+                url: 'user/goods',
+                header: {
+                  "Content-Type": "application/x-www-form-urlencoded",
+                  "Authorization": that.data.token
+                },
+                params: post,
+                success(res) {
+                  console.log(res)
+                  if (res.data.code == 0) {
+                    wx.navigateTo({
+                      url: '../../my/my_sale/my_sale',
+                    })
+                  }
+                }
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
           }
         })
+
       }
     } else {
       wx.showToast({
@@ -272,9 +288,9 @@ Page({
     let that = this;
     wx.getStorage({
       key: 'token',
-      success: (res)=> {
+      success: (res) => {
         that.setData({
-          token:res.data
+          token: res.data
         })
       },
     })
