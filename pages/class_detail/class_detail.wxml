@@ -21,7 +21,7 @@
   <view class='index_box'>
     <view wx:if='{{goodsList.length==0}}' class='nodata'>暂无数据</view>
     <view class='index_list' wx:else>
-      <view class='index_item' bindtap='go_detail' wx:for='{{goodsList}}' data-id='{{item.goodsId}}' wx:key='{{item.goodsId}}'>
+      <view class='index_item' bindtap='go_detail' wx:for='{{goodsList}}' data-id='{{item.id}}' wx:key='{{item.id}}'>
         <view class='index_item_img'>
           <image mode='widthFix' src='{{item.coverImage}}'></image>
         </view>
@@ -37,7 +37,7 @@
   </view>
   <view class='brand_mold' wx:if='{{show_brand}}' bindtap='colse_mold'>
     <view class='brand_box'>
-      <view class='brand_item' bindtap='choose_brand' wx:for='{{goodsBrand}}' data-brand='{{item.id}}'>{{item.name}}</view>
+      <view class='brand_item' bindtap='choose_brand' wx:for='{{goodsBrand}}' data-brand='{{item.id}}' wx:key='{{item.id}}'>{{item.name}}</view>
     </view>
   </view>
 </scroll-view>

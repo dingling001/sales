@@ -106,7 +106,7 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded"
       },
       params: {
-        pageSize: 10,
+        pageSize: 1000,
         pageNum: 1,
         isRecommend: 1
       },

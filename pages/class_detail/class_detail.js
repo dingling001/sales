@@ -10,10 +10,7 @@ Page({
     isAsc: false,
     id: '',
     priceType: 1,
-    goodsBrand: [
-      'lv',
-      'GUCCI'
-    ],
+    goodsBrand: [],
     brand: '',
     goodsList: [],
     name: ''
@@ -42,9 +39,9 @@ Page({
         pageSize: 10,
         isAsc: that.data.isAsc,
         sortCol: sortCol,
-        serial: that.data.id,
-        goodsType: brand_id,
-        isRecommend:0
+        serial: brand_id,
+        goodsType: that.data.id,
+        isRecommend: 0
       },
       success(res) {
         console.log(res)
@@ -71,19 +68,16 @@ Page({
   getbrand() {
     var that = this;
     network.GET({
-      url: 'client/type/'+ that.data.id+'/serial',
+      url: 'client/type/' + that.data.id + '/serial',
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       params: {
-        pageSize: 10,
+        pageSize: 1000,
         pageNum: 1
       },
       success(res) {
         console.log(res)
-        // let goodsList = res.data.data.records;
-
-
         if (res.data.code == 0) {
           let goodsBrand = res.data.data;
           that.setData({

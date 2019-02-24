@@ -5,22 +5,23 @@ Page({
     account: '',
     bankName: '',
     registerBankAddress: '',
-    usename: '',
+    username: '',
 
     accounts: '',
     bankNames: '',
     registerBankAddresss: '',
-    usenames: '',
-    show_accout: false
+    usernames: '',
+    show_accout: false,
+    account_id: ''
   },
   bank_in(e) {
     this.setData({
-      bankName: e.detail.value
+      registerBankAddress: e.detail.value
     })
   },
   bank_na(e) {
     this.setData({
-      registerBankAddress: e.detail.value
+      bankName: e.detail.value
     })
   },
   bank_num(e) {
@@ -30,7 +31,7 @@ Page({
   },
   bank_use(e) {
     this.setData({
-      usename: e.detail.value
+      username: e.detail.value
     })
   },
   // 获取支付宝信息
@@ -39,7 +40,6 @@ Page({
     wx.getStorage({
       key: 'token',
       success: (res_token) => {
-        console.log(res_token)
         network.GET({
           url: 'user/account/queryAllAccount',
           header: {
@@ -49,11 +49,20 @@ Page({
           params: {},
           success(res) {
             console.log(res)
-            if (res.data.code == 0) {
-              that.setData({
-                accounts: res.data.data[1].account,
-                usenames: res.data.data[1].username
-              })
+            if (res.data.code == 0 && res.data.data.length > 0) {
+              for (let i in res.data.data) {
+                if (res.data.data[i].type == 'BANK') {
+                  console.log(i)
+                  that.setData({
+                    accounts: res.data.data[i].account,
+                    usernames: res.data.data[i].username,
+                    registerBankAddresss: res.data.data[i].registerBankAddress,
+                    bankNames: res.data.data[i].bankName,
+                    account_id: res.data.data[i].id,
+                    show_accout: true
+                  })
+                }
+              }
             } else {
 
             }
@@ -71,7 +80,7 @@ Page({
         title: '请输入开户行',
         icon: 'none'
       })
-    } else if (that.data.bankNames == '') {
+    } else if (that.data.bankName == '') {
       wx.showToast({
         title: '请输入银行卡名称',
         icon: 'none'
@@ -91,7 +100,7 @@ Page({
         success: (res_token) => {
           console.log(res_token)
           network.POST({
-            url: 'user/account/queryAllAccount',
+            url: 'user/account/addAccount',
             header: {
               "Content-Type": "application/x-www-form-urlencoded",
               "Authorization": res_token.data
@@ -124,12 +133,86 @@ Page({
                 })
               }
             }
-
           })
         },
       })
     }
 
+  },
+  bank_update(e) {
+    let that = this;
+    if (that.data.registerBankAddress == '') {
+      wx.showToast({
+        title: '请输入开户行',
+        icon: 'none'
+      })
+    } else if (that.data.bankName == '') {
+      wx.showToast({
+        title: '请输入银行卡名称',
+        icon: 'none'
+      })
+    } else if (that.data.account == '') {
+      wx.showToast({
+        title: '请输入银行卡号',
+        icon: 'none'
+      })
+    } else if (that.data.username == '') {
+      wx.showToast({
+        title: '请输入姓名',
+        icon: 'none'
+      })
+    } else {
+      wx.getStorage({
+        key: 'token',
+        success: (res_token) => {
+          console.log(res_token)
+          network.POST({
+            url: 'user/account/updateAccount',
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              "Authorization": res_token.data
+            },
+            params: {
+              // token: res_token.data,
+              registerBankAddress: that.data.registerBankAddress,
+              bankName: that.data.bankName,
+              account: that.data.account,
+              username: that.data.username,
+              type: 'BANK',
+              id: that.data.account_id
+            },
+            success(res) {
+              console.log(res)
+              if (res.data.code == 0) {
+                wx.showToast({
+                  title: '保存成功',
+                })
+                that.setData({
+                  show_accout: true
+                })
+                wx.navigateBack({
+                  delta: 1
+                })
+              } else {
+
+              }
+            }
+
+          })
+        },
+        fail: (err) => {
+          wx.showToast({
+            title: '未登录',
+            icon: 'none'
+          })
+          setTimeout(() => {
+            wx.switchTab({
+              url: '/pages/my/my',
+            })
+          }, 1000)
+        }
+      })
+    }
   },
   onLoad: function(options) {
     this.getalidata()

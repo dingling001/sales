@@ -2,8 +2,9 @@
 <view class='form_item'>
   <view>微信号</view>
   <view class='form_input'>
-    <input type='text' placeholder='请输入微信号' bindinput='accunt_input' value='{{accunt_inputs}}'></input>
+    <input type='text' placeholder='请输入微信号' bindinput='accunt_input' value='{{accounts}}'></input>
   </view>
 </view>
-<view class='form_submit' bindtap='getalpay'>提交</view>
+<view class='form_submit' bindtap='changpay' wx:if='{{show_accout}}'>更新</view>
+<view class='form_submit' bindtap='getalpay' wx:else>提交</view>
 

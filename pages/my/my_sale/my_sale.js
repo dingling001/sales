@@ -7,9 +7,9 @@ Page({
    */
   data: {
     records: [],
-    pageSize: 10,
+    pageSize: 1000,
     pageNum: 0,
-    n:0
+    n: 0
   },
   // 获取寄售列表
   getGlist() {
@@ -30,8 +30,7 @@ Page({
           success(res) {
             let records = res.data.data.records;
             for (let i in records) {
-              records[i].coverImage = network.imgUrl + '/pic/' + records[i].coverImage
-
+              records[i].coverImage = network.imgUrl + records[i].coverImage
             }
             console.log(records)
             that.setData({
@@ -40,6 +39,104 @@ Page({
           }
         })
       },
+    })
+  },
+
+  // 全部
+  all() {
+    this.getGlist()
+    this.setData({
+      n:0
+    })
+  },
+  // 0: 待审核,- 1: 审核不通过, 1: 审核通过, 2: 已发货, 3: 实物审核中, 4: 实物审核未通过, 5: 上架销售, 6: 已售出, 7: 已完成
+  // 未发货
+  unsold() {
+    this.getGlist()
+    let records = this.data.records
+   let list=[]
+    for (let i in records) {
+      if (records[i].status == 0 || records[i].status == -1 || records[i].status == 1) {
+        list.push({
+          status: records[i].status,
+          coverImage: records[i].coverImage,
+          buyPrice: records[i].buyPrice,
+          name: records[i].name,
+          expectPrice: records[i].expectPrice,
+          id: records[i].id
+        })
+      }
+    }
+    this.setData({
+      n: 1,
+      records:list
+    })
+
+  },
+  // 已发货
+  sold(){
+    this.getGlist()
+    let records = this.data.records
+    let list = []
+    for (let i in records) {
+      if (records[i].status == 2 || records[i].status == 3 || records[i].status == 4) {
+        list.push({
+          status: records[i].status,
+          coverImage: records[i].coverImage,
+          buyPrice: records[i].buyPrice,
+          name: records[i].name,
+          expectPrice: records[i].expectPrice,
+          id: records[i].id
+        })
+      }
+    }
+    this.setData({
+      n: 2,
+      records: list
+    })
+  },
+  // 进行中
+  solding(){
+    this.getGlist()
+    let records = this.data.records
+    let list = []
+    for (let i in records) {
+      if (records[i].status == 5 || records[i].status == 6) {
+        list.push({
+          status: records[i].status,
+          coverImage: records[i].coverImage,
+          buyPrice: records[i].buyPrice,
+          name: records[i].name,
+          expectPrice: records[i].expectPrice,
+          id: records[i].id
+        })
+      }
+    }
+    this.setData({
+      n: 3,
+      records: list
+    })
+  },
+  // 已完成
+  solded(){
+    this.getGlist()
+    let records = this.data.records
+    let list = []
+    for (let i in records) {
+      if (records[i].status == 7) {
+        list.push({
+          status: records[i].status,
+          coverImage: records[i].coverImage,
+          buyPrice: records[i].buyPrice,
+          name: records[i].name,
+          expectPrice: records[i].expectPrice,
+          id: records[i].id
+        })
+      }
+    }
+    this.setData({
+      n: 4,
+      records: list
     })
   },
   onLoad: function(options) {

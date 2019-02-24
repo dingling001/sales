@@ -10,7 +10,8 @@ Page({
     username: '',
     accounts: '',
     usenames: '',
-    show_accout: false
+    show_accout: false,
+    account_id: ''
   },
   account_fun(e) {
     this.setData({
@@ -43,13 +44,18 @@ Page({
           },
           success(res) {
             // console.log(res)
-            if (res.data.code == 0 && res.data.data.length>0) {
+            if (res.data.code == 0 && res.data.data.length > 0) {
               console.log(res.data.data)
-              that.setData({
-                accounts: res.data.data[0].account,
-                usenames: res.data.data[0].username,
-                show_accout: true
-              })
+              for (let i in res.data.data) {
+                if (res.data.data[i].type = 'ALIPAY') {
+                  that.setData({
+                    accounts: res.data.data[i].account,
+                    usenames: res.data.data[i].username,
+                    account_id: res.data.data[i].id,
+                    show_accout: true
+                  })
+                }
+              }
             } else {
 
             }
@@ -59,8 +65,8 @@ Page({
       },
     })
   },
-  changpay(){
-    let  that = this;
+  changpay() {
+    let that = this;
     if (that.data.account == '') {
       wx.showToast({
         title: '请输入支付宝账户',
@@ -85,7 +91,8 @@ Page({
               // token: res_token.data,
               account: that.data.account,
               username: that.data.username,
-              type: 'ALIPAY'
+              type: 'ALIPAY',
+              id: that.data.account_id
             },
             success(res) {
               console.log(res)
@@ -124,7 +131,7 @@ Page({
   //  绑定支付宝
   getalpay(e) {
     var that = this;
-   
+
     if (that.data.account == '') {
       wx.showToast({
         title: '请输入支付宝账户',

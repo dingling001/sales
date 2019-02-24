@@ -14,7 +14,7 @@
 <view class='form_item'>
   <view>银行卡号</view>
   <view class='form_input'>
-    <input type='number' placeholder='请输入银行卡号' bindinput='bank_num' value='{{account}}'></input>
+    <input type='number' placeholder='请输入银行卡号' bindinput='bank_num' value='{{accounts}}'></input>
   </view>
 </view>
 <view class='form_item'>

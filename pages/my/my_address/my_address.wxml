@@ -8,7 +8,11 @@
     <view class='address'>{{item.address}}</view>
   </view>
 </view>
-<view bindtap='getAddress' class='add_box'>
+<view bindtap='getAddress' class='add_box' wx:if='{{show_add}}'>
+  <view class='iconfont icon-add'></view>
+  <view>更新地址</view>
+</view>
+<view bindtap='getAddress' class='add_box' wx:else>
   <view class='iconfont icon-add'></view>
   <view>新增地址</view>
 </view>
