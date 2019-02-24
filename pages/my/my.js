@@ -14,13 +14,13 @@ Page({
   },
 
   onLoad: function(options) {
-    let that=this;
+    let that = this;
     this.setData({
       userInfo: app.globalData.userInfo
     })
     wx.getStorage({
       key: 'userinfo',
-      success: (res)=> {
+      success: (res) => {
         that.setData({
           userInfo: res.data
         })
@@ -50,7 +50,15 @@ Page({
       })
     }
   },
-
+  jiesuan() {
+    wx.showToast({
+      title: '正在开发中',
+      icon: 'none'
+    })
+    // wx.navigateTo({
+    //   url: './my_money/my_money',
+    // })
+  },
   onReady: function() {
 
   },

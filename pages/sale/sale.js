@@ -8,7 +8,9 @@ Page({
   data: {
 
   },
-
+  bindcontact(e) {
+    console.log(e.path)
+  },
   // 去寄售
   go_sale(e) {
     wx.getStorage({
