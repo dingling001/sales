@@ -137,7 +137,7 @@ Page({
     console.log(that.data.token)
     wx.uploadFile({
       // url: util.baseUrl + 'user/upload',
-      url:'http://test.jianghairui.com/wechat/user/upload',
+      url:'https://chugebaobao.com/wechat/user/upload',
       header: {
         'content-type': 'multipart/form-data',
         "Authorization": that.data.token

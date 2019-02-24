@@ -78,11 +78,7 @@ Page({
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
-      params: {
-        draw: 1,
-        start: 0,
-        length: 10
-      },
+      params: {},
       success(res) {
         // console.log(res)
         let slidelist = res.data.data;
@@ -112,7 +108,7 @@ Page({
       params: {
         pageSize: 10,
         pageNum: 1,
-        isRecommend:1
+        isRecommend: 1
       },
       success(res) {
         wx.hideNavigationBarLoading()

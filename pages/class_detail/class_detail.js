@@ -43,7 +43,8 @@ Page({
         isAsc: that.data.isAsc,
         sortCol: sortCol,
         serial: that.data.id,
-        goodsType: brand_id
+        goodsType: brand_id,
+        isRecommend:0
       },
       success(res) {
         console.log(res)

@@ -4,10 +4,38 @@
 </view>
 <view>系统开发中</view>
 <view>寄售暂请联系微信：花花花的话</view> -->
-
-<view class='nodata' wx:if='{{records.length==0}}'>暂无数据</view>
-<view class='list' wx:else>
-  <view class='list_item' wx:for='{{records}}' wx:key='{{item.id}}'>
-    
+<view class='sale_nav'>
+  <view class='{{n==0?"sale_nav_aciive":""}}'>全部</view>
+  <view class='{{n==1?"sale_nav_aciive":""}}'>未发货</view>
+  <view class='{{n==2?"sale_nav_aciive":""}}'>已发货</view>
+  <view class='{{n==3?"sale_nav_aciive":""}}'>进行中</view>
+  <view class='{{n==4?"sale_nav_aciive":""}}'>已完成</view>
+</view>
+<view class='data_box'>
+  <view class='nodata' wx:if='{{records.length==0}}'>暂无数据</view>
+  <view class='list' wx:else>
+    <view class='list_item' wx:for='{{records}}' wx:key='{{item.id}}'>
+      <view class='list_top'>
+        <view>{{item.name}}</view>
+        <view wx:if='{{item.status==0}}' class='status_text'> 待审核</view>
+        <view wx:elif='{{item.status==1}}' class='status_text1'>审核通过</view>
+        <view wx:elif='{{item.status==-1}}' class='buy_price'>审核不通过</view>
+        <view wx:elif='{{item.status==2}}' class='status_text1'>已发货</view>
+        <view wx:elif='{{item.status==3}}' class='status_text1'>实物审核中</view>
+        <view wx:elif='{{item.status==4}}' class='buy_price'>实物审核未通过</view>
+        <view wx:elif='{{item.status==5}}' class='status_text'>上架销售</view>
+        <view wx:elif='{{item.status==6}}' class='status_text1'>已售出</view>
+        <view wx:elif='{{item.status==7}}' class='status_text1'>已完成</view>
+      </view>
+      <view class='list_top'>
+        <view class='list_img_item'>
+          <image src='{{item.coverImage}}' mode='widthFix'></image>
+        </view>
+      </view>
+      <view class='list_price'>原 价：{{item.buyPrice}}</view>
+      <view class='list_price'>寄售价：
+        <text class='buy_price'>{{item.buyPrice}}</text>
+      </view>
+    </view>
   </view>
 </view>

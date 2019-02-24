@@ -8,7 +8,8 @@ Page({
   data: {
     records: [],
     pageSize: 10,
-    pageNum: 0
+    pageNum: 0,
+    n:0
   },
   // 获取寄售列表
   getGlist() {
@@ -27,8 +28,12 @@ Page({
             pageNum: that.data.pageNum
           },
           success(res) {
-            let records = res.data.data.records
-            console.log(res)
+            let records = res.data.data.records;
+            for (let i in records) {
+              records[i].coverImage = network.imgUrl + '/pic/' + records[i].coverImage
+
+            }
+            console.log(records)
             that.setData({
               records: records
             })
