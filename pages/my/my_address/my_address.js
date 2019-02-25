@@ -5,6 +5,7 @@ Page({
   data: {
     address_info: [],
     list: [],
+    id: '',
     show_add: false
   },
   // 获取地址列表
@@ -27,6 +28,7 @@ Page({
             if (res.data.code == 0 && res.data.data.length > 0) {
               that.setData({
                 list: res.data.data,
+                id: res.data.data[0].id,
                 show_add: true
               })
             }
@@ -78,7 +80,7 @@ Page({
           params: {
             address,
             receiverUser,
-            mobile
+            mobile,
           },
           success(res) {
             console.log(res)
@@ -114,7 +116,8 @@ Page({
           params: {
             address,
             receiverUser,
-            mobile
+            mobile,
+            id: that.data.id
           },
           success(res) {
             console.log(res)

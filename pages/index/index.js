@@ -128,5 +128,8 @@ Page({
         // })
       },
     })
+  },
+  onShareAppMessage: function () {
+
   }
 })
