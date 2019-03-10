@@ -23,7 +23,7 @@
   </view>
   <view class='iconfont icon-tiaozhuan'></view>
 </view>
-<view  bindtap='jiesuan' class='my_item' hover-class='none'>
+<view  bindtap='my_salfun' class='my_item' hover-class='none'>
 <!-- url='./my_sale/my_sale' -->
   <view class='icon_box'>
     <image src='../img/m2.svg'></image>

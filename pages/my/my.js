@@ -50,6 +50,11 @@ Page({
       })
     }
   },
+  my_salfun() {
+    wx.navigateTo({
+      url: './my_sale/my_sale',
+    })
+  },
   jiesuan() {
     wx.showToast({
       title: '正在开发中',
