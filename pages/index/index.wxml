@@ -20,13 +20,13 @@
     <view class='index_list'>
       <view class='index_item' bindtap='go_detail' wx:for='{{homeList}}' data-index='{{index}}' data-hindex='{{hindex}}' wx:key='{{item.id}}'>
         <view class='index_item_img'>
-          <image mode='widthFix' src='{{item.coverImage}}' lazy-load='true'></image>
+          <image mode='widthFix' src='{{item.detail}}' lazy-load='true'></image>
         </view>
         <view class='index_name'>{{item.name}}</view>
-        <view class='index_des'>{{item.desc}}</view>
+        <view class='index_des'>{{item.introduction}}</view>
         <view class='price_box'>
-          <text class='pre_p'>￥{{item.expectPrice}}</text>
-          <text class='old_p'>￥{{item.buyPrice}}</text>
+          <text class='pre_p'>￥{{item.actualPrice}}</text>
+          <text class='old_p'>￥{{item.originalPrice}}</text>
         </view>
       </view>
     </view>

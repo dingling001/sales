@@ -100,21 +100,21 @@ Page({
   homeList_fun() {
     wx.showNavigationBarLoading()
     var that = this;
-    network.GET({
-      url: 'client/goods',
+    network.POST({
+      url: 'GoodsAction/listByRecommend',
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       params: {
-        pageSize: 1000,
-        pageNum: 1,
-        isRecommend: 1
+        limit: 10,
+        page: 0,
       },
       success(res) {
+        console.log(res)
         wx.hideNavigationBarLoading()
-        var slidelist = res.data.data.records;
+        var slidelist = res.data.data;
         for (let i in slidelist) {
-          slidelist[i].coverImage = network.imgUrl + slidelist[i].coverImage
+          slidelist[i].detail = network.imgUrl + slidelist[i].detail
         }
         if (res.data.code == 0) {
           that.setData({
