@@ -74,7 +74,7 @@ Page({
     //   key: 'token',
     //   success: (res_token) => {
     network.GET({
-      url: 'client/banner',
+      url: 'SwiperAction/getSwiperList',
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
@@ -85,7 +85,7 @@ Page({
         for (let i in slidelist) {
           slidelist[i].image = network.imgUrl + slidelist[i].image
         }
-        if (res.data.code == 0) {
+        if (res.data.data) {
           that.setData({
             slide_list: slidelist
           })

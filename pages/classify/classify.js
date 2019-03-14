@@ -10,22 +10,18 @@ Page({
   // 获取分类
   getTypeList() {
     var that = this;
-    network.GET({
-      url: 'client/type',
+    network.POST({
+      url: 'GoodsTypeAction/listAll',
       header: {
             "Content-Type": "application/x-www-form-urlencoded"},
-      params: {
-        // token: res_token.data,
-        pageSize: 10,
-        pageNum: 1
-      },
+      params: {},
       success(res) {
         console.log(res)
-        let classlist = res.data.data.records;
+        let classlist = res.data;
         for (let i in classlist) {
-          classlist[i].image = network.imgUrl + classlist[i].image
+          classlist[i].bigImage = network.imgUrl + classlist[i].bigImage
         }
-        if (res.data.code == 0) {
+        if (res.data) {
           that.setData({
             classlist: classlist
           })

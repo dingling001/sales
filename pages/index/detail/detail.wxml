@@ -3,14 +3,14 @@
   <swiper class='index_swiper' indicator-dots="true" indicator-color='#fff' indicator-active-color='#FDCE02'>
     <block wx:for="{{goodsCarousel}}" wx:key='item'>
       <swiper-item class='swiper_item'>
-        <image src="{{item}}" mode="aspectFit" />
+        <image src="{{item.image}}" mode="aspectFit" />
       </swiper-item>
     </block>
   </swiper>
   <view class='d_preprice'>
-    <text>￥</text>{{goodsInfo.expectPrice }}</view>
+    <text>￥</text>{{goodsInfo.actualPrice }}</view>
   <view class='d_oldprice'>
-    <text>￥</text>{{goodsInfo.buyPrice}}</view>
+    <text>￥</text>{{goodsInfo.originalPrice}}</view>
   <view class='g_name'>{{goodsInfo.name}}</view>
   <view class='g_des'>{{goodsInfo.desc}}</view>
 </view>
@@ -20,20 +20,20 @@
   </view>
   <view class='content_box'>
     <view class='content_item'>
-      <view>
-        <!-- class='detial_content' -->
+      <!-- <view>
+        class='detial_content'
         <rich-text nodes="{{goodsInfo.content}}" type='text'></rich-text>
-      </view>
-      <!-- <view class='detial_img'>
-        <image mode='widthFix' src='{{goodsInfo.goodsDetail}}'></image>
       </view> -->
+      <view class='detial_img'>
+        <image mode='widthFix' src='{{goodsInfo.detail}}'></image>
+      </view>
     </view>
   </view>
   <view class='rec'>购买链接
     <view class='rec_text'></view>
   </view>
-  <view class='code_box' bindtap='copy_code' data-code='{{goodsInfo.code}}'>
-    <view class='code_des'>{{goodsInfo.code?goodsInfo.code:'暂无口令'}}</view>
+  <view class='code_box' bindtap='copy_code' data-code='{{goodsInfo.linkContent}}'>
+    <view class='code_des'>{{goodsInfo.linkContent?goodsInfo.linkContent:'暂无口令'}}</view>
     <view class='code_btn'>复制这段淘口令</view>
   </view>
 </view>

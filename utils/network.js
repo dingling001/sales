@@ -2,7 +2,7 @@
 const API_URL = 'https://www.chugebaobao.com/displayStation/action/'
 
 // const imgUrl = 'http://test.jianghairui.com'
-const imgUrl = 'https://chugebaobao.com/displayStation/action/'
+const imgUrl = 'https://chugebaobao.com/displayStation/'
 
 
 
