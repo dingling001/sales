@@ -28,20 +28,16 @@ Page({
   //  获取商品列表
   getGoodList(sortCol, brand_id) {
     var that = this;
-    network.GET({
-      url: 'client/goods',
+    network.POST({
+      url: 'GoodsAction/list',
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       params: {
         // id: that.data.id,
         pageNum: 1,
-        pageSize: 10,
-        isAsc: that.data.isAsc,
-        sortCol: sortCol,
-        serial: brand_id,
-        goodsType: that.data.id,
-        isRecommend: 0
+        goodsTypeId: that.data.id,
+        limit: 10,
       },
       success(res) {
         console.log(res)
@@ -68,17 +64,14 @@ Page({
   getbrand() {
     var that = this;
     network.GET({
-      url: 'client/type/' + that.data.id + '/serial',
+      url: 'BrandAction/listAll',
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
-      params: {
-        pageSize: 1000,
-        pageNum: 1
-      },
+      params: {},
       success(res) {
-        console.log(res)
-        if (res.data.code == 0) {
+        console.log(res.data.data)
+        if (res.data.data){
           let goodsBrand = res.data.data;
           that.setData({
             // goodsList: goodsList,
@@ -102,7 +95,7 @@ Page({
       priceType: '1',
       brand: ''
     })
-    this.getGoodList('create_time', this.data.brand)
+    this.search_fun('create_time', this.data.brand)
   },
   // 寄售价
   consignment_fun() {
@@ -175,6 +168,45 @@ Page({
       url: '../index/detail/detail?goodsId=' + goodsId,
     })
   },
+  // 筛选
+  search_fun(consignmentFlag, originalPriceFlag, brandId){
+    var that = this;
+    network.POST({
+      url: 'GoodsAction/searchGoodsList',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      params: {
+        // id: that.data.id,
+        pageNum: 1,
+        goodsTypeId: that.data.id,
+        limit: 10,
+        consignmentFlag:1,  
+        originalPriceFlag:1,
+        brandId: brandId,
+        search:'',
+      },
+      success(res) {
+        console.log(res)
+
+        if (res.data.code == 0) {
+          let goodsList = res.data.data.records;
+          // let goodsBrand = res.data.data.goodsBrand;
+          for (let i in goodsList) {
+            goodsList[i].coverImage = network.imgUrl + goodsList[i].coverImage
+          }
+          that.setData({
+            goodsList: goodsList,
+            // goodsBrand: goodsBrand
+          })
+          console.log(that.data.goodsList);
+        } else {
+          // console.log(res);
+        }
+      }
+    })
+
+  },
 
   onLoad: function(options) {
     console.log(options)
@@ -183,7 +215,7 @@ Page({
         id: options.id,
         name: options.name
       })
-      this.getGoodList('create_time', this.data.brand)
+      this.getGoodList()
       wx.setNavigationBarTitle({
         title: options.name
       })

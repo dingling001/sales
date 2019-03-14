@@ -138,7 +138,7 @@ Page({
     console.log(that.data.token)
     wx.uploadFile({
       // url: util.baseUrl + 'user/upload',
-      url: 'https://chugebaobao.com/wechat/user/upload',
+      url: 'https://www.chugebaobao.com/displayStation/action/auth/HxSysUploadAction/upload',
       header: {
         'content-type': 'multipart/form-data',
         "Authorization": that.data.token
@@ -146,6 +146,7 @@ Page({
       filePath: filepath,
       name: 'file',
       formData: {
+        // list:that.data.images
         // token: that.data.token
       },
       success: function(res) {

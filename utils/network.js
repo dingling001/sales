@@ -78,24 +78,24 @@ function Login(userinfo) {
       console.log(res.code)
       if (res.code) {
         wx.request({
-          url: API_URL + 'auth/login',
+          url: API_URL + 'WeiXinLogin/miniProgramUserInit',
           data: {
             code: res.code,
-            name:userinfo.nickName,
-            pic: userinfo.avatarUrl
+            nickName:userinfo.nickName,
+            image: userinfo.avatarUrl
           },
-          method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+          method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
           header: {
             'content-type': 'application/x-www-form-urlencoded'
           },
           // header: {
             // "Content-Type": "application/x-www-form-urlencoded"},// 设置请求的 header
           success: function(res) {
-            // console.log(res.data.code)
-            if (res.data.code == 0) {
+            console.log(res.data.state)
+            if (res.data.state) {
               wx.setStorage({
                 key: 'token',
-                data: res.data.data.token
+                data: res.data.sessionId
               });
               wx.setStorage({
                 key: 'userinfo',
