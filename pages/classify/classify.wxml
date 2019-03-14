@@ -4,7 +4,7 @@
   <navigator class='class_item' url='../class_detail/class_detail?id={{item.id}}&name={{item.name}}' wx:for='{{classlist}}' wx:key='{{item.id}}'>
     <view class='class_name'>
       <text class='class_title'>{{item.name}}</text>
-      <text>{{item.alias}}</text>
+      <text>{{item.englishName}}</text>
     </view>
     <image src='{{item.bigImage}}' mode='widthFix'></image>
   </navigator>
