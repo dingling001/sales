@@ -23,13 +23,13 @@
     <view class='index_list' wx:else>
       <view class='index_item' bindtap='go_detail' wx:for='{{goodsList}}' data-id='{{item.id}}' wx:key='{{item.id}}'>
         <view class='index_item_img'>
-          <image mode='widthFix' src='{{item.coverImage}}'></image>
+          <image mode='widthFix' src='{{item.detail}}'></image>
         </view>
         <view class='index_name'>{{item.name}}</view>
-        <view class='index_des'>{{item.desc}}</view>
+        <view class='index_des'>{{item.introduction}}</view>
         <view class='price_box'>
-          <text class='pre_p'>￥{{item.expectPrice}}</text>
-          <text class='old_p'>￥{{item.buyPrice}}</text>
+          <text class='pre_p'>￥{{item.actualPrice}}</text>
+          <text class='old_p'>￥{{item.originalPrice}}</text>
         </view>
       </view>
 

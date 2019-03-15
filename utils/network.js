@@ -91,7 +91,7 @@ function Login(userinfo) {
           // header: {
             // "Content-Type": "application/x-www-form-urlencoded"},// 设置请求的 header
           success: function(res) {
-            console.log(res.data.state)
+            console.log(res.data.sessionId)
             if (res.data.state) {
               wx.setStorage({
                 key: 'token',

@@ -15,39 +15,35 @@ Page({
     expectPrice: '',
     buyPrice: '',
     phone: '',
-    serial: '',
-    desc: '',
+    brand: '',
+    mark: '',
     name: '',
     index: -1
   },
+
   // 获取分类
   getTypeList() {
     var that = this;
-    network.GET({
-      url: 'client/type',
+    var that = this;
+    network.POST({
+      url: 'GoodsTypeAction/listAll',
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
-      params: {
-        pageSize: 10,
-        pageNum: 1
-      },
+      params: {},
       success(res) {
         console.log(res)
-        let classlist = res.data.data.records;
+        let classlist = res.data;
         let list = []
         for (let i in classlist) {
           list.push(classlist[i].name)
         }
-        if (res.data.code == 0) {
+        if (res.data) {
           that.setData({
             classlist: classlist,
             list: list
           })
-          // console.log(that.data.classlist);
-        } else {
-          // console.log(res);
-        }
+        } else {}
       }
     })
   },
@@ -58,7 +54,7 @@ Page({
   },
   oldprice_fun(e) {
     this.setData({
-      expectPrice: e.detail.value
+      expectationPrice: e.detail.value
     })
   },
   price_fun(e) {
@@ -78,13 +74,13 @@ Page({
   },
   tips_fun(e) {
     this.setData({
-      desc: e.detail.value
+      mark: e.detail.value
     })
   },
   // 品牌
   brand_fun(e) {
     this.setData({
-      serial: e.detail.value
+      brand: e.detail.value
     })
   },
   // 选择图片
@@ -136,84 +132,83 @@ Page({
   upload_file(filepath) {
     var that = this;
     console.log(that.data.token)
-    wx.uploadFile({
-      // url: util.baseUrl + 'user/upload',
-      url: 'https://www.chugebaobao.com/displayStation/action/auth/HxSysUploadAction/upload',
-      header: {
-        'content-type': 'multipart/form-data',
-        "Authorization": that.data.token
-      },
-      filePath: filepath,
-      name: 'file',
-      formData: {
-        // list:that.data.images
-        // token: that.data.token
-      },
-      success: function(res) {
-        console.log(res)
-        var imgs = [];
-        // imgs = imgs.concat(JSON.parse(res.data).data.path)
-        that.setData({
-          images: that.data.images.concat(JSON.parse(res.data).data) //把字符串解析成对象
-          // images: imgs
+    wx.getStorage({
+      key: 'token',
+      success: (res_token) => {
+        wx.uploadFile({
+          // url: util.baseUrl + 'user/upload',
+          url: network.imgUrl + 'action/auth/HxSysUploadAction/upload',
+          header: {
+            // 'content-type': 'multipart/form-data',
+            "Cookie": 'JSESSIONID=' + res_token.data
+            // JSESSTIONID
+          },
+          filePath: filepath,
+          name: 'imagekey',
+          formData: {},
+          success: function(res) {
+            console.log(res)
+            var imgs = [];
+            // imgs = imgs.concat(JSON.parse(res.data).data.path)
+            console.log(JSON.parse(res.data))
+            that.setData({
+              images: that.data.images.concat(JSON.parse(res.data).list) //把字符串解析成对象
+              // images: imgs
+            })
+            if (that.data.images.length >= 4) {
+              that.setData({
+                showAdd: false
+              })
+            }
+            console.log(that.data.images)
+          },
+          fail: function(res) {
+            wx.showToast({
+              title: '图片加载失败',
+              icon: 'none'
+            })
+          }
         })
-        if (that.data.images.length >= 4) {
-          that.setData({
-            showAdd: false
-          })
-        }
-        console.log(that.data.images)
       },
-      fail: function(res) {
-        wx.showToast({
-          title: '图片加载失败',
-          icon: 'none'
-        })
-      }
     })
+
   },
   // 提交
   go_sale(e) {
     let that = this;
     let token = that.data.token;
-    let serial = that.data.serial;
+    let brand = that.data.brand;
     let index = that.data.index;
-    console.log()
-    let type = that.data.classlist[that.data.index].id;
-
-    // let type = 'kuabao';
+    let goodsTypeId = that.data.classlist[that.data.index].goodsTypeId;
     let name = that.data.name;
     let buyPrice = that.data.buyPrice;
-    let expectPrice = that.data.expectPrice;
+    let expectationPrice = that.data.expectationPrice;
     let phone = that.data.phone;
-    let desc = that.data.desc;
-    let coverImage = that.data.images;
-    let otherImages = '';
+    let mark = that.data.mark;
+    let image = JSON.stringify(that.data.images);
+
     let post = {
       name,
-      serial,
-      type,
-      coverImage,
+      brand,
+      goodsTypeId,
       buyPrice,
-      expectPrice,
+      expectationPrice,
       phone,
-      desc,
-      otherImages,
+      mark,
+      image,
     }
     if (e.detail.userInfo) {
-      if (serial == '') {
+      if (brand == '') {
         wx.showToast({
           title: '请输入品牌',
           icon: 'none'
         })
-      }
-      //  else if (index == -1) {
-      //   wx.showToast({
-      //     title: '请选择类型',
-      //     icon: 'none'
-      //   })
-      // } 
-      else if (name == '') {
+      } else if (index == -1) {
+        wx.showToast({
+          title: '请选择类型',
+          icon: 'none'
+        })
+      } else if (name == '') {
         wx.showToast({
           title: '请输入商品名称',
           icon: 'none'
@@ -223,7 +218,7 @@ Page({
           title: '请输入购入价',
           icon: 'none'
         })
-      } else if (expectPrice == '') {
+      } else if (expectationPrice == '') {
         wx.showToast({
           title: '请输入期望价',
           icon: 'none'
@@ -233,13 +228,12 @@ Page({
           title: '请输入正确的联系电话',
           icon: 'none'
         })
+      } else if (image.length < 1) {
+        wx.showToast({
+          title: '请至少上传一张照片',
+          icon: 'none'
+        })
       }
-      // else if (images.length < 1) {
-      //   wx.showToast({
-      //     title: '请至少上传一张照片',
-      //     icon: 'none'
-      //   })
-      // }
       //  else if (token == '') {
       //   wx.showToast({
       //     title: '正在登录...',
@@ -248,33 +242,38 @@ Page({
       // }
       else {
         console.log(post)
-        wx.showModal({
-          title: '寄售',
-          content: '确定提交',
-          success(res) {
-            if (res.confirm) {
-              network.POST({
-                url: 'user/goods',
-                header: {
-                  "Content-Type": "application/x-www-form-urlencoded",
-                  "Authorization": that.data.token
-                },
-                params: post,
-                success(res) {
-                  console.log(res)
-                  if (res.data.code == 0) {
-                    wx.navigateTo({
-                      url: '../../my/my_sale/my_sale',
-                    })
-                  }
+        wx.getStorage({
+          key: 'token',
+          success: (res_token) => {
+            wx.showModal({
+              title: '寄售',
+              content: '确定提交',
+              success(res) {
+                if (res.confirm) {
+                  network.POST({
+                    url: 'auth/ConsignmentAction/addConsignment',
+                    header: {
+                      "Content-Type": "application/x-www-form-urlencoded",
+                      "Cookie": 'JSESSIONID=' + res_token.data,
+                      'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    params: post,
+                    success(res) {
+                      console.log(res)
+                      if (res.data.code == 0) {
+                        wx.navigateTo({
+                          url: '../../my/my_sale/my_sale',
+                        })
+                      }
+                    }
+                  })
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
                 }
-              })
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
-          }
+              }
+            })
+          },
         })
-
       }
     } else {
       wx.showToast({
@@ -290,6 +289,7 @@ Page({
     wx.getStorage({
       key: 'token',
       success: (res) => {
+        console.log(res)
         that.setData({
           token: res.data
         })

@@ -7,7 +7,8 @@ Page({
     show_brand: false,
     icon_status: false,
     icon_status1: false,
-    isAsc: false,
+    isAsc: 0,
+    isAsc1:0,
     id: '',
     priceType: 1,
     goodsBrand: [],
@@ -26,35 +27,32 @@ Page({
     // })
   },
   //  获取商品列表
-  getGoodList(sortCol, brand_id) {
+  getGoodList() {
     var that = this;
-    network.POST({
+    network.GET({
       url: 'GoodsAction/list',
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       params: {
-        // id: that.data.id,
-        pageNum: 1,
+        page: 1,
         goodsTypeId: that.data.id,
-        limit: 10,
+        limit: 100,
       },
       success(res) {
         console.log(res)
 
-        if (res.data.code == 0) {
-          let goodsList = res.data.data.records;
-          // let goodsBrand = res.data.data.goodsBrand;
+        if (res.data) {
+          let goodsList = res.data.data;
           for (let i in goodsList) {
-            goodsList[i].coverImage = network.imgUrl + goodsList[i].coverImage
+            goodsList[i].detail = network.imgUrl + goodsList[i].detail
           }
           that.setData({
             goodsList: goodsList,
-            // goodsBrand: goodsBrand
           })
           console.log(that.data.goodsList);
         } else {
-          // console.log(res);
+
         }
       }
     })
@@ -71,16 +69,13 @@ Page({
       params: {},
       success(res) {
         console.log(res.data.data)
-        if (res.data.data){
+        if (res.data.data) {
           let goodsBrand = res.data.data;
           that.setData({
-            // goodsList: goodsList,
             goodsBrand: goodsBrand
           })
 
-        } else {
-          // console.log(res);
-        }
+        } else {}
       }
     })
 
@@ -95,7 +90,7 @@ Page({
       priceType: '1',
       brand: ''
     })
-    this.search_fun('create_time', this.data.brand)
+    this.getGoodList()
   },
   // 寄售价
   consignment_fun() {
@@ -107,15 +102,17 @@ Page({
     if (this.data.icon_status == false) {
       this.setData({
         icon_status: true,
-        isAsc: false,
+        isAsc: 1,
+        isAsc1: 0,
       })
     } else {
       this.setData({
         icon_status: false,
-        isAsc: true,
+        isAsc: 2,
+        isAsc1: 0,
       })
     }
-    this.getGoodList('expect_price', '')
+    this.search_fun(this.data.isAsc, this.data.isAsc1, '')
   },
   // 原价
   price_fun() {
@@ -127,15 +124,17 @@ Page({
     if (this.data.icon_status1 == false) {
       this.setData({
         icon_status1: true,
-        isAsc: false,
+        isAsc: 0,
+        isAsc1:1,
       })
     } else {
       this.setData({
         icon_status1: false,
-        isAsc: true,
+        isAsc: 0,
+        isAsc1: 2,
       })
     }
-    this.getGoodList('buy_price', '')
+    this.search_fun(this.data.isAsc, this.data.isAsc1, '')
   },
   // 品牌
   brand_fun() {
@@ -144,6 +143,8 @@ Page({
       show_brand: true,
       icon_status: false,
       icon_status1: false,
+      isAsc:0,
+      isAsc1:0
     })
   },
   // 选择品牌
@@ -153,7 +154,7 @@ Page({
       show_brand: false,
       brand: brand
     })
-    this.getGoodList('', this.data.brand)
+    this.search_fun(0, 0, this.data.brand)
   },
   colse_mold() {
     this.setData({
@@ -169,7 +170,7 @@ Page({
     })
   },
   // 筛选
-  search_fun(consignmentFlag, originalPriceFlag, brandId){
+  search_fun(consignmentFlag = 1, originalPriceFlag = 1, brandId) {
     var that = this;
     network.POST({
       url: 'GoodsAction/searchGoodsList',
@@ -178,30 +179,27 @@ Page({
       },
       params: {
         // id: that.data.id,
-        pageNum: 1,
+        page: 1,
         goodsTypeId: that.data.id,
         limit: 10,
-        consignmentFlag:1,  
-        originalPriceFlag:1,
+        consignmentFlag: consignmentFlag,
+        originalPriceFlag: originalPriceFlag,
         brandId: brandId,
-        search:'',
+        search: '',
       },
       success(res) {
         console.log(res)
-
-        if (res.data.code == 0) {
-          let goodsList = res.data.data.records;
-          // let goodsBrand = res.data.data.goodsBrand;
+        if (res.data) {
+          let goodsList = res.data.data;
           for (let i in goodsList) {
-            goodsList[i].coverImage = network.imgUrl + goodsList[i].coverImage
+            goodsList[i].detail = network.imgUrl + goodsList[i].detail
           }
           that.setData({
             goodsList: goodsList,
-            // goodsBrand: goodsBrand
           })
           console.log(that.data.goodsList);
         } else {
-          // console.log(res);
+
         }
       }
     })

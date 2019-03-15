@@ -109,7 +109,7 @@ page {
 }
 
 .code_des {
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #222;
   padding: 0 20rpx;
   white-space: normal;
