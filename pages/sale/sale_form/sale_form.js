@@ -259,8 +259,8 @@ Page({
                     },
                     params: post,
                     success(res) {
-                      console.log(res)
-                      if (res.data.code == 0) {
+                      console.log(res.data.data)
+                      if (res.data.state) {
                         wx.navigateTo({
                           url: '../../my/my_sale/my_sale',
                         })

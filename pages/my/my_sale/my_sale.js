@@ -18,14 +18,14 @@ Page({
       key: 'token',
       success: (res_token) => {
         network.GET({
-          url: 'user/goods',
+          url: 'auth/ConsignmentAction/myConsignment',
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": res_token.data
+            "Cookie": 'JSESSIONID=' + res_token.data,
+            'X-Requested-With': 'XMLHttpRequest'
           },
           params: {
-            pageSize: that.data.pageSize,
-            pageNum: that.data.pageNum
+            status:0,
           },
           success(res) {
             let records = res.data.data.records;
