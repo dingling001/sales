@@ -38,19 +38,19 @@
   </view>
   <view class='iconfont icon-tiaozhuan'></view>
 </view>
-<navigator class='my_item' url='./my_address/my_address' hover-class='none'>
+<view bindtap='gomyaddress' class='my_item' hover-class='none'>
   <view class='icon_box'>
     <image src='../img/m4.svg'></image>
     <view>我的地址</view>
   </view>
   <view class='iconfont icon-tiaozhuan'></view>
-</navigator>
-<navigator url='./my_count/my_count' class='my_item' hover-class='none'>
+</view>
+<view  bindtap='gomycount' class='my_item' hover-class='none'>
   <view class='icon_box'>
     <image src='../img/m5.svg'></image>
     <view>收款账号</view>
   </view>
   <view class='iconfont icon-tiaozhuan'></view>
-</navigator>
+</view>
 
 <template is="kefu"></template>

@@ -31,7 +31,7 @@ Page({
       success: (res_token) => {
         console.log(res_token)
         network.GET({
-          url: 'user/account/queryAllAccount',
+          url: 'auth/HxCsUserAction/saveAlipayNumber',
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
             "Authorization": res_token.data
@@ -85,7 +85,8 @@ Page({
             url: 'user/account/updateAccount',
             header: {
               "Content-Type": "application/x-www-form-urlencoded",
-              "Authorization": res_token.data
+              "Cookie": 'JSESSIONID=' + res_token.data,
+              'X-Requested-With': 'XMLHttpRequest'
             },
             params: {
               // token: res_token.data,
@@ -147,16 +148,16 @@ Page({
         success: (res_token) => {
           console.log(res_token)
           network.POST({
-            url: 'user/account/addAccount',
+            url: 'auth/HxCsUserAction/saveAlipayNumber',
             header: {
               "Content-Type": "application/x-www-form-urlencoded",
-              "Authorization": res_token.data
+              "Cookie": 'JSESSIONID=' + res_token.data,
+              'X-Requested-With': 'XMLHttpRequest'
             },
             params: {
               // token: res_token.data,
-              account: that.data.account,
-              username: that.data.username,
-              type: 'ALIPAY'
+              alipay: that.data.account,
+              alipayUserName: that.data.username,
             },
             success(res) {
               console.log(res)

@@ -36,7 +36,7 @@ page {
 }
 
 .img_box  .imgs {
-  background-color: #000;
+  /* background-color: #000; */
 }
 
 .img_box .img .icon-tianjiatupian {

@@ -27,12 +27,6 @@ Page({
       },
     })
   },
-  // 我要寄售
-  go_sale() {
-    wx.switchTab({
-      url: '../sale/sale',
-    })
-  },
   // 登录
   onGotUserInfo(e) {
     console.log(e)
@@ -50,15 +44,75 @@ Page({
       })
     }
   },
-  my_salfun() {
-    wx.navigateTo({
-      url: './my_sale/my_sale',
+  gomycount() {
+    wx.getStorage({
+      key: 'token',
+      success: (res) => {
+        wx.navigateTo({
+          url: './my_count/my_count'
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: '未登录！',
+          icon: "none"
+        })
+      }
     })
   },
+  gomyaddress() {
+    wx.getStorage({
+      key: 'token',
+      success: (res) => {
+        wx.navigateTo({
+          url: './my_address/my_address',
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: '未登录！',
+          icon: "none"
+        })
+      }
+    })
+  },
+  // 我要寄售
+  go_sale() {
+    wx.switchTab({
+      url: '../sale/sale',
+    })
+  },
+  my_salfun() {
+    wx.getStorage({
+      key: 'token',
+      success: (res) => {
+        wx.navigateTo({
+          url: './my_sale/my_sale',
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: '未登录！',
+          icon: "none"
+        })
+      }
+    })
+
+  },
   jiesuan() {
-    wx.showToast({
-      title: '正在开发中',
-      icon: 'none'
+    wx.getStorage({
+      key: 'token',
+      success: (res) => {
+        wx.navigateTo({
+          url: './my_money/my_money',
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: '未登录！',
+          icon: "none"
+        })
+      }
     })
     // wx.navigateTo({
     //   url: './my_money/my_money',

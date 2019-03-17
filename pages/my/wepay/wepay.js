@@ -67,15 +67,14 @@ Page({
         success: (res_token) => {
           console.log(res_token)
           network.POST({
-            url: 'user/account/addAccount',
+            url: 'auth/HxCsUserAction/saveWechatNumber',
             header: {
               "Content-Type": "application/x-www-form-urlencoded",
-              "Authorization": res_token.data
+              "Cookie": 'JSESSIONID=' + res_token.data,
+              'X-Requested-With': 'XMLHttpRequest'
             },
             params: {
-              // token: res_token.data,
-              account: that.data.account,
-              type: 'WECHAT'
+              wechat: that.data.account,
             },
             success(res) {
               console.log(res)

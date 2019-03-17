@@ -24,7 +24,6 @@ Page({
   // 获取分类
   getTypeList() {
     var that = this;
-    var that = this;
     network.POST({
       url: 'GoodsTypeAction/listAll',
       header: {
@@ -44,6 +43,7 @@ Page({
             list: list
           })
         } else {}
+        console.log(that.data.classlist)
       }
     })
   },
@@ -148,11 +148,11 @@ Page({
           formData: {},
           success: function(res) {
             console.log(res)
-            var imgs = [];
             // imgs = imgs.concat(JSON.parse(res.data).data.path)
-            console.log(JSON.parse(res.data))
+            console.log(JSON.parse(res.data).list.join(','))
             that.setData({
               images: that.data.images.concat(JSON.parse(res.data).list) //把字符串解析成对象
+
               // images: imgs
             })
             if (that.data.images.length >= 4) {
@@ -179,108 +179,101 @@ Page({
     let token = that.data.token;
     let brand = that.data.brand;
     let index = that.data.index;
-    let goodsTypeId = that.data.classlist[that.data.index].goodsTypeId;
+    let id = that.data.classlist[that.data.index].id;
     let name = that.data.name;
     let buyPrice = that.data.buyPrice;
     let expectationPrice = that.data.expectationPrice;
     let phone = that.data.phone;
     let mark = that.data.mark;
-    let image = JSON.stringify(that.data.images);
+    let image = that.data.images.join(',');
 
     let post = {
       name,
       brand,
-      goodsTypeId,
+      id,
       buyPrice,
       expectationPrice,
       phone,
       mark,
       image,
     }
-    if (e.detail.userInfo) {
-      if (brand == '') {
-        wx.showToast({
-          title: '请输入品牌',
-          icon: 'none'
-        })
-      } else if (index == -1) {
-        wx.showToast({
-          title: '请选择类型',
-          icon: 'none'
-        })
-      } else if (name == '') {
-        wx.showToast({
-          title: '请输入商品名称',
-          icon: 'none'
-        })
-      } else if (buyPrice == '') {
-        wx.showToast({
-          title: '请输入购入价',
-          icon: 'none'
-        })
-      } else if (expectationPrice == '') {
-        wx.showToast({
-          title: '请输入期望价',
-          icon: 'none'
-        })
-      } else if (!(/^1(3|4|5|7|8)\d{9}$/.test(phone))) {
-        wx.showToast({
-          title: '请输入正确的联系电话',
-          icon: 'none'
-        })
-      } else if (image.length < 1) {
-        wx.showToast({
-          title: '请至少上传一张照片',
-          icon: 'none'
-        })
-      }
-      //  else if (token == '') {
-      //   wx.showToast({
-      //     title: '正在登录...',
-      //     icon: 'none'
-      //   })
-      // }
-      else {
-        console.log(post)
-        wx.getStorage({
-          key: 'token',
-          success: (res_token) => {
-            wx.showModal({
-              title: '寄售',
-              content: '确定提交',
-              success(res) {
-                if (res.confirm) {
-                  network.POST({
-                    url: 'auth/ConsignmentAction/addConsignment',
-                    header: {
-                      "Content-Type": "application/x-www-form-urlencoded",
-                      "Cookie": 'JSESSIONID=' + res_token.data,
-                      'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    params: post,
-                    success(res) {
-                      console.log(res.data.data)
-                      if (res.data.state) {
-                        wx.navigateTo({
-                          url: '../../my/my_sale/my_sale',
-                        })
-                      }
-                    }
-                  })
-                } else if (res.cancel) {
-                  console.log('用户点击取消')
-                }
-              }
-            })
-          },
-        })
-      }
-    } else {
+
+    if (brand == '') {
       wx.showToast({
-        title: "为了您更好的体验,请先同意授权",
-        icon: 'none',
-        duration: 2000
-      });
+        title: '请输入品牌',
+        icon: 'none'
+      })
+    } else if (index == -1) {
+      wx.showToast({
+        title: '请选择类型',
+        icon: 'none'
+      })
+    } else if (name == '') {
+      wx.showToast({
+        title: '请输入商品名称',
+        icon: 'none'
+      })
+    } else if (buyPrice == '') {
+      wx.showToast({
+        title: '请输入购入价',
+        icon: 'none'
+      })
+    } else if (expectationPrice == '') {
+      wx.showToast({
+        title: '请输入期望价',
+        icon: 'none'
+      })
+    } else if (!(/^1(3|4|5|7|8)\d{9}$/.test(phone))) {
+      wx.showToast({
+        title: '请输入正确的联系电话',
+        icon: 'none'
+      })
+    } else if (image.length < 1) {
+      wx.showToast({
+        title: '请至少上传一张照片',
+        icon: 'none'
+      })
+    }
+    //  else if (token == '') {
+    //   wx.showToast({
+    //     title: '正在登录...',
+    //     icon: 'none'
+    //   })
+    // }
+    else {
+      console.log(post)
+      wx.getStorage({
+        key: 'token',
+        success: (res_token) => {
+          wx.showModal({
+            title: '寄售',
+            content: '确定提交',
+            success(res) {
+              if (res.confirm) {
+                network.POST({
+                  url: 'auth/ConsignmentAction/addConsignment',
+                  header: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Cookie": 'JSESSIONID=' + res_token.data,
+                    'X-Requested-With': 'XMLHttpRequest'
+                  },
+                  params: post,
+                  success(res) {
+                    console.log(res.data.data)
+                    if (res.data.state) {
+                      wx.navigateTo({
+                        url: '../../my/my_sale/my_sale',
+                      })
+                    }
+                  }
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        },
+      })
     }
     // console.log(post)
   },

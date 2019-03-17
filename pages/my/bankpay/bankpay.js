@@ -41,31 +41,16 @@ Page({
       key: 'token',
       success: (res_token) => {
         network.GET({
-          url: 'user/account/queryAllAccount',
+          url: 'auth/HxCsUserAction/saveBankNumber',
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": res_token.data
+            "Cookie": 'JSESSIONID=' + res_token.data,
+            'X-Requested-With': 'XMLHttpRequest'
           },
           params: {},
           success(res) {
-            console.log(res)
-            if (res.data.code == 0 && res.data.data.length > 0) {
-              for (let i in res.data.data) {
-                if (res.data.data[i].type == 'BANK') {
-                  console.log(i)
-                  that.setData({
-                    accounts: res.data.data[i].account,
-                    usernames: res.data.data[i].username,
-                    registerBankAddresss: res.data.data[i].registerBankAddress,
-                    bankNames: res.data.data[i].bankName,
-                    account_id: res.data.data[i].id,
-                    show_accout: true
-                  })
-                }
-              }
-            } else {
-
-            }
+        
+           
           }
 
         })
@@ -100,18 +85,18 @@ Page({
         success: (res_token) => {
           console.log(res_token)
           network.POST({
-            url: 'user/account/addAccount',
+            url: 'auth/HxCsUserAction/saveBankNumber',
             header: {
               "Content-Type": "application/x-www-form-urlencoded",
-              "Authorization": res_token.data
+              "Cookie": 'JSESSIONID=' + res_token.data,
+              'X-Requested-With': 'XMLHttpRequest'
             },
             params: {
               // token: res_token.data,
-              account: that.data.account,
-              username: that.data.username,
-              bankName: that.data.bankName,
-              registerBankAddress: that.data.registerBankAddress,
-              type: 'BANK'
+              accountId: that.data.account,
+              accountUserName: that.data.username,
+              accountName: that.data.bankName,
+              accountOpen: that.data.registerBankAddress,
             },
             success(res) {
               console.log(res)

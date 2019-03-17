@@ -9,10 +9,10 @@ Page({
     records: [],
     pageSize: 1000,
     pageNum: 0,
-    n: 0
+    n: 10
   },
   // 获取寄售列表
-  getGlist() {
+  getGlist(status) {
     let that = this;
     wx.getStorage({
       key: 'token',
@@ -25,10 +25,10 @@ Page({
             'X-Requested-With': 'XMLHttpRequest'
           },
           params: {
-            status:0,
+            status:this.data.n,
           },
           success(res) {
-            let records = res.data.data.records;
+            let records = res.data.data;
             for (let i in records) {
               records[i].coverImage = network.imgUrl + records[i].coverImage
             }

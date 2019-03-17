@@ -15,76 +15,68 @@ Page({
       key: 'token',
       success: (res_token) => {
         network.GET({
-          url: 'user/address/queryAllAddress',
+          url: 'auth/AddressAction/myAddress',
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": res_token.data
+            "Cookie": 'JSESSIONID=' + res_token.data,
+            'X-Requested-With': 'XMLHttpRequest'
           },
           params: {
 
           },
           success(res) {
             console.log(res)
-            if (res.data.code == 0 && res.data.data.length > 0) {
-              that.setData({
-                list: res.data.data,
-                id: res.data.data[0].id,
-                show_add: true
-              })
-            }
+            that.setData({
+              show_add: true
+            })
           }
-
         })
       },
     })
   },
-  // 获取地址
+  // 获取微信地址
   getAddress() {
     let that = this;
     wx.chooseAddress({
       success(res) {
-        console.log(res.userName)
-        console.log(res.postalCode)
-        console.log(res.provinceName)
-        console.log(res.cityName)
-        console.log(res.countyName)
-        console.log(res.detailInfo)
-        console.log(res.nationalCode)
-        console.log(res.telNumber)
-        let address = res.provinceName + res.countyName + res.detailInfo
+        console.log(res)
         that.setData({
           address_info: res
         })
         if (that.data.show_add) {
           that.updateadd(address, res.userName, res.telNumber)
         } else {
-          that.saveAddress(address, res.userName, res.telNumber)
+          that.saveAddress(res.userName, res.telNumber, res.provinceName, res.cityName, res.countyName, res.detailInfo, res.nationalCode)
         }
 
       }
     })
   },
   // 保存地址
-  saveAddress(address, receiverUser, mobile) {
+  saveAddress(receiptName, phone, province, city, area, detaileAddress, zipCode) {
     let that = this;
     wx.getStorage({
       key: 'token',
       success: (res_token) => {
         console.log(res_token)
         network.POST({
-          url: 'user/address/insertAddress',
+          url: 'auth/AddressAction/saveAddress',
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": res_token.data
+            "Cookie": 'JSESSIONID=' + res_token.data,
+            'X-Requested-With': 'XMLHttpRequest'
           },
           params: {
-            address,
-            receiverUser,
-            mobile,
+            receiptName,
+            phone,
+            province,
+            city,
+            area,
+            detaileAddress,
+            zipCode
           },
           success(res) {
-            console.log(res)
-            if (res.data.code == 0) {
+            if (res.data.state) {
               wx.showToast({
                 title: '保存成功',
               })
@@ -101,23 +93,29 @@ Page({
       },
     })
   },
-  updateadd(address, receiverUser, mobile) {
+  // 更新地址
+  updateadd(id, receiptName, phone, province, city, area, detaileAddress, zipCode) {
     let that = this;
     wx.getStorage({
       key: 'token',
       success: (res_token) => {
         console.log(res_token)
         network.POST({
-          url: 'user/address/updateAddress',
+          url: 'auth/AddressAction/saveAddress',
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": res_token.data
+            "Cookie": 'JSESSIONID=' + res_token.data,
+            'X-Requested-With': 'XMLHttpRequest'
           },
           params: {
-            address,
-            receiverUser,
-            mobile,
-            id: that.data.id
+            id,
+            receiptName,
+            phone,
+            province,
+            city,
+            area,
+            detaileAddress,
+            zipCode
           },
           success(res) {
             console.log(res)
