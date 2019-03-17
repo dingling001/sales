@@ -27,6 +27,7 @@
   padding: 28rpx 31rpx;
   border-radius: 10rpx;
   box-shadow: 0px 8px 18px 0px rgba(178, 178, 178, 0.28);
+  position: relative;
 }
 
 .list_top {
@@ -49,7 +50,15 @@
   overflow: hidden;
   border-radius: 10rpx;
 }
-
+.more_img{
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #ccc;
+  font-size: 26rpx;
+  background-color: rgba(178, 178, 178, 0.28);
+  padding: 10rpx;
+}
 .list_img_item image {
   width: 100%;
 }
