@@ -179,7 +179,7 @@ Page({
     let token = that.data.token;
     let brand = that.data.brand;
     let index = that.data.index;
-    let id = that.data.classlist[that.data.index].id;
+    let goodsTypeId = that.data.classlist[that.data.index].id;
     let name = that.data.name;
     let buyPrice = that.data.buyPrice;
     let expectationPrice = that.data.expectationPrice;
@@ -190,7 +190,7 @@ Page({
     let post = {
       name,
       brand,
-      id,
+      goodsTypeId,
       buyPrice,
       expectationPrice,
       phone,

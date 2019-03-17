@@ -34,7 +34,8 @@ Page({
           url: 'auth/HxCsUserAction/saveAlipayNumber',
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": res_token.data
+            "Cookie": 'JSESSIONID=' + res_token.data,
+            'X-Requested-With': 'XMLHttpRequest'
           },
           params: {
             // token: res_token.data,

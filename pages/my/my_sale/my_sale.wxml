@@ -5,7 +5,7 @@
 <view>系统开发中</view>
 <view>寄售暂请联系微信：花花花的话</view> -->
 <view class='sale_nav'>
-  <view class='{{n==0?"sale_nav_aciive":""}}' bindtap='all' data-n='0'>全部</view>
+  <view class='{{n==10?"sale_nav_aciive":""}}' bindtap='all' data-n='0'>全部</view>
   <view class='{{n==1?"sale_nav_aciive":""}}' bindtap='unsold' data-n='1'>未发货</view>
   <view class='{{n==2?"sale_nav_aciive":""}}' bindtap='sold' data-n='2'>已发货</view>
   <view class='{{n==3?"sale_nav_aciive":""}}' bindtap='solding' data-n='3'>进行中</view>
@@ -29,12 +29,12 @@
       </view>
       <view class='list_top'>
         <view class='list_img_item'>
-          <image src='{{item.coverImage}}' mode='widthFix'></image>
+          <image src='{{item.image}}' mode='widthFix'></image>
         </view>
       </view>
       <view class='list_price'>原 价：{{item.buyPrice}}</view>
       <view class='list_price'>寄售价：
-        <text class='buy_price'>{{item.buyPrice}}</text>
+        <text class='buy_price'>{{item.expectationPrice}}</text>
       </view>
     </view>
   </view>

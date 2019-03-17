@@ -14,7 +14,7 @@ Page({
     wx.getStorage({
       key: 'token',
       success: (res_token) => {
-        network.GET({
+        network.POST({
           url: 'auth/AddressAction/myAddress',
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -26,9 +26,13 @@ Page({
           },
           success(res) {
             console.log(res)
-            that.setData({
-              show_add: true
-            })
+            if (res.data.address) {
+              that.setData({
+                show_add: true,
+                list:res.data.address,
+                id: res.data.address.id
+              })
+            }
           }
         })
       },
@@ -44,7 +48,7 @@ Page({
           address_info: res
         })
         if (that.data.show_add) {
-          that.updateadd(address, res.userName, res.telNumber)
+          that.updateadd(that.data.id,res.userName, res.telNumber, res.provinceName, res.cityName, res.countyName, res.detailInfo, res.nationalCode)
         } else {
           that.saveAddress(res.userName, res.telNumber, res.provinceName, res.cityName, res.countyName, res.detailInfo, res.nationalCode)
         }
@@ -119,7 +123,7 @@ Page({
           },
           success(res) {
             console.log(res)
-            if (res.data.code == 0) {
+            if (res.data.state) {
               wx.showToast({
                 title: '保存成功',
               })

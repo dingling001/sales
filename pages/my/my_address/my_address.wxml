@@ -1,11 +1,11 @@
 <!--pages/my/my_address/my_address.wxml-->
 <view class='address_list'>
-  <view class='address_item' wx:for='{{list}}' wx:key='{{item.key}}'>
+  <view class='address_item' >
     <view class='name'>
-      <text>{{item.receiverUser}}</text>
-      <text>{{item.mobile}}</text>
+      <text>{{list.receiptName}}</text>
+      <text>{{list.phone}}</text>
     </view>
-    <view class='address'>{{item.address}}</view>
+    <view class='address'>{{list.province}}{{list.city}}{{list.area}}{{list.detaileAddress}}</view>
   </view>
 </view>
 <view bindtap='getAddress' class='add_box' wx:if='{{show_add}}'>
