@@ -18,14 +18,15 @@
       <view class='list_top'>
         <view>{{item.name}}</view>
         <view wx:if='{{item.status==0}}' class='status_text'> 待审核</view>
-        <view wx:elif='{{item.status==1}}' class='status_text1'>审核通过</view>
-        <view wx:elif='{{item.status==-1}}' class='buy_price'>审核不通过</view>
-        <view wx:elif='{{item.status==2}}' class='status_text1'>已发货</view>
-        <view wx:elif='{{item.status==3}}' class='status_text1'>实物审核中</view>
-        <view wx:elif='{{item.status==4}}' class='buy_price'>实物审核未通过</view>
-        <view wx:elif='{{item.status==5}}' class='status_text'>上架销售</view>
-        <view wx:elif='{{item.status==6}}' class='status_text1'>已售出</view>
-        <view wx:elif='{{item.status==7}}' class='status_text1'>已完成</view>
+        <view wx:elif='{{item.status==1}}' class='status_text1'>审核不通过</view>
+        <view wx:elif='{{item.status==2}}' class='buy_price'>审核通过</view>
+        <view wx:elif='{{item.status==3}}' class='status_text1'>已发货</view>
+        <view wx:elif='{{item.status==4}}' class='status_text1'>已收货，实物审核中</view>
+        <view wx:elif='{{item.status==5}}' class='buy_price'>实物审核未通过</view>
+        <view wx:elif='{{item.status==6}}' class='status_text'>上架销售</view>
+        <view wx:elif='{{item.status==7}}' class='status_text1'>已售出</view>
+        <view wx:elif='{{item.status==8}}' class='status_text1'>已完成</view>
+       <view wx:elif='{{item.status==9}}' class='status_text1'>已取消</view>
       </view>
       <view class='list_top'>
         <view class='list_img_item'>

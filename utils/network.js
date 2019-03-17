@@ -46,9 +46,9 @@ function request(method, requestHandler) {
     success: function(res) {
       wx.hideLoading()
       //注意：可以对参数解密等处理
-      if (res.data.code == 503) {
+      if (res.statusCode == 403) {
         wx.showToast({
-          title: '未登录，点击登录！',
+          title: '登录已失效，点击登录！',
           icon: 'none'
         })
         wx.clearStorage()
@@ -60,7 +60,8 @@ function request(method, requestHandler) {
         requestHandler.success(res)
       }
     },
-    fail: function() {
+    fail: function(err) {
+      console.log(1234)
       wx.showToast({
         title: '网络延迟，稍后再试',
         icon: 'none'

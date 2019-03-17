@@ -31,32 +31,24 @@ Page({
       success: (res_token) => {
         console.log(res_token)
         network.GET({
-          url: 'auth/HxCsUserAction/saveAlipayNumber',
+          url: 'auth/HxCsUserAction/getAlipayNumber',
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
             "Cookie": 'JSESSIONID=' + res_token.data,
             'X-Requested-With': 'XMLHttpRequest'
           },
           params: {
-            // token: res_token.data,
-            // account: that.data.account,
-            // username: that.data.username,
-            // type: 'ALIPAY'
+          
           },
           success(res) {
             // console.log(res)
-            if (res.data.code == 0 && res.data.data.length > 0) {
+            if (res.data.state) {
               console.log(res.data.data)
-              for (let i in res.data.data) {
-                if (res.data.data[i].type = 'ALIPAY') {
-                  that.setData({
-                    accounts: res.data.data[i].account,
-                    usenames: res.data.data[i].username,
-                    account_id: res.data.data[i].id,
-                    show_accout: true
-                  })
-                }
-              }
+              that.setData({
+                accounts: res.data.alipay,
+                usenames: res.data.alipayUserName,
+                show_accout: true
+              })
             } else {
 
             }
@@ -65,70 +57,6 @@ Page({
         })
       },
     })
-  },
-  changpay() {
-    let that = this;
-    if (that.data.account == '') {
-      wx.showToast({
-        title: '请输入支付宝账户',
-        icon: 'none'
-      })
-    } else if (that.data.username == '') {
-      wx.showToast({
-        title: '请输入姓名',
-      })
-    } else {
-      wx.getStorage({
-        key: 'token',
-        success: (res_token) => {
-          console.log(res_token)
-          network.POST({
-            url: 'user/account/updateAccount',
-            header: {
-              "Content-Type": "application/x-www-form-urlencoded",
-              "Cookie": 'JSESSIONID=' + res_token.data,
-              'X-Requested-With': 'XMLHttpRequest'
-            },
-            params: {
-              // token: res_token.data,
-              account: that.data.account,
-              username: that.data.username,
-              type: 'ALIPAY',
-              id: that.data.account_id
-            },
-            success(res) {
-              console.log(res)
-              if (res.data.code == 0) {
-                wx.showToast({
-                  title: '保存成功',
-                })
-                that.setData({
-                  show_accout: true
-                })
-                wx.navigateBack({
-                  delta: 1
-                })
-              } else {
-
-              }
-            }
-
-          })
-        },
-        fail: (err) => {
-          wx.showToast({
-            title: '未登录',
-            icon: 'none'
-          })
-          setTimeout(() => {
-            wx.switchTab({
-              url: '/pages/my/my',
-            })
-          }, 1000)
-        }
-      })
-    }
-
   },
   //  绑定支付宝
   getalpay(e) {
@@ -142,6 +70,7 @@ Page({
     } else if (that.data.username == '') {
       wx.showToast({
         title: '请输入姓名',
+        icon: 'none'
       })
     } else {
       wx.getStorage({

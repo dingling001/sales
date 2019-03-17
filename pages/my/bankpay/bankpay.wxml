@@ -23,5 +23,5 @@
     <input type='text' placeholder='请输入姓名' bindinput='bank_use' value='{{usernames}}'></input>
   </view>
 </view>
-<view class='form_submit' bindtap='bank_update' wx:if='{{show_accout}}'>更新</view>
+<view class='form_submit' bindtap='bank_pay' wx:if='{{show_accout}}'>更新</view>
 <view class='form_submit' bindtap='bank_pay' wx:else>提交</view>

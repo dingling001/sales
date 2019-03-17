@@ -12,7 +12,6 @@ Page({
     registerBankAddresss: '',
     usernames: '',
     show_accout: false,
-    account_id: ''
   },
   bank_in(e) {
     this.setData({
@@ -41,7 +40,7 @@ Page({
       key: 'token',
       success: (res_token) => {
         network.GET({
-          url: 'auth/HxCsUserAction/saveBankNumber',
+          url: 'auth/HxCsUserAction/getBankNumber',
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
             "Cookie": 'JSESSIONID=' + res_token.data,
@@ -49,8 +48,13 @@ Page({
           },
           params: {},
           success(res) {
-        
-           
+           that.setData({
+             accounts: res.data.accountId,
+             bankNames: res.data.accountName,
+             registerBankAddresss: res.data.accountOpen,
+             usernames: res.data.accountUserName,
+             show_accout: true,
+           })
           }
 
         })
@@ -100,7 +104,7 @@ Page({
             },
             success(res) {
               console.log(res)
-              if (res.data.code == 0) {
+              if (res.data.state) {
                 wx.showToast({
                   title: '保存成功',
                 })
@@ -124,81 +128,81 @@ Page({
     }
 
   },
-  bank_update(e) {
-    let that = this;
-    if (that.data.registerBankAddress == '') {
-      wx.showToast({
-        title: '请输入开户行',
-        icon: 'none'
-      })
-    } else if (that.data.bankName == '') {
-      wx.showToast({
-        title: '请输入银行卡名称',
-        icon: 'none'
-      })
-    } else if (that.data.account == '') {
-      wx.showToast({
-        title: '请输入银行卡号',
-        icon: 'none'
-      })
-    } else if (that.data.username == '') {
-      wx.showToast({
-        title: '请输入姓名',
-        icon: 'none'
-      })
-    } else {
-      wx.getStorage({
-        key: 'token',
-        success: (res_token) => {
-          console.log(res_token)
-          network.POST({
-            url: 'user/account/updateAccount',
-            header: {
-              "Content-Type": "application/x-www-form-urlencoded",
-              "Authorization": res_token.data
-            },
-            params: {
-              // token: res_token.data,
-              registerBankAddress: that.data.registerBankAddress,
-              bankName: that.data.bankName,
-              account: that.data.account,
-              username: that.data.username,
-              type: 'BANK',
-              id: that.data.account_id
-            },
-            success(res) {
-              console.log(res)
-              if (res.data.code == 0) {
-                wx.showToast({
-                  title: '保存成功',
-                })
-                that.setData({
-                  show_accout: true
-                })
-                wx.navigateBack({
-                  delta: 1
-                })
-              } else {
+  // bank_update(e) {
+  //   let that = this;
+  //   if (that.data.registerBankAddress == '') {
+  //     wx.showToast({
+  //       title: '请输入开户行',
+  //       icon: 'none'
+  //     })
+  //   } else if (that.data.bankName == '') {
+  //     wx.showToast({
+  //       title: '请输入银行卡名称',
+  //       icon: 'none'
+  //     })
+  //   } else if (that.data.account == '') {
+  //     wx.showToast({
+  //       title: '请输入银行卡号',
+  //       icon: 'none'
+  //     })
+  //   } else if (that.data.username == '') {
+  //     wx.showToast({
+  //       title: '请输入姓名',
+  //       icon: 'none'
+  //     })
+  //   } else {
+  //     wx.getStorage({
+  //       key: 'token',
+  //       success: (res_token) => {
+  //         console.log(res_token)
+  //         network.POST({
+  //           url: 'user/account/updateAccount',
+  //           header: {
+  //             "Content-Type": "application/x-www-form-urlencoded",
+  //             "Authorization": res_token.data
+  //           },
+  //           params: {
+  //             // token: res_token.data,
+  //             registerBankAddress: that.data.registerBankAddress,
+  //             bankName: that.data.bankName,
+  //             account: that.data.account,
+  //             username: that.data.username,
+  //             type: 'BANK',
+  //             id: that.data.account_id
+  //           },
+  //           success(res) {
+  //             console.log(res)
+  //             if (res.data.code == 0) {
+  //               wx.showToast({
+  //                 title: '保存成功',
+  //               })
+  //               that.setData({
+  //                 show_accout: true
+  //               })
+  //               wx.navigateBack({
+  //                 delta: 1
+  //               })
+  //             } else {
 
-              }
-            }
+  //             }
+  //           }
 
-          })
-        },
-        fail: (err) => {
-          wx.showToast({
-            title: '未登录',
-            icon: 'none'
-          })
-          setTimeout(() => {
-            wx.switchTab({
-              url: '/pages/my/my',
-            })
-          }, 1000)
-        }
-      })
-    }
-  },
+  //         })
+  //       },
+  //       fail: (err) => {
+  //         wx.showToast({
+  //           title: '未登录',
+  //           icon: 'none'
+  //         })
+  //         setTimeout(() => {
+  //           wx.switchTab({
+  //             url: '/pages/my/my',
+  //           })
+  //         }, 1000)
+  //       }
+  //     })
+  //   }
+  // },
   onLoad: function(options) {
     this.getalidata()
   },

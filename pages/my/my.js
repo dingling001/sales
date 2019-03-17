@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: []
+    userInfo: [],
+    show_user:false
   },
   bindcontact(e) {
     console.log(e)
@@ -15,14 +16,16 @@ Page({
 
   onLoad: function(options) {
     let that = this;
-    this.setData({
-      userInfo: app.globalData.userInfo
-    })
+    // this.setData({
+    //   userInfo: app.globalData.userInfo
+    // })
     wx.getStorage({
       key: 'userinfo',
       success: (res) => {
+        console.log(res)
         that.setData({
-          userInfo: res.data
+          userInfo: res.data,
+          show_user:true
         })
       },
     })
@@ -32,9 +35,10 @@ Page({
     console.log(e)
     let that = this;
     if (e.detail.userInfo) {
-      app.globalData.userInfo = e.detail.userInfo;
+      // app.globalData.userInfo = e.detail.userInfo;
       this.setData({
-        userInfo: app.globalData.userInfo
+        userInfo: e.detail.userInfo,
+        show_user: true
       })
       network.Login(e.detail.userInfo)
     } else {

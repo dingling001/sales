@@ -131,7 +131,6 @@ Page({
   // // 确认上传图片
   upload_file(filepath) {
     var that = this;
-    console.log(that.data.token)
     wx.getStorage({
       key: 'token',
       success: (res_token) => {
@@ -139,9 +138,8 @@ Page({
           // url: util.baseUrl + 'user/upload',
           url: network.imgUrl + 'action/auth/HxSysUploadAction/upload',
           header: {
-            // 'content-type': 'multipart/form-data',
+            'content-type': 'multipart/form-data',
             "Cookie": 'JSESSIONID=' + res_token.data
-            // JSESSTIONID
           },
           filePath: filepath,
           name: 'imagekey',
@@ -179,25 +177,12 @@ Page({
     let token = that.data.token;
     let brand = that.data.brand;
     let index = that.data.index;
-    let goodsTypeId = that.data.classlist[that.data.index].id;
     let name = that.data.name;
     let buyPrice = that.data.buyPrice;
     let expectationPrice = that.data.expectationPrice;
     let phone = that.data.phone;
     let mark = that.data.mark;
     let image = that.data.images.join(',');
-
-    let post = {
-      name,
-      brand,
-      goodsTypeId,
-      buyPrice,
-      expectationPrice,
-      phone,
-      mark,
-      image,
-    }
-
     if (brand == '') {
       wx.showToast({
         title: '请输入品牌',
@@ -241,6 +226,19 @@ Page({
     //   })
     // }
     else {
+
+      let goodsTypeId = that.data.classlist[that.data.index].id;
+      let post = {
+        name,
+        brand,
+        goodsTypeId,
+        buyPrice,
+        expectationPrice,
+        phone,
+        mark,
+        image,
+      }
+
       console.log(post)
       wx.getStorage({
         key: 'token',
@@ -295,9 +293,14 @@ Page({
   cancel_img(e) {
     let that = this;
     let index = e.target.dataset.index;
+    let image = this.data.images;
     let imgs = this.data.imgs
-    imgs.splice(index, 1);
+    console.log(image)
+    console.log(imgs)
+    image.splice(index, 1);
+    imgs.splice(index, 1)
     this.setData({
+      image: image,
       imgs: imgs
     })
   },
@@ -313,7 +316,6 @@ Page({
   onHide: function() {
 
   },
-
 
   onUnload: function() {
 

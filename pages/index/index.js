@@ -106,11 +106,10 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded"
       },
       params: {
-        limit: 10,
+        limit: 10000,
         page: 0,
       },
       success(res) {
-        console.log(res)
         wx.hideNavigationBarLoading()
         var slidelist = res.data.data;
         for (let i in slidelist) {

@@ -1,8 +1,9 @@
 <!--pages/my/my.wxml-->
 <import src="../template/template.wxml" />
+<!-- <view>{{userInfo.nickName}}</view> -->
 <view class='my_top'>
   <image src='../img/my_bg.png' class='my_top_img'></image>
-  <view class='my_info' wx:if='{{userInfo}}'>
+  <view class='my_info' wx:if='{{show_user}}'>
     <view class='headimg'>
       <image src='{{userInfo.avatarUrl}}' mode='widthFix'></image>
     </view>

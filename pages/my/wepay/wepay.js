@@ -4,9 +4,8 @@ Page({
 
   data: {
     account: '',
-    accounts:'',
-    show_accout:false,
-    account_id:''
+    accounts: '',
+    show_accout: false,
   },
   accunt_input(e) {
     this.setData({
@@ -21,32 +20,22 @@ Page({
       success: (res_token) => {
         console.log(res_token)
         network.GET({
-          url: 'user/account/queryAllAccount',
+          url: 'auth/HxCsUserAction/getWechatNumber',
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": res_token.data
+            "Cookie": 'JSESSIONID=' + res_token.data,
+            'X-Requested-With': 'XMLHttpRequest'
           },
-          params: {
-        
-            type: 'WECHAT'
-          },
+          params: {},
           success(res) {
             // console.log(res)
-            if (res.data.code == 0 && res.data.data.length > 0) {
-              console.log(res.data.data)
-              for (let i in res.data.data) {
-                console.log(i)
-                if (res.data.data[i].type == 'WECHAT') {
-                  that.setData({
-                    accounts: res.data.data[i].account,
-                    account_id: res.data.data[i].id,
-                    show_accout: true
-                  })
-                }
-              }
-            } else {
-
+            if (res.data.wechat){
+              that.setData({
+                accounts: res.data.wechat,
+                show_accout: true
+              })
             }
+           
           }
 
         })
@@ -78,7 +67,7 @@ Page({
             },
             success(res) {
               console.log(res)
-              if (res.data.code == 0) {
+              if (res.data.state&&res.data) {
                 wx.showToast({
                   title: '保存成功',
                 })
