@@ -28,6 +28,9 @@ Page({
           show_user:true
         })
       },
+      fail:(err)=>{
+        console.log(options)
+      }
     })
   },
   // 登录
@@ -130,7 +133,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    // wx.clearStorage()
+    wx.getStorage({
+      key: 'userinfo',
+      success: (res) => {
+        this.setData({
+          userInfo: res.data,
+          show_user: true
+        })
+      },
+      fail: (err) => {
+    
+      }
+    })
   },
 
   /**

@@ -61,7 +61,6 @@ function request(method, requestHandler) {
       }
     },
     fail: function(err) {
-      console.log(1234)
       wx.showToast({
         title: '网络延迟，稍后再试',
         icon: 'none'
@@ -76,7 +75,7 @@ function request(method, requestHandler) {
 function Login(userinfo) {
   wx.login({
     success(res) {
-      console.log(res.code)
+      // console.log(res.code)
       if (res.code) {
         wx.request({
           url: API_URL + 'WeiXinLogin/miniProgramUserInit',
@@ -92,7 +91,7 @@ function Login(userinfo) {
           // header: {
             // "Content-Type": "application/x-www-form-urlencoded"},// 设置请求的 header
           success: function(res) {
-            console.log(res.data.sessionId)
+            // console.log(res.data.sessionId)
             if (res.data.state) {
               wx.setStorage({
                 key: 'token',
@@ -103,7 +102,6 @@ function Login(userinfo) {
                 data: userinfo,
               })
             }
-
           }
         })
 

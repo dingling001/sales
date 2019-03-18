@@ -21,10 +21,19 @@ Page({
         })
       },
       fail:(erro)=>{
-        network.Login(e.detail.userInfo)
-        wx.navigateTo({
-          url: './sale_form/sale_form',
-        })
+        console.log(e.detail.userInfo)
+        if (e.detail.userInfo){
+          network.Login(e.detail.userInfo)
+          wx.navigateTo({
+            url: './sale_form/sale_form',
+          })
+        }else{
+          wx.showToast({
+            title: '请授权获得更好的体验',
+            icon:'none'
+          })
+        }
+      
       }
     })
   },

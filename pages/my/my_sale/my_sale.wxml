@@ -28,9 +28,9 @@
         <view wx:elif='{{item.status==8}}' class='status_text1'>已完成</view>
        <view wx:elif='{{item.status==9}}' class='status_text1'>已取消</view>
       </view>
-      <view class='list_top' bindtap='lookbig' data-img='{{item.image}}'>
+      <view class='list_top' bindtap='lookbig' data-img='{{item.image.split(",")}}' bindtap='lookMore'>
         <view class='list_img_item'>
-          <image src='{{item.image[0]}}' mode='widthFix'></image>
+          <image src='{{item.image.split(",")[0]}}' mode='widthFix'></image>
           <view class='more_img'>更多</view>
         </view>
       </view>

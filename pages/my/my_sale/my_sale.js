@@ -29,8 +29,10 @@ Page({
           },
           success(res) {
             let records = res.data.data;
+        
             for (let i in records) {
-              records[i].image = network.imgUrl + records[i].image.split(',')[0]
+              console.log(records[i].image )
+              records[i].image = network.imgUrl + records[i].image
             }
             console.log(records)
             that.setData({
@@ -41,12 +43,14 @@ Page({
       },
     })
   },
-
+  lookMore(e) {
+    console.log(e)
+  },
   // 全部
   all() {
     this.getGlist()
     this.setData({
-      n:10
+      n: 10
     })
   },
   // 0: 待审核,- 1: 审核不通过, 1: 审核通过, 2: 已发货, 3: 实物审核中, 4: 实物审核未通过, 5: 上架销售, 6: 已售出, 7: 已完成
