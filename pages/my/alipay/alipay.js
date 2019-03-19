@@ -29,7 +29,7 @@ Page({
     wx.getStorage({
       key: 'token',
       success: (res_token) => {
-        console.log(res_token)
+        // console.log(res_token)
         network.GET({
           url: 'auth/HxCsUserAction/getAlipayNumber',
           header: {
@@ -38,12 +38,12 @@ Page({
             'X-Requested-With': 'XMLHttpRequest'
           },
           params: {
-          
+
           },
           success(res) {
-            // console.log(res)
-            if (res.data.state) {
-              console.log(res.data.data)
+            //
+            if (res.data.state && res.data.alipay && res.data.alipayUserName) {
+              // console.log(res.data.data)
               that.setData({
                 accounts: res.data.alipay,
                 usenames: res.data.alipayUserName,
@@ -76,7 +76,7 @@ Page({
       wx.getStorage({
         key: 'token',
         success: (res_token) => {
-          console.log(res_token)
+          // console.log(res_token)
           network.POST({
             url: 'auth/HxCsUserAction/saveAlipayNumber',
             header: {
@@ -90,7 +90,7 @@ Page({
               alipayUserName: that.data.username,
             },
             success(res) {
-              console.log(res)
+
               if (res.data.code == 0) {
                 wx.showToast({
                   title: '保存成功',

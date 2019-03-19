@@ -48,15 +48,16 @@ Page({
           },
           params: {},
           success(res) {
-           that.setData({
-             accounts: res.data.accountId,
-             bankNames: res.data.accountName,
-             registerBankAddresss: res.data.accountOpen,
-             usernames: res.data.accountUserName,
-             show_accout: true,
-           })
+            if (res.data.accountId && res.data.accountName && res.data.accountOpen && res.data.accountUserName) {
+              that.setData({
+                accounts: res.data.accountId,
+                bankNames: res.data.accountName,
+                registerBankAddresss: res.data.accountOpen,
+                usernames: res.data.accountUserName,
+                show_accout: true,
+              })
+            }
           }
-
         })
       },
     })
@@ -87,7 +88,7 @@ Page({
       wx.getStorage({
         key: 'token',
         success: (res_token) => {
-          console.log(res_token)
+          // console.log(res_token)
           network.POST({
             url: 'auth/HxCsUserAction/saveBankNumber',
             header: {
@@ -103,7 +104,7 @@ Page({
               accountOpen: that.data.registerBankAddress,
             },
             success(res) {
-              console.log(res)
+
               if (res.data.state) {
                 wx.showToast({
                   title: '保存成功',
@@ -171,7 +172,7 @@ Page({
   //             id: that.data.account_id
   //           },
   //           success(res) {
-  //             console.log(res)
+  //
   //             if (res.data.code == 0) {
   //               wx.showToast({
   //                 title: '保存成功',

@@ -38,6 +38,8 @@
       <view class='list_price'>寄售价：
         <text class='buy_price'>{{item.expectationPrice}}</text>
       </view>
+      <view wx:if='{{item.mailingAddress}}'>{{item.mailingAddress}}</view>
+       <view class='address'>寄售地址：上海市嘉定区 国家科技馆</view>
     </view>
   </view>
 </view>

@@ -9,7 +9,7 @@ Page({
 
   },
   bindcontact(e) {
-    console.log(e.path)
+    // console.log(e.path)
   },
   // 去寄售
   go_sale(e) {
@@ -21,7 +21,7 @@ Page({
         })
       },
       fail:(erro)=>{
-        console.log(e.detail.userInfo)
+        // console.log(e.detail.userInfo)
         if (e.detail.userInfo){
           network.Login(e.detail.userInfo)
           wx.navigateTo({
@@ -33,7 +33,7 @@ Page({
             icon:'none'
           })
         }
-      
+
       }
     })
   },

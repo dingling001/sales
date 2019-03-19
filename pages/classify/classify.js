@@ -16,7 +16,7 @@ Page({
             "Content-Type": "application/x-www-form-urlencoded"},
       params: {},
       success(res) {
-        console.log(res)
+
         let classlist = res.data;
         for (let i in classlist) {
           classlist[i].bigImage = network.imgUrl + classlist[i].bigImage
@@ -26,7 +26,7 @@ Page({
             classlist: classlist
           })
         } else {
-          // console.log(res);
+          // ;
         }
       }
     })
@@ -46,10 +46,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    // this.getTypeList()  
+    // this.getTypeList()
 
 
-    
+
   },
 
   /**

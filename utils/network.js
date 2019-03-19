@@ -51,7 +51,12 @@ function request(method, requestHandler) {
           title: '登录已失效，点击登录！',
           icon: 'none'
         })
-        wx.clearStorage()
+        wx.removeStorage({
+          key: 'token',
+          success(res) {
+            console.log(res.data)
+          }
+        })
         wx.switchTab({
           url: '/pages/my/my',
         })
@@ -72,7 +77,7 @@ function request(method, requestHandler) {
   })
 }
 
-function Login(userinfo) {
+function Login(userinfo = {}) {
   wx.login({
     success(res) {
       // console.log(res.code)
@@ -81,7 +86,7 @@ function Login(userinfo) {
           url: API_URL + 'WeiXinLogin/miniProgramUserInit',
           data: {
             code: res.code,
-            nickName:userinfo.nickName,
+            nickName: userinfo.nickName,
             image: userinfo.avatarUrl
           },
           method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
@@ -89,7 +94,7 @@ function Login(userinfo) {
             'content-type': 'application/x-www-form-urlencoded'
           },
           // header: {
-            // "Content-Type": "application/x-www-form-urlencoded"},// 设置请求的 header
+          // "Content-Type": "application/x-www-form-urlencoded"},// 设置请求的 header
           success: function(res) {
             // console.log(res.data.sessionId)
             if (res.data.state) {
