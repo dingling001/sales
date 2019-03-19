@@ -142,6 +142,7 @@ Page({
     wx.getStorage({
       key: 'userinfo',
       success: (res) => {
+        console.log(res)
         this.setData({
           userInfo: res.data,
           show_user: true

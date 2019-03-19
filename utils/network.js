@@ -77,7 +77,7 @@ function request(method, requestHandler) {
   })
 }
 
-function Login(userinfo = {}) {
+function Login(userinfo) {
   wx.login({
     success(res) {
       // console.log(res.code)
@@ -102,10 +102,6 @@ function Login(userinfo = {}) {
                 key: 'token',
                 data: res.data.sessionId
               });
-              wx.setStorage({
-                key: 'userinfo',
-                data: userinfo,
-              })
             }
           }
         })
