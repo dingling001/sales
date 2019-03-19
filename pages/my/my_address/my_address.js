@@ -25,7 +25,7 @@ Page({
 
           },
           success(res) {
-            console.log(res)
+
             if (res.data.address) {
               that.setData({
                 show_add: true,
@@ -43,7 +43,7 @@ Page({
     let that = this;
     wx.chooseAddress({
       success(res) {
-        console.log(res)
+
         that.setData({
           address_info: res
         })
@@ -62,7 +62,7 @@ Page({
     wx.getStorage({
       key: 'token',
       success: (res_token) => {
-        console.log(res_token)
+        // console.log(res_token)
         network.POST({
           url: 'auth/AddressAction/saveAddress',
           header: {
@@ -103,7 +103,7 @@ Page({
     wx.getStorage({
       key: 'token',
       success: (res_token) => {
-        console.log(res_token)
+        // console.log(res_token)
         network.POST({
           url: 'auth/AddressAction/saveAddress',
           header: {
@@ -122,7 +122,7 @@ Page({
             zipCode
           },
           success(res) {
-            console.log(res)
+
             if (res.data.state) {
               wx.showToast({
                 title: '保存成功',

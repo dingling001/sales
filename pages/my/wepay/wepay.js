@@ -18,7 +18,7 @@ Page({
     wx.getStorage({
       key: 'token',
       success: (res_token) => {
-        console.log(res_token)
+        // console.log(res_token)
         network.GET({
           url: 'auth/HxCsUserAction/getWechatNumber',
           header: {
@@ -28,14 +28,13 @@ Page({
           },
           params: {},
           success(res) {
-            // console.log(res)
             if (res.data.wechat){
               that.setData({
                 accounts: res.data.wechat,
                 show_accout: true
               })
             }
-           
+
           }
 
         })
@@ -54,7 +53,7 @@ Page({
       wx.getStorage({
         key: 'token',
         success: (res_token) => {
-          console.log(res_token)
+          // console.log(res_token)
           network.POST({
             url: 'auth/HxCsUserAction/saveWechatNumber',
             header: {
@@ -66,7 +65,7 @@ Page({
               wechat: that.data.account,
             },
             success(res) {
-              console.log(res)
+
               if (res.data.state&&res.data) {
                 wx.showToast({
                   title: '保存成功',
@@ -104,7 +103,7 @@ Page({
       wx.getStorage({
         key: 'token',
         success: (res_token) => {
-          console.log(res_token)
+          // console.log(res_token)
           network.POST({
             url: 'user/account/updateAccount',
             header: {
@@ -118,7 +117,7 @@ Page({
               id: that.data.account_id
             },
             success(res) {
-              console.log(res)
+
               if (res.data.code == 0) {
                 wx.showToast({
                   title: '保存成功',

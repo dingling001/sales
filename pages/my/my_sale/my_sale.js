@@ -36,7 +36,7 @@ Page({
               // }
 
             }
-            console.log(records[0].image[0])
+            // console.log(records[0].image[0])
             that.setData({
               records: records
             })
@@ -46,7 +46,7 @@ Page({
     })
   },
   lookMore(e) {
-    console.log(e)
+    // console.log(e)
     let imgs = e.currentTarget.dataset.img;
     for(let i in imgs){
       imgs[i]=network.imgUrl+imgs[i]
@@ -64,14 +64,15 @@ Page({
       n: 10
     })
   },
-  // 0: 待审核,- 1: 审核不通过, 1: 审核通过, 2: 已发货, 3: 实物审核中, 4: 实物审核未通过, 5: 上架销售, 6: 已售出, 7: 已完成
+  // 0: 待审核,1: 审核不通过, 1: 审核通过, 2: 已发货, 3: 实物审核中, 4: 实物审核未通过, 5: 上架销售, 6: 已售出, 7: 已完成
   // 未发货
   unsold() {
+    this.getGlist()
     let records = this.data.records
     let list = []
     for (let i in records) {
-      if (records[i].status == 0 || records[i].status == -1 || records[i].status == 1) {
-        console.log(records[i])
+      if (records[i].status == 0 || records[i].status == 1 || records[i].status == 2) {
+        // console.log(records[i])
         list.push({
           status: records[i].status,
           image: records[i].image,
@@ -89,10 +90,11 @@ Page({
   },
   // 已发货
   sold() {
+    this.getGlist()
     let records = this.data.records
     let list = []
     for (let i in records) {
-      if (records[i].status == 2 || records[i].status == 3 || records[i].status == 4) {
+      if (records[i].status == 3 || records[i].status == 4 || records[i].status == 5) {
         list.push({
           status: records[i].status,
           image: records[i].image,
@@ -110,10 +112,11 @@ Page({
   },
   // 进行中
   solding() {
+    this.getGlist()
     let records = this.data.records
     let list = []
     for (let i in records) {
-      if (records[i].status == 5 || records[i].status == 6) {
+      if (records[i].status == 6 || records[i].status == 7) {
         list.push({
           status: records[i].status,
           image: records[i].image,
@@ -131,10 +134,11 @@ Page({
   },
   // 已完成
   solded() {
+    this.getGlist()
     let records = this.data.records
     let list = []
     for (let i in records) {
-      if (records[i].status == 7) {
+      if (records[i].status == 8) {
         list.push({
           status: records[i].status,
           image: records[i].image,

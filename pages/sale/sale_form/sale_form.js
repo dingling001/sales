@@ -31,7 +31,7 @@ Page({
       },
       params: {},
       success(res) {
-        console.log(res)
+
         let classlist = res.data;
         let list = []
         for (let i in classlist) {
@@ -43,7 +43,7 @@ Page({
             list: list
           })
         } else {}
-        console.log(that.data.classlist)
+        // console.log(that.data.classlist)
       }
     })
   },
@@ -88,11 +88,11 @@ Page({
     var that = this;
     var imgs = this.data.imgs;
     wx.chooseImage({
-      count: 4, // 默认9 
-      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有 
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有 
+      count: 4, // 默认9
+      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function(res) {
-        console.log(res)
+
         if (imgs.length >= 4) {
           wx.showToast({
             title: '最多上传4张图片',
@@ -108,7 +108,7 @@ Page({
             icon: 'none'
           })
         } else {
-          console.log(res.tempFilePaths)
+          // console.log(res.tempFilePaths)
           that.setData({
             imgs: that.data.imgs.concat(res.tempFilePaths)
           });
@@ -122,7 +122,7 @@ Page({
   },
   //上传图片
   upload() {
-    console.log(this.data.temp)
+    // console.log(this.data.temp)
     for (var i = this.data.temp; i < this.data.imgs.length; i++) {
       // console.log("000")
       this.upload_file(this.data.imgs[i])
@@ -145,9 +145,9 @@ Page({
           name: 'imagekey',
           formData: {},
           success: function(res) {
-            console.log(res)
+
             // imgs = imgs.concat(JSON.parse(res.data).data.path)
-            console.log(JSON.parse(res.data).list.join(','))
+            // console.log(JSON.parse(res.data).list.join(','))
             that.setData({
               images: that.data.images.concat(JSON.parse(res.data).list) //把字符串解析成对象
 
@@ -158,7 +158,7 @@ Page({
                 showAdd: false
               })
             }
-            console.log(that.data.images)
+            // console.log(that.data.images)
           },
           fail: function(res) {
             wx.showToast({
@@ -239,7 +239,7 @@ Page({
         image,
       }
 
-      console.log(post)
+      // console.log(post)
       wx.getStorage({
         key: 'token',
         success: (res_token) => {
@@ -257,7 +257,7 @@ Page({
                   },
                   params: post,
                   success(res) {
-                    console.log(res.data.data)
+                    // console.log(res.data.data)
                     if (res.data.state) {
                       wx.navigateTo({
                         url: '../../my/my_sale/my_sale',
@@ -266,7 +266,7 @@ Page({
                   }
                 })
               } else if (res.cancel) {
-                console.log('用户点击取消')
+                // console.log('用户点击取消')
               }
             }
           })
@@ -280,7 +280,7 @@ Page({
     wx.getStorage({
       key: 'token',
       success: (res) => {
-        console.log(res)
+
         that.setData({
           token: res.data
         })
@@ -295,8 +295,8 @@ Page({
     let index = e.target.dataset.index;
     let image = this.data.images;
     let imgs = this.data.imgs
-    console.log(image)
-    console.log(imgs)
+    // console.log(image)
+    // console.log(imgs)
     image.splice(index, 1);
     imgs.splice(index, 1)
     this.setData({

@@ -15,7 +15,7 @@ Page({
     // // // 获取系统信息
     // wx.getSystemInfo({
     //   success: function (res) {
-    //     console.log(res);
+    //     ;
     //     // 可使用窗口宽度、高度
     //     console.log('height=' + res.windowHeight);
     //     console.log('width=' + res.windowWidth);
@@ -58,11 +58,11 @@ Page({
   // 跳转详情
   go_detail(e) {
     let homeList = this.data.homeList;
-    console.log(e)
+    // console.log(e)
     let hindex = e.currentTarget.dataset.hindex;
     let index = e.currentTarget.dataset.index;
     let goodsId = homeList[index].id;
-    console.log(goodsId)
+    // console.log(goodsId)
     wx.navigateTo({
       url: './detail/detail?goodsId=' + goodsId,
     })
@@ -80,7 +80,7 @@ Page({
       },
       params: {},
       success(res) {
-        // console.log(res)
+        //
         let slidelist = res.data.data;
         for (let i in slidelist) {
           slidelist[i].image = network.imgUrl + slidelist[i].image
@@ -89,9 +89,9 @@ Page({
           that.setData({
             slide_list: slidelist
           })
-          console.log(that.data.slide_list);
+          // console.log(that.data.slide_list);
         } else {
-          // console.log(res);
+          // ;
         }
       }
     })
@@ -119,9 +119,9 @@ Page({
           that.setData({
             homeList: slidelist
           })
-          console.log(that.data.homeList);
+          // console.log(that.data.homeList);
         } else {
-          console.log(res);
+          ;
         }
         //   }
         // })

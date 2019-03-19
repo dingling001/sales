@@ -40,7 +40,7 @@ Page({
         limit: 100,
       },
       success(res) {
-        console.log(res)
+
 
         if (res.data) {
           let goodsList = res.data.data;
@@ -50,7 +50,7 @@ Page({
           that.setData({
             goodsList: goodsList,
           })
-          console.log(that.data.goodsList);
+          // console.log(that.data.goodsList);
         } else {
 
         }
@@ -68,7 +68,7 @@ Page({
       },
       params: {},
       success(res) {
-        console.log(res.data.data)
+        // console.log(res.data.data)
         if (res.data.data) {
           let goodsBrand = res.data.data;
           that.setData({
@@ -162,9 +162,9 @@ Page({
     })
   },
   go_detail(e) {
-    console.log(e)
+    // console.log(e)
     let goodsId = e.currentTarget.dataset.id;
-    console.log(goodsId)
+    // console.log(goodsId)
     wx.navigateTo({
       url: '../index/detail/detail?goodsId=' + goodsId,
     })
@@ -188,7 +188,7 @@ Page({
         search: '',
       },
       success(res) {
-        console.log(res)
+
         if (res.data) {
           let goodsList = res.data.data;
           for (let i in goodsList) {
@@ -197,7 +197,7 @@ Page({
           that.setData({
             goodsList: goodsList,
           })
-          console.log(that.data.goodsList);
+          // console.log(that.data.goodsList);
         } else {
 
         }
@@ -207,7 +207,7 @@ Page({
   },
 
   onLoad: function(options) {
-    console.log(options)
+    // console.log(options)
     if (options.id) {
       this.setData({
         id: options.id,

@@ -11,7 +11,7 @@ Page({
     show_user:false
   },
   bindcontact(e) {
-    console.log(e)
+    // console.log(e)
   },
 
   onLoad: function(options) {
@@ -22,20 +22,20 @@ Page({
     wx.getStorage({
       key: 'userinfo',
       success: (res) => {
-        console.log(res)
+
         that.setData({
           userInfo: res.data,
           show_user:true
         })
       },
       fail:(err)=>{
-        console.log(options)
+        // console.log(options)
       }
     })
   },
   // 登录
   onGotUserInfo(e) {
-    console.log(e)
+    // console.log(e)
     let that = this;
     if (e.detail.userInfo) {
       // app.globalData.userInfo = e.detail.userInfo;
@@ -60,6 +60,7 @@ Page({
         })
       },
       fail: (res) => {
+        network.Login()
         wx.showToast({
           title: '未登录！',
           icon: "none"
@@ -68,6 +69,7 @@ Page({
     })
   },
   gomyaddress() {
+    
     wx.getStorage({
       key: 'token',
       success: (res) => {
@@ -76,6 +78,7 @@ Page({
         })
       },
       fail: (res) => {
+        network.Login()
         wx.showToast({
           title: '未登录！',
           icon: "none"
@@ -98,6 +101,7 @@ Page({
         })
       },
       fail: (res) => {
+        network.Login()
         wx.showToast({
           title: '未登录！',
           icon: "none"
@@ -115,6 +119,7 @@ Page({
         })
       },
       fail: (res) => {
+        network.Login()
         wx.showToast({
           title: '未登录！',
           icon: "none"
@@ -143,7 +148,7 @@ Page({
         })
       },
       fail: (err) => {
-    
+
       }
     })
   },
