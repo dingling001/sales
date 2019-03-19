@@ -9,7 +9,8 @@ Page({
     records: [],
     pageSize: 1000,
     pageNum: 0,
-    n: 10
+    n: 10,
+    url: network.imgUrl
   },
   // 获取寄售列表
   getGlist(status) {
@@ -29,12 +30,13 @@ Page({
           },
           success(res) {
             let records = res.data.data;
-        
             for (let i in records) {
-              console.log(records[i].image )
-              records[i].image = network.imgUrl + records[i].image
+              // for(let j in records[i].image){
+              records[i].image = records[i].image.split(',')
+              // }
+
             }
-            console.log(records)
+            console.log(records[0].image[0])
             that.setData({
               records: records
             })
@@ -45,6 +47,15 @@ Page({
   },
   lookMore(e) {
     console.log(e)
+    let imgs = e.currentTarget.dataset.img;
+    for(let i in imgs){
+      imgs[i]=network.imgUrl+imgs[i]
+    }
+
+    wx.previewImage({
+      current: imgs[0], // 当前显示图片的http链接
+      urls: imgs// 需要预览的图片http链接列表
+    })
   },
   // 全部
   all() {
@@ -99,7 +110,6 @@ Page({
   },
   // 进行中
   solding() {
-
     let records = this.data.records
     let list = []
     for (let i in records) {
