@@ -46,7 +46,6 @@ Page({
     })
   },
   lookMore(e) {
-    console.log(e)
     let imgs = e.currentTarget.dataset.img;
     for(let i in imgs){
       imgs[i]=network.imgUrl+imgs[i]
