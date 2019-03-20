@@ -23,7 +23,11 @@ Page({
       fail:(erro)=>{
         // console.log(e.detail.userInfo)
         if (e.detail.userInfo){
-          network.Login(e.detail.userInfo)
+          network.Login(e.detail.userInfo);
+          wx.setStorage({
+            key: 'userinfo',
+            data: e.detail.userInfo,
+          })
           wx.navigateTo({
             url: './sale_form/sale_form',
           })
