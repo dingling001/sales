@@ -1,18 +1,87 @@
 /* pages/my/my_money/my_money.wxss */
-.building {
-  width: 363rpx;
-  margin: 202rpx auto 0 auto;
+
+.data_box {
+  margin: 30rpx 0 0 0;
+}
+
+.list_item {
+  margin: 0 25rpx 30rpx 25rpx;
+  background-color: #fff;
+  padding: 28rpx 31rpx;
+  border-radius: 10rpx;
+  box-shadow: 0px 8px 18px 0px rgba(178, 178, 178, 0.28);
+  position: relative;
+}
+
+.list_top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0 0 30rpx 0;
+  font-size: 28rpx;
+  color: #222;
+}
+
+.list_img_item {
+  width: 315rpx;
+  height: 187rpx;
+  border: 2rpx solid #ececec;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  border-radius: 10rpx;
 }
 
-.building image {
+.more_img {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #fff;
+  font-size: 26rpx;
+  background-color: rgba(178, 178, 178, 0.38);
+  padding: 10rpx;
+}
+
+.list_img_item image {
   width: 100%;
 }
 
-view {
-  font-size: 36rpx;
-  color: #000;
-  text-align: center;
+.list_price {
+  font-size: 28rpx;
+  color: #222;
+}
+
+.buy_price {
+  color: #f60000;
+}
+
+.status_text {
+  color: #999;
+}
+
+.status_text1 {
+  color: #fdce02;
+}
+
+.status_text2 {
+  font-size: 20px;
+}
+
+.address {
+  padding: 10rpx 0;
+  font-size: 26rpx;
+  color: #222;
+}
+
+.btn {
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  padding: 10rpx 20rpx;
+  color: #fff;
+  background-color: #fdce02;
+  font-size: 26rpx;
+  border-radius: 10rpx;
 }

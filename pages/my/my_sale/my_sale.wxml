@@ -5,11 +5,20 @@
 <view>系统开发中</view>
 <view>寄售暂请联系微信：花花花的话</view> -->
 <view class='sale_nav'>
-  <view class='{{n==10?"sale_nav_aciive":""}}' bindtap='all' data-n='0'>全部</view>
-  <view class='{{n==1?"sale_nav_aciive":""}}' bindtap='unsold' data-n='1'>未发货</view>
-  <view class='{{n==2?"sale_nav_aciive":""}}' bindtap='sold' data-n='2'>已发货</view>
-  <view class='{{n==3?"sale_nav_aciive":""}}' bindtap='solding' data-n='3'>进行中</view>
-  <view class='{{n==4?"sale_nav_aciive":""}}' bindtap='solded' data-n='4'>已完成</view>
+  <!-- <swiper display-multiple-items='5'>
+    <block wx:for="{{navs}}" wx:key='{{item}}' wx:for-index='index'>
+      <swiper-item>
+        <view class='s_item {{n==index?"sale_nav_aciive":""}}' bindtap='nav_fun' data-index='{{index}}' >{{item}}</view>
+      </swiper-item>
+    </block>
+  </swiper> -->
+  <scroll-view  scroll-x class='scroll-box'>
+  <view class='scroll_item'>
+   <block wx:for="{{navs}}" wx:key='{{item}}' wx:for-index='index'>
+      <view class='s_item {{n==index?"sale_nav_aciive":""}}' bindtap='nav_fun' data-index='{{index}}'>{{item}}</view>
+    </block>
+  </view>
+  </scroll-view>
 </view>
 <view class='data_box'>
   <view class='nodata' wx:if='{{records.length==0}}'>暂无数据</view>
@@ -28,8 +37,8 @@
         <view wx:elif='{{item.status==8}}' class='status_text1'>已完成</view>
         <view wx:elif='{{item.status==9}}' class='status_text1'>已取消</view>
       </view>
-      <view class='list_top' bindtap='lookbig' data-img='{{item.image}}' bindtap='lookMore'>
-        <view class='list_img_item'  wx:for='{{item.image}}' wx:key='{{item}}'>
+      <view class='list_top' data-img='{{item.image}}' bindtap='lookMore'>
+        <view class='list_img_item' wx:for='{{item.image}}' wx:key='{{item}}'>
           <image src='{{url+ item}}' mode='widthFix'></image>
           <!-- <view class='more_img'>更多</view> -->
         </view>
@@ -38,8 +47,9 @@
       <view class='list_price'>寄售价：
         <text class='buy_price'>{{item.expectationPrice}}</text>
       </view>
-      <view wx:if='{{item.mailingAddress}}'>{{item.mailingAddress}}</view>
-       <view class='address'>寄售地址：上海市嘉定区 国家科技馆</view>
+      <view wx:if='{{item.status==1||item.status==5}}'>{{item.reason}}</view>
+      <view wx:if='{{item.status==2}}' class='btn' catchtap='go_saling' data-id='{{item.id}}'>去发货</view>
+      <view class='address' wx:if='{{item.mailingAddress}}'>寄售地址：{{item.mailingAddress}}</view>
     </view>
   </view>
 </view>

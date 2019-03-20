@@ -8,7 +8,7 @@ Page({
     icon_status: false,
     icon_status1: false,
     isAsc: 0,
-    isAsc1:0,
+    isAsc1: 0,
     id: '',
     priceType: 1,
     goodsBrand: [],
@@ -37,7 +37,7 @@ Page({
       params: {
         page: 1,
         goodsTypeId: that.data.id,
-        limit: 100,
+        limit: 1000,
       },
       success(res) {
 
@@ -125,7 +125,7 @@ Page({
       this.setData({
         icon_status1: true,
         isAsc: 0,
-        isAsc1:1,
+        isAsc1: 1,
       })
     } else {
       this.setData({
@@ -143,8 +143,8 @@ Page({
       show_brand: true,
       icon_status: false,
       icon_status1: false,
-      isAsc:0,
-      isAsc1:0
+      isAsc: 0,
+      isAsc1: 0
     })
   },
   // 选择品牌
@@ -181,7 +181,7 @@ Page({
         // id: that.data.id,
         page: 1,
         goodsTypeId: that.data.id,
-        limit: 10,
+        limit: 1000,
         consignmentFlag: consignmentFlag,
         originalPriceFlag: originalPriceFlag,
         brandId: brandId,

@@ -22,7 +22,6 @@ Page({
     wx.getStorage({
       key: 'userinfo',
       success: (res) => {
-
         that.setData({
           userInfo: res.data,
           show_user:true
@@ -60,10 +59,13 @@ Page({
         })
       },
       fail: (res) => {
-        network.Login()
         wx.showToast({
-          title: '未登录！',
+          title: '未登录或者登陆已失效！',
           icon: "none"
+        })
+        this.setData({
+          userInfo: {},
+          show_user: false
         })
       }
     })
@@ -78,10 +80,13 @@ Page({
         })
       },
       fail: (res) => {
-        network.Login()
         wx.showToast({
-          title: '未登录！',
+          title: '未登录或者登陆已失效！',
           icon: "none"
+        })
+        this.setData({
+          userInfo:{},
+          show_user: false
         })
       }
     })
@@ -101,10 +106,13 @@ Page({
         })
       },
       fail: (res) => {
-        network.Login()
         wx.showToast({
-          title: '未登录！',
+          title: '未登录或者登陆已失效！',
           icon: "none"
+        })
+        this.setData({
+          userInfo: {},
+          show_user: false
         })
       }
     })
@@ -119,10 +127,13 @@ Page({
         })
       },
       fail: (res) => {
-        network.Login()
         wx.showToast({
-          title: '未登录！',
+          title: '未登录或者登陆已失效！',
           icon: "none"
+        })
+        this.setData({
+          userInfo: {},
+          show_user: false
         })
       }
     })

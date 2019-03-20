@@ -1,10 +1,6 @@
-// const API_URL = 'http://test.jianghairui.com/wechat/'
+
 const API_URL = 'https://www.chugebaobao.com/displayStation/action/'
-
-// const imgUrl = 'http://test.jianghairui.com'
 const imgUrl = 'https://chugebaobao.com/displayStation/'
-
-
 
 var requestHandler = {
   url: "",

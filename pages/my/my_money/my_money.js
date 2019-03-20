@@ -1,18 +1,44 @@
 // pages/my/my_money/my_money.js
+let network = require('../../../utils/network.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    mlist: []
+    records: [],
+    url: network.imgUrl,
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  getGlist() {
+    let that = this;
+    wx.getStorage({
+      key: 'token',
+      success: (res_token) => {
+        network.GET({
+          url: 'auth/ConsignmentAction/myConsignment',
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Cookie": 'JSESSIONID=' + res_token.data,
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          params: {
+            status: 8,
+          },
+          success(res) {
+            let records = res.data.data;
+            for (let i in records) {
+              records[i].image = records[i].image.split(',')
+            }
+            that.setData({
+              records: records
+            })
+          }
+        })
+      },
+    })
+  },
   onLoad: function(options) {
-
+    this.getGlist()
   },
 
   /**

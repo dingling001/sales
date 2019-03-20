@@ -6,9 +6,29 @@
 <view>寄售暂请联系微信：花花花的话</view>
                              -->
 
-<view class='nodata' wx:if='{{mlist.length==0}}'>暂无数据</view>
-<view class='list' wx:else>
-  <view class='list_item' wx:for='{{mlist}}' wx:key='{{item.id}}'>
-    1
+<view class='data_box'>
+  <view class='nodata' wx:if='{{records.length==0}}'>暂无数据</view>
+  <view class='list' wx:else>
+    <view class='list_item' wx:for='{{records}}' wx:key='{{item.id}}'>
+      <view class='list_top'>
+        <view>{{item.name}}</view>
+        <view class='status_text'>已支付</view>
+      </view>
+      <view class='list_top' bindtap='lookbig' data-img='{{item.image}}' bindtap='lookMore'>
+        <view class='list_img_item' wx:for='{{item.image}}' wx:key='{{item}}'>
+          <image src='{{url+ item}}' mode='widthFix'></image>
+        </view>
+      </view>
+      <view class='list_price' style='padding:0 0 20rpx 0'>已支付凭证</view>
+      <view class='list_top'>
+        <view class='list_img_item'>
+          <image src='{{url+ item.successToken}}' mode='widthFix'></image>
+        </view>
+      </view>
+      <view class='list_price'>原 价：{{item.buyPrice}}</view>
+      <view class='list_price'>寄售价：
+        <text class='buy_price'>{{item.expectationPrice}}</text>
+      </view>
+    </view>
   </view>
 </view>

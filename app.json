@@ -6,7 +6,6 @@
     "pages/my/my",
     "pages/index/detail/detail",
     "pages/class_detail/class_detail",
-    "pages/my/my_sold/my_sold",
     "pages/my/my_sale/my_sale",
     "pages/my/my_count/my_count",
     "pages/my/my_money/my_money",
@@ -15,7 +14,8 @@
     "pages/my/alipay/alipay",
     "pages/my/wepay/wepay",
     "pages/my/bankpay/bankpay",
-    "pages/my/my_address/my_address"
+    "pages/my/my_address/my_address",
+    "pages/my/my_sale_detail/my_sale_detail"
   ],
   "window": {
     "backgroundTextStyle": "dark",
