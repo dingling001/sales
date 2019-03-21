@@ -60,7 +60,7 @@ Page({
       },
       fail: (res) => {
         wx.showToast({
-          title: '未登录或者登陆已失效！',
+          title: '未登录或登陆已失效',
           icon: "none"
         })
         this.setData({
@@ -81,7 +81,7 @@ Page({
       },
       fail: (res) => {
         wx.showToast({
-          title: '未登录或者登陆已失效！',
+          title: '未登录或登陆已失效',
           icon: "none"
         })
         this.setData({
@@ -107,7 +107,7 @@ Page({
       },
       fail: (res) => {
         wx.showToast({
-          title: '未登录或者登陆已失效！',
+          title: '未登录或登陆已失效',
           icon: "none"
         })
         this.setData({
@@ -128,7 +128,7 @@ Page({
       },
       fail: (res) => {
         wx.showToast({
-          title: '未登录或者登陆已失效！',
+          title: '未登录或登陆已失效',
           icon: "none"
         })
         this.setData({

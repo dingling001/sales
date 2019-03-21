@@ -20,13 +20,17 @@
     <view class='index_list'>
       <view class='index_item' bindtap='go_detail' wx:for='{{homeList}}' data-index='{{index}}' data-hindex='{{hindex}}' wx:key='{{item.id}}'>
         <view class='index_item_img'>
-          <image mode='widthFix' src='{{item.detail}}' lazy-load='true'></image>
+          <image mode='widthFix' src='{{i.image}}' lazy-load='true' wx:for='{{item.goodsSwiperList}}' wx:for-item='i' wx:key='i.image' wx:if='{{i.thumbnail==0}}'>
+          </image>
         </view>
-        <view class='index_name'>{{item.name}}</view>
-        <view class='index_des'>{{item.introduction}}</view>
+        <!-- <view class='index_item_img' wx:else>
+         <view class='icofont icon-zanwutupian1-copy'></view>
+        </view> -->
+        <view class='index_name'>{{item.goods.name}}</view>
+        <view class='index_des'>{{item.goods.introduction}}</view>
         <view class='price_box'>
-          <text class='pre_p'>￥{{item.actualPrice}}</text>
-          <text class='old_p'>￥{{item.originalPrice}}</text>
+          <text class='pre_p'>￥{{item.goods.actualPrice}}</text>
+          <text class='old_p'>￥{{item.goods.originalPrice}}</text>
         </view>
       </view>
     </view>

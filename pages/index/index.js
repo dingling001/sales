@@ -61,7 +61,7 @@ Page({
     // console.log(e)
     let hindex = e.currentTarget.dataset.hindex;
     let index = e.currentTarget.dataset.index;
-    let goodsId = homeList[index].id;
+    let goodsId = homeList[index].goods.id;
     // console.log(goodsId)
     wx.navigateTo({
       url: './detail/detail?goodsId=' + goodsId,
@@ -112,8 +112,12 @@ Page({
       success(res) {
         wx.hideNavigationBarLoading()
         var slidelist = res.data.data;
+        // console.log(slidelist)
         for (let i in slidelist) {
-          slidelist[i].detail = network.imgUrl + slidelist[i].detail
+          for (let j in slidelist[i].goodsSwiperList){
+            slidelist[i].goodsSwiperList[j].image = network.imgUrl + slidelist[i].goodsSwiperList[j].image
+          }
+         
         }
         if (res.data.code == 0) {
           that.setData({

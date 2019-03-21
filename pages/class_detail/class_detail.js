@@ -40,12 +40,12 @@ Page({
         limit: 1000,
       },
       success(res) {
-
-
         if (res.data) {
           let goodsList = res.data.data;
           for (let i in goodsList) {
-            goodsList[i].detail = network.imgUrl + goodsList[i].detail
+            for (let j in goodsList[i].goodsSwiperList) {
+              goodsList[i].goodsSwiperList[j].image = network.imgUrl + goodsList[i].goodsSwiperList[j].image
+            }
           }
           that.setData({
             goodsList: goodsList,

@@ -21,15 +21,16 @@
   <view class='index_box'>
     <view wx:if='{{goodsList.length==0}}' class='nodata'>暂无数据</view>
     <view class='index_list' wx:else>
-      <view class='index_item' bindtap='go_detail' wx:for='{{goodsList}}' data-id='{{item.id}}' wx:key='{{item.id}}'>
-        <view class='index_item_img'>
-          <image mode='widthFix' src='{{item.detail}}'></image>
+      <view class='index_item' bindtap='go_detail' wx:for='{{goodsList}}' data-id='{{item.goods.id}}' wx:key='{{item.goods.id}}'>
+     <view class='index_item_img'>
+          <image mode='widthFix' src='{{i.image}}' lazy-load='true' wx:for='{{item.goodsSwiperList}}' wx:for-item='i' wx:key='i.image' wx:if='{{i.thumbnail==0}}'>
+          </image>
         </view>
-        <view class='index_name'>{{item.name}}</view>
-        <view class='index_des'>{{item.introduction}}</view>
+        <view class='index_name'>{{item.goods.name}}</view>
+        <view class='index_des'>{{item.goods.introduction}}</view>
         <view class='price_box'>
-          <text class='pre_p'>￥{{item.actualPrice}}</text>
-          <text class='old_p'>￥{{item.originalPrice}}</text>
+          <text class='pre_p'>￥{{item.goods.actualPrice}}</text>
+          <text class='old_p'>￥{{item.goods.originalPrice}}</text>
         </view>
       </view>
 
