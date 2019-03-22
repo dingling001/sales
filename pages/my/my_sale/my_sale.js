@@ -8,7 +8,7 @@ Page({
   data: {
     records: [],
     n: 0,
-    navs: ['全部', '待审核', '审核不通过', '审核通过', '已发货', '已收货','实物审核不通过', '销售中', '已卖出', '已完成'],
+    navs: ['全部', '待审核', '审核不通过', '寄售中', '已卖出', '已完成', '已取消'],
     url: network.imgUrl,
     status: 10
   },
@@ -64,6 +64,11 @@ Page({
       case 0:
         this.setData({
           status: 10
+        })
+        break;
+      case 5:
+        this.setData({
+          status: 8
         })
         break;
       default:

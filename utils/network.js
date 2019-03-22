@@ -1,6 +1,6 @@
 
-const API_URL = 'https://www.chugebaobao.com/displayStation/action/'
-const imgUrl = 'https://chugebaobao.com/displayStation/'
+const API_URL = 'https://www.chugebaobao.com/station/action/'
+const imgUrl = 'https://chugebaobao.com/station/'
 
 var requestHandler = {
   url: "",
@@ -97,6 +97,10 @@ function Login(userinfo) {
               wx.setStorage({
                 key: 'token',
                 data: res.data.sessionId
+              });
+              wx.setStorage({
+                key: 'userinfo',
+                data: userinfo
               });
             }
           }

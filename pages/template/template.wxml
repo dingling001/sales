@@ -2,6 +2,10 @@
 <template name="kefu">
   <view class='kefu'>
     <view class='iconfont icon-kefu'></view>
-    <button open-type="contact" bindcontact='bindcontact' class='con' session-from='my' send-message-title='客服' send-message-path='../sale/sale_form/sale_form' send-message-img='../img/c.png' show-message-card='false'></button>
+    <!-- <button open-type="contact" bindcontact='bindcontact' class='con' session-from='my' send-message-title='客服' send-message-path='../sale/sale_form/sale_form' send-message-img='../img/c.png' show-message-card='false'>
+    </button> -->
+      <button  class='con' bindtap='openmsg'>
+    </button>
   </view>
+  <view class='mold' wx:if='{{mold_show}}'></view>
 </template>

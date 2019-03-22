@@ -37,6 +37,31 @@ Page({
       },
     })
   },
+  lookMore1(e) {
+    console.log(e)
+    let imgs = e.currentTarget.dataset.img;
+    for (let i in imgs) {
+      imgs[i] = network.imgUrl + imgs[i]
+    }
+
+    wx.previewImage({
+      current: imgs[0], // 当前显示图片的http链接
+      urls: imgs // 需要预览的图片http链接列表
+    })
+  },
+  lookMore(e) {
+    // console.log(e)
+    let imgs = network.imgUrl+ e.currentTarget.dataset.img;
+    // for (let i in imgs) {
+    //   imgs[i] = network.imgUrl + imgs[i]
+    // }
+
+    wx.previewImage({
+      current: imgs, // 当前显示图片的http链接
+      urls: [imgs] // 需要预览的图片http链接列表
+    })
+  },
+
   onLoad: function(options) {
     this.getGlist()
   },

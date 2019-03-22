@@ -6,7 +6,14 @@ Page({
     homeList: [],
     scrollTop: 0,
     show_back: false,
-    windowHeight: ''
+    windowHeight: '',
+    item:false
+  },
+  openmsg(){
+    console.log(111)
+    this.setData({
+      item: true
+    })
   },
   onLoad() {
     this.slideShow();

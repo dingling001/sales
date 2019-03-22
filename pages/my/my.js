@@ -16,9 +16,9 @@ Page({
 
   onLoad: function(options) {
     let that = this;
-    // this.setData({
-    //   userInfo: app.globalData.userInfo
-    // })
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
     wx.getStorage({
       key: 'userinfo',
       success: (res) => {
@@ -153,7 +153,6 @@ Page({
     wx.getStorage({
       key: 'userinfo',
       success: (res) => {
-        console.log(res)
         this.setData({
           userInfo: res.data,
           show_user: true

@@ -1,5 +1,5 @@
 <import src="../template/template.wxml" />
-<template is="kefu"></template>
+<template is="kefu" data="{{...item}}"></template>
 <scroll-view scroll-top='{{scrollTop}}' bindscroll="scroll" scroll-y='true' class='scrol_box'>
   <view class='index_top'></view>
   <swiper class='index_swiper' indicator-dots="true" indicator-color='#fff' indicator-active-color='#FDCE02'>

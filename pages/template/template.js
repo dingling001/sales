@@ -5,9 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    mold_show: false
   },
-
+  openmsg() {
+    // if (this.data.mold_show) {
+    //   this.setData({
+    //     mold_show: false
+    //   })
+    // } else {
+    //   this.setData({
+    //     mold_show: true
+    //   })
+    // }
+    this.setData({
+      mold_show: true
+    })
+  },
   bindcontact(e) {
     // console.log(e.path)
   },
