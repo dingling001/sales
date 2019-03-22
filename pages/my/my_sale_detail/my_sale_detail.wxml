@@ -1,0 +1,49 @@
+<!--pages/my/my_sale_detail/my_sale_detail.wxml-->
+<swiper indicator-dots indicator-color='#fff' indicator-active-color='#FDCE02'>
+  <block wx:for="{{consignment.image}}">
+    <swiper-item>
+      <image src="{{url+ item}}" class="slide-image" />
+    </swiper-item>
+  </block>
+</swiper>
+<view class='list_item'>
+  <view class='list_title'>商品信息</view>
+  <view class='input_box'>
+    <view>寄售商品名称：</view>
+    <view>{{consignment.name}}</view>
+  </view>
+  <view class='input_box'>
+    <view>商品品牌：{{consignment.brand}}</view>
+    <view></view>
+  </view>
+  <view class='input_box'>
+    <view>原价：{{consignment.buyPrice}}元</view>
+    <view></view>
+  </view>
+  <view class='input_box'>
+    <view>寄售价：{{consignment.expectationPrice}}元</view>
+    <view></view>
+  </view>
+  <view class='input_box'>
+    <view>备注：{{consignment.mark}}</view>
+    <view></view>
+  </view>
+</view>
+<view class='list_item'>
+  <view class='list_title'>快递信息</view>
+  <view class='input_box'>
+    <view>寄售地址：</view>
+    <input placeholder='请输入寄售地址' bindinput='mailingAddress_fun'></input>
+  </view>
+  <view class='input_box'>
+    <view>快递公司：</view>
+    <input placeholder='请输入快递公司' bindinput='express_fun'></input>
+  </view>
+  <view class='input_box'>
+    <view>快递单号：</view>
+    <input placeholder='请输入快递单号' type='number' bindinput='singleNumber_fun'></input>
+  </view>
+  <view class='btn' bindtap='go_save'>
+    提交
+  </view>
+</view>
