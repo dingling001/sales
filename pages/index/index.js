@@ -7,12 +7,24 @@ Page({
     scrollTop: 0,
     show_back: false,
     windowHeight: '',
-    item:false
+    show_mold:true
   },
   openmsg(){
-    console.log(111)
+    wx.showModal({
+      title: '提示',
+      content: '这是一个模态弹窗',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  close_mold(){
     this.setData({
-      item: true
+      show_mold: true
     })
   },
   onLoad() {
