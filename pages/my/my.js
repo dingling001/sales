@@ -8,12 +8,63 @@ Page({
    */
   data: {
     userInfo: [],
-    show_user:false
+    show_user:false,
+    show_mold: true,
+    w_num: '',
+    w_tel: ''
   },
-  bindcontact(e) {
-    // console.log(e)
-  },
+  openmsg() {
+    this.setData({
+      show_mold: false
+    })
+    wx.hideTabBar({
+      animation: true
+    })
 
+  },
+  close_mold() {
+    this.setData({
+      show_mold: true
+    })
+    wx.showTabBar({
+      animation: true
+    })
+  },
+  copy_fn(e){
+    let wnum = e.currentTarget.dataset.wnum;
+    wx.setClipboardData({
+      data: wnum,
+      success(res) {
+        wx.getClipboardData({
+          success(res) {
+          }
+        })
+      }
+    })
+  },
+  call_fn(e){
+    let wtel = e.currentTarget.dataset.wtel;
+    wx.makePhoneCall({
+      phoneNumber: wtel // 仅为示例，并非真实的电话号码
+    })
+  },
+  getmsg() {
+    let that = this;
+    network.GET({
+      url: 'SettingAction/get',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      params: {},
+      success(res) {
+        console.log(res)
+        that.setData({
+          w_num: res.data.consumerWechat,
+          w_tel: res.data.consumerHotline
+        })
+      }
+    })
+  },
   onLoad: function(options) {
     let that = this;
     this.setData({
@@ -31,6 +82,7 @@ Page({
         // console.log(options)
       }
     })
+    that.getmsg()
   },
   // 登录
   onGotUserInfo(e) {

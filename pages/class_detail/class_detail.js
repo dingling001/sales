@@ -14,7 +14,10 @@ Page({
     goodsBrand: [],
     brand: '',
     goodsList: [],
-    name: ''
+    name: '',
+    show_mold: true,
+    w_num: '',
+    w_tel: ''
   },
   // 返回顶部
   back_fun() {
@@ -205,7 +208,58 @@ Page({
     })
 
   },
+  openmsg() {
+    this.setData({
+      show_mold: false
+    })
+    wx.hideTabBar({
+      animation: true
+    })
 
+  },
+  close_mold() {
+    this.setData({
+      show_mold: true
+    })
+    wx.showTabBar({
+      animation: true
+    })
+  },
+  copy_fn(e) {
+    let wnum = e.currentTarget.dataset.wnum;
+    wx.setClipboardData({
+      data: wnum,
+      success(res) {
+        wx.getClipboardData({
+          success(res) {
+          }
+        })
+      }
+    })
+  },
+  call_fn(e) {
+    let wtel = e.currentTarget.dataset.wtel;
+    wx.makePhoneCall({
+      phoneNumber: wtel // 仅为示例，并非真实的电话号码
+    })
+  },
+  getmsg() {
+    let that = this;
+    network.GET({
+      url: 'SettingAction/get',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      params: {},
+      success(res) {
+        console.log(res)
+        that.setData({
+          w_num: res.data.consumerWechat,
+          w_tel: res.data.consumerHotline
+        })
+      }
+    })
+  },
   onLoad: function(options) {
     // console.log(options)
     if (options.id) {
@@ -218,7 +272,8 @@ Page({
         title: options.name
       })
     }
-    this.getbrand()
+    this.getbrand();
+    this.getmsg()
   },
 
   onReady: function() {

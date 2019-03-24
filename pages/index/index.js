@@ -7,45 +7,66 @@ Page({
     scrollTop: 0,
     show_back: false,
     windowHeight: '',
-    show_mold:true
+    show_mold: true,
+    w_num: '',
+    w_tel: ''
   },
-  openmsg(){
-    wx.showModal({
-      title: '提示',
-      content: '这是一个模态弹窗',
+  openmsg() {
+    this.setData({
+      show_mold: false
+    })
+    wx.hideTabBar({
+      animation: true
+    })
+
+  },
+  close_mold() {
+    this.setData({
+      show_mold: true
+    })
+    wx.showTabBar({
+      animation: true
+    })
+  },
+  copy_fn(e){
+    let wnum = e.currentTarget.dataset.wnum;
+    wx.setClipboardData({
+      data: wnum,
       success(res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
+        wx.getClipboardData({
+          success(res) {
+          }
+        })
       }
     })
   },
-  close_mold(){
-    this.setData({
-      show_mold: true
+  call_fn(e){
+    let wtel = e.currentTarget.dataset.wtel;
+    wx.makePhoneCall({
+      phoneNumber: wtel // 仅为示例，并非真实的电话号码
+    })
+  },
+  getmsg() {
+    let that = this;
+    network.GET({
+      url: 'SettingAction/get',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      params: {},
+      success(res) {
+        console.log(res)
+        that.setData({
+          w_num: res.data.consumerWechat,
+          w_tel: res.data.consumerHotline
+        })
+      }
     })
   },
   onLoad() {
     this.slideShow();
     this.homeList_fun();
-    // var that = this
-    // // // 获取系统信息
-    // wx.getSystemInfo({
-    //   success: function (res) {
-    //     ;
-    //     // 可使用窗口宽度、高度
-    //     console.log('height=' + res.windowHeight);
-    //     console.log('width=' + res.windowWidth);
-    //     // 计算主体部分高度,单位为px
-
-    //     that.setData({
-    //       show_back: false,
-    //       windowHeight: res.windowHeight
-    //     })
-    //   }
-    // })
+    this.getmsg();
   },
   // 滚动事件
   scroll(e) {
@@ -133,25 +154,24 @@ Page({
         var slidelist = res.data.data;
         // console.log(slidelist)
         for (let i in slidelist) {
-          for (let j in slidelist[i].goodsSwiperList){
+          for (let j in slidelist[i].goodsSwiperList) {
             slidelist[i].goodsSwiperList[j].image = network.imgUrl + slidelist[i].goodsSwiperList[j].image
           }
-         
+
         }
         if (res.data.code == 0) {
           that.setData({
             homeList: slidelist
           })
           // console.log(that.data.homeList);
-        } else {
-          ;
+        } else {;
         }
         //   }
         // })
       },
     })
   },
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

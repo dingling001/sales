@@ -1,23 +1,10 @@
-<!--pages/my/my_sale/my_sale.wxml-->
-<!-- <view class='building'>
-<image src='../../img/clock.png'></image>
-</view>
-<view>系统开发中</view>
-<view>寄售暂请联系微信：花花花的话</view> -->
 <view class='sale_nav'>
-  <!-- <swiper display-multiple-items='5'>
-    <block wx:for="{{navs}}" wx:key='{{item}}' wx:for-index='index'>
-      <swiper-item>
-        <view class='s_item {{n==index?"sale_nav_aciive":""}}' bindtap='nav_fun' data-index='{{index}}' >{{item}}</view>
-      </swiper-item>
-    </block>
-  </swiper> -->
-  <scroll-view  scroll-x class='scroll-box'>
-  <view class='scroll_item'>
-   <block wx:for="{{navs}}" wx:key='{{item}}' wx:for-index='index'>
-      <view class='s_item {{n==index?"sale_nav_aciive":""}}' bindtap='nav_fun' data-index='{{index}}'>{{item}}</view>
-    </block>
-  </view>
+  <scroll-view scroll-x class='scroll-box'>
+    <view class='scroll_item'>
+      <block wx:for="{{navs}}" wx:key='{{item}}' wx:for-index='index'>
+        <view class='s_item {{n==index?"sale_nav_aciive":""}}' bindtap='nav_fun' data-index='{{index}}'>{{item}}</view>
+      </block>
+    </view>
   </scroll-view>
 </view>
 <view class='data_box'>
@@ -50,6 +37,10 @@
       <view wx:if='{{item.status==1||item.status==5}}'>{{item.reason}}</view>
       <view wx:if='{{item.status==2}}' class='btn' catchtap='go_saling' data-id='{{item.id}}'>去发货</view>
       <view class='address' wx:if='{{item.mailingAddress}}'>寄售地址：{{item.mailingAddress}}</view>
+      <view class='mold_s' wx:if='{{item.singleNumber}}'>
+        <view class='num_wechat'>专属客服微信：{{item.singleNumber}}</view>
+        <view class='copy_btn' bindtap='copy_fn' data-wechat='{{item.singleNumber}}'>复制</view>
+      </view>
     </view>
   </view>
 </view>

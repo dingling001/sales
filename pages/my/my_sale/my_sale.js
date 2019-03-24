@@ -45,6 +45,18 @@ Page({
       },
     })
   },
+  copy_fn(e) {
+    let wechat = e.currentTarget.dataset.wechat;
+    wx.setClipboardData({
+      data: wechat,
+      success(res) {
+        wx.getClipboardData({
+          success(res) {
+          }
+        })
+      }
+    })
+  },
   lookMore(e) {
     // console.log(e)
     let imgs = e.currentTarget.dataset.img;

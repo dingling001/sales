@@ -346,7 +346,32 @@ page {
   height: 100%;
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+ align-items: center;
+  justify-content: center;
 }
-
+.mold_item{
+  height: 200rpx;
+  width: 80%;
+  padding: 25rpx;
+  border-radius: 16rpx;
+  background-color: #fff;
+}
+.mold_s{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+.num{
+  font-size: 32rpx;
+}
+.copy_btn{
+  background-color:#fdce02;
+  color: #fff;
+  font-size: 28rpx;
+  padding: 10rpx 25rpx;
+  border-radius: 10rpx;
+}
 @import "./pages/template/template.wxss"
 
