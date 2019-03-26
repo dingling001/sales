@@ -1,4 +1,3 @@
-
 const API_URL = 'https://www.chugebaobao.com/station/action/'
 const imgUrl = 'https://chugebaobao.com/station/'
 
@@ -33,6 +32,7 @@ function request(method, requestHandler) {
   var header = requestHandler.header;
   wx.showLoading({
     title: '加载中',
+    mask: true
   })
   wx.request({
     url: API_URL + url,

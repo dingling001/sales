@@ -19,7 +19,7 @@
   z-index: 10;
   height: 100rpx;
   background-color: #fff;
-  border-bottom: 1px solid #FDDB61;
+  border-bottom: 1px solid #fddb61;
 }
 
 .scroll-box {
@@ -120,16 +120,25 @@ swiper {
   font-size: 26rpx;
   color: #222;
 }
-.btn{
-  position: absolute;
+
+.btn_box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+ padding: 10rpx 0;
+}
+
+.btn {
+  /* position: absolute;
   right: 20rpx;
-  bottom: 20rpx;
+  bottom: 20rpx; */
   padding: 10rpx 20rpx;
   color: #fff;
-  background-color: #FDCE02;
+  background-color: #fdce02;
   font-size: 26rpx;
   border-radius: 10rpx;
 }
-.num_wechat{
+
+.num_wechat {
   font-size: 26rpx;
 }

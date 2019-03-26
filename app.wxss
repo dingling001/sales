@@ -363,6 +363,12 @@ page {
   justify-content: space-between;
   margin-bottom: 20rpx;
 }
+.mold_ss{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
 .num{
   font-size: 32rpx;
 }
@@ -372,6 +378,9 @@ page {
   font-size: 28rpx;
   padding: 10rpx 25rpx;
   border-radius: 10rpx;
+}
+.mold_ss .copy_btn{
+  margin-left: 30rpx;
 }
 @import "./pages/template/template.wxss"
 

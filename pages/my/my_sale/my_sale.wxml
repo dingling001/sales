@@ -11,6 +11,8 @@
   <view class='nodata' wx:if='{{records.length==0}}'>暂无数据</view>
   <view class='list' wx:else>
     <view class='list_item' wx:for='{{records}}' wx:key='{{item.id}}'>
+      <view class='address'>订单号：{{item.orderNumber}}</view>
+      <view class='address'> 创建时间：{{item.createdTime}}</view>
       <view class='list_top'>
         <view>{{item.name}}</view>
         <view wx:if='{{item.status==0}}' class='status_text'> 待审核</view>
@@ -30,16 +32,18 @@
           <!-- <view class='more_img'>更多</view> -->
         </view>
       </view>
-      <view class='list_price'>原 价：{{item.buyPrice}}</view>
-      <view class='list_price'>寄售价：
+      <view class='address'>原 价：{{item.buyPrice}}</view>
+      <view class='address'>寄售价：
         <text class='buy_price'>{{item.expectationPrice}}</text>
       </view>
-      <view wx:if='{{item.status==1||item.status==5}}'>{{item.reason}}</view>
-      <view wx:if='{{item.status==2}}' class='btn' catchtap='go_saling' data-id='{{item.id}}'>去发货</view>
+      <view wx:if='{{item.status==1||item.status==5}}' class='address'>审核未通过原因：{{item.reason}}</view>
       <view class='address' wx:if='{{item.mailingAddress}}'>寄售地址：{{item.mailingAddress}}</view>
       <view class='mold_s' wx:if='{{item.singleNumber}}'>
-        <view class='num_wechat'>专属客服微信：{{item.singleNumber}}</view>
-        <view class='copy_btn' bindtap='copy_fn' data-wechat='{{item.singleNumber}}'>复制</view>
+        <view class='num_wechat'>1对1在线客服，请加微信：{{item.singleNumber}}</view>
+        <view class='copy_btn' bindtap='copy_fn' data-wechat='{{item.singleNumber}}'>复制微信号</view>
+      </view>
+      <view class='btn_box'>
+        <view wx:if='{{item.status==2}}' class='btn' catchtap='go_saling' data-id='{{item.id}}'>去发货</view>
       </view>
     </view>
   </view>

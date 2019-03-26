@@ -63,7 +63,6 @@ Page({
     for (let i in imgs) {
       imgs[i] = network.imgUrl + imgs[i]
     }
-
     wx.previewImage({
       current: imgs[0], // 当前显示图片的http链接
       urls: imgs // 需要预览的图片http链接列表

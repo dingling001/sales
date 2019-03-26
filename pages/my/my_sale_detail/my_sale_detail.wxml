@@ -33,7 +33,8 @@
   <view class='list_title'>快递信息</view>
   <view class='input_box'>
     <view>寄售地址：</view>
-    <input placeholder='请输入寄售地址' bindinput='mailingAddress_fun'></input>
+    <view>{{consignment.mailingAddress}}</view>
+    <!-- <input placeholder='请输入寄售地址' bindinput='mailingAddress_fun'></input> -->
   </view>
   <view class='input_box'>
     <view>快递公司：</view>
