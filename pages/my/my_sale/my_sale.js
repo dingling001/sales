@@ -1,16 +1,14 @@
 // pages/my/my_sale/my_sale.js
 let network = require('../../../utils/network.js')
+const app=getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     records: [],
     n: 0,
-    navs: ['全部', '待审核', '审核不通过', '寄售中', '已卖出', '已完成', '已取消'],
+    navs: ['全部', '待审核', '审核不通过', '审核通过', '寄售中','寄售成功', '寄售取消'],
     url: network.imgUrl,
-    status: 10
+    status: 10,
+    w_num:''
   },
   // 获取寄售列表
   getGlist() {
@@ -102,6 +100,9 @@ Page({
   // 0: 待审核,1: 审核不通过, 1: 审核通过, 2: 已发货, 3: 实物审核中, 4: 实物审核未通过, 5: 上架销售, 6: 已售出, 7: 已完成
   // 未发货
   onLoad: function(options) {
+    this.setData({
+      w_num: app.globalData.w_num
+    })
     this.getGlist()
   },
 

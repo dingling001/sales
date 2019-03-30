@@ -24,6 +24,7 @@
 
 .class_item image {
   width: 100%;
+  height: 300rpx;
 }
 
 .class_name {
@@ -39,7 +40,7 @@
   top: 0;
   color: #fff;
   z-index: 10;
-background-color: rgba(0, 0, 0, 0.23)  
+  background-color: rgba(0, 0, 0, 0.23);
 }
 
 .class_title {

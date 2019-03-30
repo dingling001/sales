@@ -127,3 +127,10 @@ page {
   margin: 0 0 0 15rpx;
   box-shadow: -1px 3px 19px 2px rgba(253, 206, 2, 0.8);
 }
+
+.contents {
+  font-size: 28rpx;
+  table-layout: fixed;
+  word-break: break-all;
+  overflow: hidden;
+}

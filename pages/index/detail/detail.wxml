@@ -20,10 +20,9 @@
   </view>
   <view class='content_box'>
     <view class='content_item'>
-      <!-- <view>
-        class='detial_content'
-        <rich-text nodes="{{goodsInfo.content}}" type='text'></rich-text>
-      </view> -->
+      <view class='contents'>
+        {{goodsInfo.introduction}}
+      </view>
       <view class='detial_img'>
         <image mode='widthFix' src='{{goodsInfo.detail}}'></image>
       </view>

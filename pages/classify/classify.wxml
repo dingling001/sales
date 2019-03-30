@@ -6,6 +6,6 @@
       <text>{{item.englishName}}</text>
       <text class='class_title'>{{item.name}}</text>
     </view>
-    <image src='{{item.bigImage}}' mode='widthFix'></image>
+    <image src='{{item.bigImage}}'></image>
   </navigator>
 </view>
