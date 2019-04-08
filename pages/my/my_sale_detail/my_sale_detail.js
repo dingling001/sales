@@ -48,11 +48,11 @@ Page({
     })
 
   },
-  mailingAddress_fun(e) {
-    this.setData({
-      mailingAddress: e.detail.value
-    })
-  },
+  // mailingAddress_fun(e) {
+  //   this.setData({
+  //     mailingAddress: e.detail.value
+  //   })
+  // },
   express_fun(e) {
     this.setData({
       express: e.detail.value
@@ -65,12 +65,13 @@ Page({
   },
   go_save() {
     let that = this;
-    if (that.data.mailingAddress == '') {
-      wx.showToast({
-        title: '请输入寄售地址',
-        icon: 'none'
-      })
-    } else if (that.data.express == '') {
+    // if (that.data.mailingAddress == '') {
+    //   wx.showToast({
+    //     title: '请输入寄售地址',
+    //     icon: 'none'
+    //   })
+    // } else 
+    if (that.data.express == '') {
       wx.showToast({
         title: '请输入快递公司',
         icon: 'none'
@@ -95,11 +96,10 @@ Page({
               id: that.data.id,
               express: that.data.express,
               singleNumber: that.data.singleNumber,
-              mailingAddress: that.data.mailingAddress
+              // mailingAddress: that.data.mailingAddress
             },
             success(res) {
               console.log(res)
-
               if (res) {
                 wx.showToast({
                   title: '保存成功',

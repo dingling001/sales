@@ -48,6 +48,7 @@ swiper {
 
 .data_box {
   margin: 120rpx 0 0 0;
+  padding: 0 0 100rpx 0;
 }
 
 .list_item {
@@ -126,20 +127,32 @@ swiper {
   display: flex;
   align-items: center;
   justify-content: flex-end;
- padding: 10rpx 0;
+  padding: 10rpx 0;
 }
 
 .btn {
   /* position: absolute;
   right: 20rpx;
   bottom: 20rpx; */
-  padding: 10rpx 20rpx;
-  color: #fff;
-  background-color: #fdce02;
-  font-size: 26rpx;
+  padding: 10rpx 0;
+  width: 150rpx;
+  flex-shrink: 0;
+  text-align: center;
+/* text-align-last:justify;
+text-align:justify;
+text-justify:distribute-all-lines; */
+  color: #fdce02;
+  /* background-color: #ccc; */
+  border: 1px solid #fdce02;
+  font-size: 24rpx;
   border-radius: 10rpx;
 }
 
 .num_wechat {
   font-size: 26rpx;
+}
+
+.order {
+  font-weight: bold;
+  font-size: 28rpx;
 }

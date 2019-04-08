@@ -9,7 +9,15 @@ Page({
     windowHeight: '',
     show_mold: true,
     w_num: '',
-    w_tel: ''
+    w_tel: '',
+    page: 1,
+    limit:10,
+    count: 0,
+    scrollTop: 0,
+    scrollHeight: 0,
+    hideBottom: false,
+    loadMoreData:'',
+    imgUrl:network.imgUrl
   },
   openmsg() {
     this.setData({
@@ -28,19 +36,18 @@ Page({
       animation: true
     })
   },
-  copy_fn(e){
+  copy_fn(e) {
     let wnum = e.currentTarget.dataset.wnum;
     wx.setClipboardData({
       data: wnum,
       success(res) {
         wx.getClipboardData({
-          success(res) {
-          }
+          success(res) {}
         })
       }
     })
   },
-  call_fn(e){
+  call_fn(e) {
     let wtel = e.currentTarget.dataset.wtel;
     wx.makePhoneCall({
       phoneNumber: wtel // 仅为示例，并非真实的电话号码
@@ -67,6 +74,14 @@ Page({
     this.slideShow();
     this.homeList_fun();
     this.getmsg();
+    var that = this;
+    wx.getSystemInfo({
+      success: function(res) {
+        that.setData({
+          scrollHeight: res.windowHeight
+        });
+      }
+    });
   },
   // 滚动事件
   scroll(e) {
@@ -80,6 +95,33 @@ Page({
         show_back: false,
       })
     }
+    this.setData({
+      scrollTop: e.detail.scrollTop
+    });
+  },
+  bindDownLoad: function() {
+    var that = this;
+    // loadMore(that);
+    if (that.data.page == that.data.count) {
+      that.setData({
+        hideBottom: false
+      })
+      return;
+    }
+    setTimeout(function() {
+      console.log('上拉加载更多');
+      var tempCurrentPage = that.data.page;
+      tempCurrentPage = tempCurrentPage + 1;
+      that.setData({
+        page: tempCurrentPage,
+      })
+
+    }, 300);
+
+  },
+
+  topLoad: function(event) {
+
   },
   onShow() {
     this.slideShow();
@@ -146,23 +188,26 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded"
       },
       params: {
-        limit: 10000,
-        page: 0,
+        limit: that.data.limit,
+        page: that.data.page,
       },
       success(res) {
         wx.hideNavigationBarLoading()
-        var slidelist = res.data.data;
-        // console.log(slidelist)
-        for (let i in slidelist) {
-          for (let j in slidelist[i].goodsSwiperList) {
-            slidelist[i].goodsSwiperList[j].image = network.imgUrl + slidelist[i].goodsSwiperList[j].image
-          }
-
-        }
         if (res.data.code == 0) {
-          that.setData({
-            homeList: slidelist
-          })
+          if (that.data.page == 1) {
+            that.setData({
+              homeList: res.data.data,
+              count: res.data.count
+            })
+          } else {
+            let homeList = that.data.homeList;
+            homeList = homeList.concat(res.data.data);
+            that.setData({
+              homeList: homeList,
+              allPages: res.data.count,
+              hideBottom: true
+            })
+          }
           // console.log(that.data.homeList);
         } else {;
         }

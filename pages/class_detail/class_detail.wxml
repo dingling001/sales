@@ -23,7 +23,7 @@
     <view class='index_list' wx:else>
       <view class='index_item' bindtap='go_detail' wx:for='{{goodsList}}' data-id='{{item.goods.id}}' wx:key='{{item.goods.id}}'>
      <view class='index_item_img'>
-          <image mode='widthFix' src='{{i.image}}' lazy-load='true' wx:for='{{item.goodsSwiperList}}' wx:for-item='i' wx:key='i.image' wx:if='{{i.thumbnail==0}}'>
+          <image mode='widthFix' src='{{img_url+i.image}}' lazy-load='true' wx:for='{{item.goodsSwiperList}}' wx:for-item='i' wx:key='i.image' wx:if='{{i.thumbnail==0}}'>
           </image>
         </view>
         <view class='index_name'>{{item.goods.name}}</view>

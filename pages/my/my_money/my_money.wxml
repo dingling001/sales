@@ -29,6 +29,10 @@
       <view class='list_price'>寄售价：
         <text class='buy_price'>{{item.expectationPrice}}</text>
       </view>
+       <view class='mold_s'>
+        <view class='num_wechat'>1对1在线客服，请加微信：{{item.wechatNumber?item.wechatNumber:w_num}}</view>
+        <view class='copy_btn' bindtap='copy_fn' data-wechat='{{item.wechatNumber?item.wechatNumber:w_num}}'>复制微信号</view>
+      </view>
     </view>
   </view>
 </view>

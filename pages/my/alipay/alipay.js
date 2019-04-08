@@ -90,7 +90,7 @@ Page({
               alipayUserName: that.data.username,
             },
             success(res) {
-
+              console.log(res)
               if (res.data.code == 0) {
                 wx.showToast({
                   title: '保存成功',

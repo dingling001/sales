@@ -1,6 +1,6 @@
 <import src="../template/template.wxml" />
 <template is="kefu" data="{{...item}}" bindtap='openmsg'></template>
-<scroll-view scroll-top='{{scrollTop}}' bindscroll="scroll" scroll-y='true' class='scrol_box'>
+<scroll-view class='scrol_box' scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad" bindscroll="scroll">
   <view class='index_top'></view>
   <swiper class='index_swiper' indicator-dots="true" indicator-color='#fff' indicator-active-color='#FDCE02'>
     <block wx:for="{{slide_list}}" wx:key='item'>
@@ -16,11 +16,10 @@
     </view>
   </view>
   <view class='index_box' wx:key='{{item.id}}' wx:for-index='hindex'>
-
     <view class='index_list'>
       <view class='index_item' bindtap='go_detail' wx:for='{{homeList}}' data-index='{{index}}' data-hindex='{{hindex}}' wx:key='{{item.id}}'>
         <view class='index_item_img'>
-          <image mode='widthFix' src='{{i.image}}' lazy-load='true' wx:for='{{item.goodsSwiperList}}' wx:for-item='i' wx:key='i.image' wx:if='{{i.thumbnail==0}}'>
+          <image mode='widthFix' src='{{imgUrl+i.image}}' lazy-load='true' wx:for='{{item.goodsSwiperList}}' wx:for-item='i' wx:key='i.image' wx:if='{{i.thumbnail==0}}'>
           </image>
         </view>
         <!-- <view class='index_item_img' wx:else>
@@ -35,6 +34,7 @@
       </view>
     </view>
   </view>
+  <view class='nodata'>{{loadMoreData}}</view>
 </scroll-view>
 <view class='mold' hidden='{{show_mold}}' bindtap='close_mold'>
   <view class='mold_item'>

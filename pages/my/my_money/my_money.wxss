@@ -85,3 +85,6 @@
   font-size: 26rpx;
   border-radius: 10rpx;
 }
+.num_wechat {
+  font-size: 26rpx;
+}

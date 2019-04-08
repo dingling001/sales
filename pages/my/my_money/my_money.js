@@ -1,5 +1,6 @@
 // pages/my/my_money/my_money.js
 let network = require('../../../utils/network.js')
+const app=getApp()
 Page({
 
   /**
@@ -8,6 +9,7 @@ Page({
   data: {
     records: [],
     url: network.imgUrl,
+    w_num:''
   },
   getGlist() {
     let that = this;
@@ -22,7 +24,7 @@ Page({
             'X-Requested-With': 'XMLHttpRequest'
           },
           params: {
-            status: 8,
+            status: 4,
           },
           success(res) {
             let records = res.data.data;
@@ -63,6 +65,9 @@ Page({
   },
 
   onLoad: function(options) {
+    this.setData({
+      w_num: app.globalData.w_num
+    })
     this.getGlist()
   },
 

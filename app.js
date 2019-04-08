@@ -2,7 +2,7 @@
 let network = require('./utils/network.js')
 App({
   onLaunch: function() {
-
+    this.getmsg()
   },
   getmsg() {
     let that = this;
@@ -13,8 +13,9 @@ App({
       },
       params: {},
       success(res) {
-        this.globalData.w_num = res.data.consumerWechat;
-        this.globalData.w_tel = res.data.consumerHotline
+        // console.log(res.data.consumerWechat)
+        that.globalData.w_num = res.data.consumerWechat;
+        that.globalData.w_tel = res.data.consumerHotline
       }
     })
   },

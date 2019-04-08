@@ -134,6 +134,7 @@ Page({
     wx.getStorage({
       key: 'token',
       success: (res_token) => {
+        console.log(res_token.data)
         wx.uploadFile({
           // url: util.baseUrl + 'user/upload',
           url: network.imgUrl + 'action/auth/HxSysUploadAction/upload',
@@ -145,17 +146,36 @@ Page({
           name: 'imagekey',
           formData: {},
           success: function(res) {
-
-            // imgs = imgs.concat(JSON.parse(res.data).data.path)
-            // console.log(JSON.parse(res.data).list.join(','))
-            that.setData({
-              images: that.data.images.concat(JSON.parse(res.data).list) //把字符串解析成对象
-
-              // images: imgs
-            })
-            if (that.data.images.length >= 4) {
+            if (res.statusCode== 200) {
+              // imgs = imgs.concat(JSON.parse(res.data).data.path)
+              console.log(JSON.parse(res.data).list.join(','))
               that.setData({
-                showAdd: false
+                images: that.data.images.concat(JSON.parse(res.data).list) //把字符串解析成对象
+                // images: imgs
+              })
+              if (that.data.images.length >= 4) {
+                that.setData({
+                  showAdd: false
+                })
+              }
+            }else{
+              wx.showToast({
+                title: '登录已失效',
+                mask:true
+              });
+              setTimeout((res)=>{
+                wx.removeStorage({
+                  key: 'token',
+                  success: function(res) {
+                    wx.removeStorage({
+                      key: 'userinfo',
+                      success: function(res) {},
+                    })
+                    wx.switchTab({
+                      url:"/pages/my/my"
+                    })
+                  },
+                })
               })
             }
             // console.log(that.data.images)
@@ -330,9 +350,4 @@ Page({
   onReachBottom: function() {
 
   },
-
-
-  onShareAppMessage: function() {
-
-  }
 })

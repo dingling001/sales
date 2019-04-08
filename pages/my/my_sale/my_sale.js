@@ -75,11 +75,11 @@ Page({
           status: 10
         })
         break;
-      case 5:
-        this.setData({
-          status: 8
-        })
-        break;
+      // case 5:
+      //   this.setData({
+      //     status: 8
+      //   })
+      //   break;
       default:
         this.setData({
           status: index - 1
@@ -100,6 +100,7 @@ Page({
   // 0: 待审核,1: 审核不通过, 1: 审核通过, 2: 已发货, 3: 实物审核中, 4: 实物审核未通过, 5: 上架销售, 6: 已售出, 7: 已完成
   // 未发货
   onLoad: function(options) {
+    console.log(app.globalData)
     this.setData({
       w_num: app.globalData.w_num
     })
@@ -151,7 +152,4 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
-
-  }
 })

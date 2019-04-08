@@ -38,7 +38,9 @@ page {
 .img_box  .imgs {
   /* background-color: #000; */
 }
-
+.img_box  .imgs image{
+  width:100%
+}
 .img_box .img .icon-tianjiatupian {
   color: #999;
   font-size: 70rpx;

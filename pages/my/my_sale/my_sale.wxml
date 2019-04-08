@@ -11,7 +11,7 @@
   <view class='nodata' wx:if='{{records.length==0}}'>暂无数据</view>
   <view class='list' wx:else>
     <view class='list_item' wx:for='{{records}}' wx:key='{{item.id}}'>
-      <view class='address' style='font-weight:bold'>订单号：{{item.orderNumber}}</view>
+      <view class='address order'>订单号：{{item.orderNumber}}</view>
       <view class='address'> 创建时间：{{item.createdTime}}</view>
       <view class='list_top'>
         <view>{{item.name}}</view>
@@ -38,20 +38,26 @@
           <!-- <view class='more_img'>更多</view> -->
         </view>
       </view>
-      <view class='address'>原 价：{{item.buyPrice}}</view>
+      <view class='address'>原 价：¥{{item.buyPrice}}</view>
       <view class='address'>寄售价：
-        <text class='buy_price'>{{item.expectationPrice}}</text>
+        <text class='buy_price'>¥{{item.expectationPrice}}</text>
       </view>
-      <view class='address' style='color:#ccc'>备注：{{item.mark}}</view>
-      <view wx:if='{{item.status==1||item.status==5}}' class='address'>审核未通过原因：{{item.reason}}</view>
-      <view class='address' wx:if='{{item.mailingAddress}}'>寄售地址：{{item.mailingAddress}}</view>
-      <view class='mold_s' wx:if='{{item.wechatNumber}}'>
+      <view class='address'>备注：
+        <text style='color:#ccc'>{{item.mark}}</text>
+      </view>
+      <view wx:if='{{item.status==1}}' class='address'>审核未通过原因：{{item.reason}}</view>
+      <view class='address' wx:if='{{item.status==2&&item.express==""}}'>寄售地址：{{item.mailingAddress}}</view>
+      <view class='mold_s'>
         <view class='num_wechat'>1对1在线客服，请加微信：{{item.wechatNumber?item.wechatNumber:w_num}}</view>
         <view class='copy_btn' bindtap='copy_fn' data-wechat='{{item.wechatNumber?item.wechatNumber:w_num}}'>复制微信号</view>
       </view>
-      <view class='btn_box' wx:if='{{item.status==2}}'>
+      <view class='btn_box' wx:if='{{item.status==2&&item.express==""}}'>
         <view class='btn' catchtap='go_saling' data-id='{{item.id}}'>去发货</view>
       </view>
+      <block wx:else>
+        <view class='address'>快递单号：{{item.singleNumber}}</view>
+        <view class='address'>快递公司：{{item.express}}</view>
+      </block>
     </view>
   </view>
 </view>

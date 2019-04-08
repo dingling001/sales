@@ -17,7 +17,8 @@ Page({
     name: '',
     show_mold: true,
     w_num: '',
-    w_tel: ''
+    w_tel: '',
+    img_url: network.imgUrl
   },
   // 返回顶部
   back_fun() {
@@ -45,11 +46,11 @@ Page({
       success(res) {
         if (res.data) {
           let goodsList = res.data.data;
-          for (let i in goodsList) {
-            for (let j in goodsList[i].goodsSwiperList) {
-              goodsList[i].goodsSwiperList[j].image = network.imgUrl + goodsList[i].goodsSwiperList[j].image
-            }
-          }
+          // for (let i in goodsList) {
+          //   for (let j in goodsList[i].goodsSwiperList) {
+          //   //   goodsList[i].goodsSwiperList[j].image = network.imgUrl + goodsList[i].goodsSwiperList[j].image
+          //   // }
+          // }
           that.setData({
             goodsList: goodsList,
           })
@@ -194,9 +195,9 @@ Page({
 
         if (res.data) {
           let goodsList = res.data.data;
-          for (let i in goodsList) {
-            goodsList[i].detail = network.imgUrl + goodsList[i].detail
-          }
+          // for (let i in goodsList) {
+          //   goodsList[i].detail = network.imgUrl + goodsList[i].detail
+          // }
           that.setData({
             goodsList: goodsList,
           })
