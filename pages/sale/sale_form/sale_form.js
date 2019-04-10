@@ -102,12 +102,14 @@ Page({
             showAdd: false
           })
 
-        } else if (res.tempFiles[0].size > 307200) {
-          wx.showToast({
-            title: '图片过大',
-            icon: 'none'
-          })
-        } else {
+        }
+        //  else if (res.tempFiles[0].size > 307200) {
+        //   wx.showToast({
+        //     title: '图片过大',
+        //     icon: 'none'
+        //   })
+        // }
+        else {
           // console.log(res.tempFilePaths)
           that.setData({
             imgs: that.data.imgs.concat(res.tempFilePaths)
@@ -134,7 +136,7 @@ Page({
     wx.getStorage({
       key: 'token',
       success: (res_token) => {
-        console.log(res_token.data)
+        // console.log(res_token.data)
         wx.uploadFile({
           // url: util.baseUrl + 'user/upload',
           url: network.imgUrl + 'action/auth/HxSysUploadAction/upload',
@@ -146,9 +148,12 @@ Page({
           name: 'imagekey',
           formData: {},
           success: function(res) {
-            if (res.statusCode== 200) {
+            // console.log(JSON.parse(res.data))
+            let state = false;
+            state = JSON.parse(res.data).state || false;
+            if (res.statusCode == 200 && state) {
               // imgs = imgs.concat(JSON.parse(res.data).data.path)
-              console.log(JSON.parse(res.data).list.join(','))
+              // console.log(JSON.parse(res.data).list.join(','))
               that.setData({
                 images: that.data.images.concat(JSON.parse(res.data).list) //把字符串解析成对象
                 // images: imgs
@@ -158,25 +163,32 @@ Page({
                   showAdd: false
                 })
               }
-            }else{
+            } else {
               wx.showToast({
                 title: '登录已失效',
-                mask:true
+                mask: true
               });
-              setTimeout((res)=>{
-                wx.removeStorage({
-                  key: 'token',
+              setTimeout((res) => {
+                // wx.removeStorage({
+                //   key: 'token',
+                //   success: function(res) {
+                //     wx.removeStorage({
+                //       key: 'userinfo',
+                //       success: function(res) {},
+                //     })
+                //     wx.switchTab({
+                //       url:"/pages/my/my"
+                //     })
+                //   },
+                // })
+                wx.clearStorage({
                   success: function(res) {
-                    wx.removeStorage({
-                      key: 'userinfo',
-                      success: function(res) {},
-                    })
                     wx.switchTab({
-                      url:"/pages/my/my"
+                      url: "/pages/my/my"
                     })
-                  },
+                  }
                 })
-              })
+              }, 1500)
             }
             // console.log(that.data.images)
           },

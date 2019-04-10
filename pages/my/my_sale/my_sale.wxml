@@ -51,12 +51,12 @@
         <view class='num_wechat'>1对1在线客服，请加微信：{{item.wechatNumber?item.wechatNumber:w_num}}</view>
         <view class='copy_btn' bindtap='copy_fn' data-wechat='{{item.wechatNumber?item.wechatNumber:w_num}}'>复制微信号</view>
       </view>
-      <view class='btn_box' wx:if='{{item.status==2&&item.express==""}}'>
+      <view class='btn_box' wx:if='{{item.status==2&&item.express==""&&item.singleNumber==""}}'>
         <view class='btn' catchtap='go_saling' data-id='{{item.id}}'>去发货</view>
       </view>
       <block wx:else>
-        <view class='address'>快递单号：{{item.singleNumber}}</view>
-        <view class='address'>快递公司：{{item.express}}</view>
+        <view class='address' wx:if='{{item.singleNumber}}'>快递单号：{{item.singleNumber}}</view>
+        <view class='address' wx:if='{{item.express}}'>快递公司：{{item.express}}</view>
       </block>
     </view>
   </view>

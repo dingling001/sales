@@ -1,5 +1,5 @@
 const API_URL = 'https://www.chugebaobao.com/station/action/'
-const imgUrl = 'https://chugebaobao.com/station/'
+const imgUrl = 'https://www.chugebaobao.com/station/'
 
 var requestHandler = {
   url: "",
