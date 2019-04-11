@@ -138,6 +138,7 @@ Page({
         isAsc1: 2,
       })
     }
+    console.log(this.data.isAsc1)
     this.search_fun(this.data.isAsc, this.data.isAsc1, '')
   },
   // 品牌
@@ -174,7 +175,7 @@ Page({
     })
   },
   // 筛选
-  search_fun(consignmentFlag = 1, originalPriceFlag = 1, brandId) {
+  search_fun(consignmentFlag = 0, originalPriceFlag = 0, brandId) {
     var that = this;
     network.POST({
       url: 'GoodsAction/searchGoodsList',

@@ -80,6 +80,7 @@ swiper {
   justify-content: center;
   overflow: hidden;
   border-radius: 10rpx;
+  margin-bottom: 10rpx;
 }
 
 .more_img {
@@ -121,12 +122,13 @@ swiper {
   padding: 10rpx 0;
   font-size: 26rpx;
   color: #222;
+  /* text-align: justify; */
 }
 
 .btn_box {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  /* align-items: center; */
+  justify-content: space-between;
   padding: 10rpx 0;
 }
 
@@ -134,11 +136,13 @@ swiper {
   /* position: absolute;
   right: 20rpx;
   bottom: 20rpx; */
-  padding: 10rpx 0;
-  width: 150rpx;
+  /* padding: 10rpx 0; */
   flex-shrink: 0;
+  width: 150rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   text-align: center;
-/* text-align-last:justify;
+  /* text-align-last:justify;
 text-align:justify;
 text-justify:distribute-all-lines; */
   color: #fdce02;
@@ -146,6 +150,7 @@ text-justify:distribute-all-lines; */
   border: 1px solid #fdce02;
   font-size: 24rpx;
   border-radius: 10rpx;
+  margin-left: 20rpx;
 }
 
 .num_wechat {

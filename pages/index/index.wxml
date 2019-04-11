@@ -1,52 +1,56 @@
-<import src="../template/template.wxml" />
+<import src="../template/template.wxml"/>
 <template is="kefu" data="{{...item}}" bindtap='openmsg'></template>
-<scroll-view class='scrol_box' scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad" bindscroll="scroll">
-  <view class='index_top'></view>
-  <swiper class='index_swiper' indicator-dots="true" indicator-color='#fff' indicator-active-color='#FDCE02'>
-    <block wx:for="{{slide_list}}" wx:key='item'>
-      <swiper-item class='swiper_item'>
-        <image src="{{item.image}}" mode="aspectFit" lazy-load='true' />
-      </swiper-item>
-    </block>
-  </swiper>
-  <view class='index_boxs'>
-    <view class='index_rec'>
-      <text class='rec_text'></text>
-      <text>精品推荐</text>
-    </view>
-  </view>
-  <view class='index_box' wx:key='{{item.id}}' wx:for-index='hindex'>
-    <view class='index_list'>
-      <view class='index_item' bindtap='go_detail' wx:for='{{homeList}}' data-index='{{index}}' data-hindex='{{hindex}}' wx:key='{{item.id}}'>
-        <view class='index_item_img'>
-          <image mode='widthFix' src='{{imgUrl+i.image}}' lazy-load='true' wx:for='{{item.goodsSwiperList}}' wx:for-item='i' wx:key='i.image' wx:if='{{i.thumbnail==0}}'>
-          </image>
+<scroll-view class='scrol_box' scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;"
+             bindscrolltolower="bindDownLoad" bindscrolltoupper="topLoad" bindscroll="scroll">
+    <view class='index_top'></view>
+    <swiper class='index_swiper' indicator-dots="true" indicator-color='#fff' indicator-active-color='#FDCE02'>
+        <block wx:for="{{slide_list}}" wx:key='item'>
+            <swiper-item class='swiper_item'>
+                <image src="{{item.image}}" mode="aspectFit" lazy-load='true'/>
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class='index_boxs'>
+        <view class='index_rec'>
+            <text class='rec_text'></text>
+            <text>精品推荐</text>
         </view>
-        <!-- <view class='index_item_img' wx:else>
-         <view class='icofont icon-zanwutupian1-copy'></view>
-        </view> -->
-        <view class='index_name'>{{item.goods.name}}</view>
-        <view class='index_des'>{{item.goods.introduction}}</view>
-        <view class='price_box'>
-          <text class='pre_p'>￥{{item.goods.actualPrice}}</text>
-          <text class='old_p'>￥{{item.goods.originalPrice}}</text>
-        </view>
-      </view>
     </view>
-  </view>
-  <view class='nodata'>{{loadMoreData}}</view>
+    <view class='index_box' wx:key='{{item.id}}' wx:for-index='hindex'>
+        <view class='index_list'>
+            <view class='index_item' bindtap='go_detail' wx:for='{{homeList}}' data-index='{{index}}'
+                  data-hindex='{{hindex}}' wx:key='{{item.id}}'>
+                <view class='index_item_img'>
+                    <image mode='widthFix' src='{{imgUrl+i.image}}' lazy-load='true' wx:for='{{item.goodsSwiperList}}'
+                           wx:for-item='i' wx:key='i.image' wx:if='{{i.thumbnail==0}}'>
+                    </image>
+                </view>
+                <!-- <view class='index_item_img' wx:else>
+                 <view class='icofont icon-zanwutupian1-copy'></view>
+                </view> -->
+                <view class='index_name'>{{item.goods.name}}</view>
+                <view class='index_des'>{{item.goods.introduction}}</view>
+                <view class='price_box'>
+                    <text class='pre_p'>￥{{item.goods.actualPrice}}</text>
+                    <text class='old_p'>￥{{item.goods.originalPrice}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class='nodata'>{{loadMoreData}}</view>
 </scroll-view>
 <view class='mold' hidden='{{show_mold}}' bindtap='close_mold'>
-  <view class='mold_item'>
-    <view class='mold_s'>
-      <view class='num'>客服微信：{{w_num}}</view>
-      <view class='copy_btn' bindtap='copy_fn' data-wnum='{{w_num}}'>复制</view>
+     <view class='mold_item'>
+        <view class='mold_x'>X</view>
+        <view class='mold_s'>
+            <view class='num'>客服微信：{{w_num}}</view>
+            <view class='copy_btn' bindtap='copy_fn' data-wnum='{{w_num}}'>复制</view>
+        </view>
+        <view class='mold_s'>
+            <view class='num'>客服电话：{{w_tel}}</view>
+            <view class='copy_btn' bindtap='call_fn' data-wtel='{{w_tel}}'>拨打</view>
+        </view>
     </view>
-    <view class='mold_s'>
-      <view class='num'>客服电话：{{w_tel}}</view>
-      <view class='copy_btn' bindtap='call_fn' data-wtel='{{w_tel}}'>拨打</view>
-    </view>
-  </view>
 
 </view>
 <view class='iconfont icon-huidaodingbu' bindtap='back_fun'></view>
