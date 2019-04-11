@@ -148,10 +148,9 @@ Page({
           name: 'imagekey',
           formData: {},
           success: function(res) {
+            console.log(res.data.indexOf("list") != -1 )
             // console.log(JSON.parse(res.data))
-            let state = false;
-            state = JSON.parse(res.data).state || false;
-            if (res.statusCode == 200 && state) {
+            if (res.statusCode == 200 && res.data.indexOf("list") != -1 ) {
               // imgs = imgs.concat(JSON.parse(res.data).data.path)
               // console.log(JSON.parse(res.data).list.join(','))
               that.setData({

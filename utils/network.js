@@ -42,17 +42,20 @@ function request(method, requestHandler) {
     success: function(res) {
       wx.hideLoading()
       //注意：可以对参数解密等处理
-      if (res.statusCode == 403) {
+      // console.log(res.header.SESSIONSTATUS)
+      if (res.header.SESSIONSTATUS =='TIMEOUT') {
+        console.log('失效')
         wx.showToast({
           title: '登录已失效，点击登录！',
           icon: 'none'
         })
-        wx.removeStorage({
-          key: 'token',
-          success(res) {
-            console.log(res.data)
-          }
-        })
+        // wx.removeStorage({
+        //   key: 'token',
+        //   success(res) {
+        //     console.log(res.data)
+        //   }
+        // })
+        wx.clearStorage();
         wx.switchTab({
           url: '/pages/my/my',
         })
