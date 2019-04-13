@@ -102,9 +102,6 @@ swiper {
   color: #222;
 }
 
-.buy_price {
-  color: #f60000;
-}
 
 .status_text {
   color: #999;
@@ -123,6 +120,9 @@ swiper {
   font-size: 26rpx;
   color: #222;
   /* text-align: justify; */
+}
+.buy_price {
+  color: #f60000;
 }
 
 .btn_box {
