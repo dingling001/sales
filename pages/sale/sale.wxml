@@ -36,7 +36,8 @@
 <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="go_sale" class='sale_btn'>去寄售</button>
 <!-- <button open-type="contact" bindcontact='bindcontact' class='sale_btn'>去寄售</button> -->
 <view class='mold' hidden='{{show_mold}}' bindtap='close_mold'>
-  <view class='mold_item'>
+   <view class='mold_item'>
+        <view class='mold_x'>X</view>
     <view class='mold_s'>
       <view class='num'>客服微信：{{w_num}}</view>
       <view class='copy_btn' bindtap='copy_fn' data-wnum='{{w_num}}'>复制</view>

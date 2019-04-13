@@ -54,12 +54,12 @@ Page({
   },
   oldprice_fun(e) {
     this.setData({
-      expectationPrice: e.detail.value
+      buyPrice: e.detail.value 
     })
   },
   price_fun(e) {
     this.setData({
-      buyPrice: e.detail.value
+      expectationPrice: e.detail.value
     })
   },
   tel_fun(e) {

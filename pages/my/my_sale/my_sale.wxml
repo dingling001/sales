@@ -45,19 +45,20 @@
       <view class='address'>备注：
         <text style='color:#ccc'>{{item.mark}}</text>
       </view>
-      <view wx:if='{{item.status==1}}' class='address'>审核未通过原因：{{item.reason}}</view>
-      <view class='address' wx:if='{{item.status==2&&item.express==""}}'>寄售地址：{{item.mailingAddress}}</view>
-      <view class='mold_s'>
+      <view wx:if='{{item.status==1}}' class='address buy_price'>审核未通过原因：{{item.reason}}</view>
+      <view class='mold_ss'>
         <view class='num_wechat'>1对1在线客服，请加微信：{{item.wechatNumber?item.wechatNumber:w_num}}</view>
         <view class='copy_btn' bindtap='copy_fn' data-wechat='{{item.wechatNumber?item.wechatNumber:w_num}}'>复制微信号</view>
       </view>
       <view class='btn_box' wx:if='{{item.status==2&&item.express==""&&item.singleNumber==""}}'>
+             <view class='address'>寄售地址：{{item.mailingAddress}}</view>
         <view class='btn' catchtap='go_saling' data-id='{{item.id}}'>去发货</view>
       </view>
       <block wx:else>
         <view class='address' wx:if='{{item.singleNumber}}'>快递单号：{{item.singleNumber}}</view>
         <view class='address' wx:if='{{item.express}}'>快递公司：{{item.express}}</view>
       </block>
+
     </view>
   </view>
 </view>
