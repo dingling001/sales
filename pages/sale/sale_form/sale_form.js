@@ -148,11 +148,10 @@ Page({
           name: 'imagekey',
           formData: {},
           success: function(res) {
-            console.log(res.data.indexOf("list") != -1 )
+            // console.log(res.data.indexOf("list") != -1 )
             // console.log(JSON.parse(res.data))
             if (res.statusCode == 200 && res.data.indexOf("list") != -1 ) {
               // imgs = imgs.concat(JSON.parse(res.data).data.path)
-              // console.log(JSON.parse(res.data).list.join(','))
               that.setData({
                 images: that.data.images.concat(JSON.parse(res.data).list) //把字符串解析成对象
                 // images: imgs
